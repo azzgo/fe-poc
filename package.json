@@ -3,8 +3,9 @@
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
+  "private": true,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "bootstrap": "lerna bootstrap"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,8 @@
   },
   "homepage": "https://github.com/azzgo/fe-poc#readme",
   "dependencies": {
-    "lerna": "^2.1.2"
-  }
+  },
+  "workspaces": [
+    "packages/*"
+  ]
 }
