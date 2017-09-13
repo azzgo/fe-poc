@@ -14,4 +14,15 @@ describe('onErrorResumeNext', () => {
       done()
     })
   });
+
+  it('Combine two stream', (done) => {
+    Observable.zip(
+      Observable.of(3),
+      Observable.of(2),
+    )
+    .subscribe(res => {
+      expect(res).eql([3,2])
+      done()
+    })
+  })
 });
