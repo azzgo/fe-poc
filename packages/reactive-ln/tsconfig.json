@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "es5",                          
+    "module": "commonjs",                     
+    "strict": true,                           
+    "noImplicitAny": false,
+    "lib": ["es6", "dom"],         
+    "strictNullChecks": true,              
+    "sourceMap": true,
+    "typeRoots": [
+        "node_modules/@types/"
+    ],
+    "allowSyntheticDefaultImports": true,
+    "experimentalDecorators": true, 
+    "emitDecoratorMetadata": true
+  }
+}
