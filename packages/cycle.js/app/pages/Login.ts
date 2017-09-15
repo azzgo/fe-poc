@@ -1,4 +1,4 @@
-import { div, DOMSource, h1, input, hr } from '@cycle/dom';
+import { div, DOMSource, h1, input, hr, button } from '@cycle/dom';
 import { Sources } from '@cycle/run';
 import xs from 'xstream';
 
@@ -12,10 +12,18 @@ export function LoginPage(sources: Sources) {
       return div([
         input('.username', {attrs: {type: 'text'}}),
         input('.password', {attrs: {type: 'text'}}),
+        button('.login-btn', 'clickme')
       ])
     })
   
   const loginAction$ = ((sources.DOM) as DOMSource).select('.login-btn').events('click')
+    .compose(() => {
+      return xs.combine(username$, password$)
+    })
+    .map(([username, password]) => {
+      console.log(username, password)
+      return ''
+    })
 
   return {
     DOM: loginPageDom$,

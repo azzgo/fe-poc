@@ -5,10 +5,11 @@ import { routerify } from 'cyclic-router';
 import switchPath from 'switch-path';
 import xs from 'xstream';
 import { LoginPage } from './pages/Login';
+import { HomePage } from './pages/Home';
 
 function main(sources) {
   const match$ = sources.router.define({
-    '/': LoginPage,
+    '/': HomePage,
     '/login': LoginPage,
   });
 
@@ -20,7 +21,7 @@ function main(sources) {
 
   return {
     DOM: page$.map((c) => c.DOM).flatten(),
-    router: xs.of('/login'),
+    router: page$.map((c) => c.router || xs.empty()).flatten(),
   };
 }
 
