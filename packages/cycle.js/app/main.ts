@@ -13,6 +13,7 @@ function main(sources) {
     '/': HomePage,
     '/login': LoginPage,
     '/about': AboutPage,
+    '*': LoginPage,
   });
 
   const page$ = match$.map(({path, value}) => {
@@ -23,7 +24,7 @@ function main(sources) {
 
   return {
     DOM: page$.map((c) => c.DOM).flatten(),
-    router: page$.map((c) => c.router),
+    router: xs.merge(page$.map((c) => c.router || xs.never()).flatten()),
   };
 }
 
