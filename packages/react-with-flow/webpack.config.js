@@ -5,7 +5,7 @@ module.exports = {
   devtool: 'eval',
   context: path.relative(__dirname, '.'),
   entry: {
-    main: './src/app/app.jsx'
+    main: './src/app/App.jsx'
   },
   module: {
     rules: [
