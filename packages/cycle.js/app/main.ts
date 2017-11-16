@@ -24,7 +24,7 @@ function main(sources) {
 
   return {
     DOM: page$.map((c) => c.DOM).flatten(),
-    router: xs.merge(page$.map((c) => c.router || xs.never()).flatten()),
+    router: xs.of('/login')
   };
 }
 

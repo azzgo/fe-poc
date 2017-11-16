@@ -26,7 +26,7 @@ export function LoginPage(sources: Sources) {
     username$, password$, ((sources.DOM) as DOMSource).select('.login-btn').events('click'))
     .map(([username, password, click]) => {
       if (username[0].value === 'admin' && password[0].value === 'admin') {
-        return '/';
+        return xs.of('/');
       }
       return xs.never();
     });
