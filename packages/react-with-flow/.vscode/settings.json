@@ -1,3 +1,9 @@
 {
-  "flowide.pathToFlow": "node_modules/.bin/flow"
+  "flowide.pathToFlow": "node_modules/.bin/flow",
+  "eslint.enable": true,
+  "eslint.autoFixOnSave": true,
+  "cSpell.words": [
+    "linebreak",
+    "style"
+  ]
 }

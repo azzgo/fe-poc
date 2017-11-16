@@ -1,3 +1,7 @@
 {
-  "flowide.pathToFlow": "node_modules/.bin/flow"
+  "flowide.pathToFlow": "node_modules/.bin/flow",
+  "cSpell.words": [
+    "devtool",
+    "linebreak"
+  ]
 }

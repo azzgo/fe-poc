@@ -10,10 +10,26 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /.(js|jsx)$/,
+        test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         use: ['babel-loader'],
       },
+      {
+        test: /\.css$/,
+        use: ['css-loader'],
+      },
+      {
+        test: /\.less$/,
+        use: [
+          {
+            loader: 'css-loader',
+            options: {
+              module: true,
+            },
+          },
+          'less-loader',
+        ]
+      }
     ],
   },
   plugins: [
