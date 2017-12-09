@@ -1,13 +1,15 @@
 import React, { PureComponent } from 'react';
+import ReactDom from 'react-dom'
 
 interface IProps {};
 
 interface IState {};
 
-class App extends React.Component<IProps, IState> {
+class App extends PureComponent<IProps, IState> {
   public render(): JSX.Element {
-    return (<span>ComponentName</span>);
+    return (<span>App</span>);
   }
 }
 
-export default App;
+
+ReactDom.render(<App /> , document.getElementById('app'))

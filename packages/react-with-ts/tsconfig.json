@@ -1,19 +1,26 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "module": "commonjs",
+    "module": "es2015",
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
+    "noImplicitAny": true,
+    "removeComments": true,
     "sourceMap": true,
     "jsx": "react",
     "checkJs": true,
+    "allowJs": true,
     "declaration": false,
     "lib": ["es6", "dom"],
     "outDir": "./build",
     "typeRoots": [
       "./node_modules/@types"
     ]
-  }
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx"
+  ]
 }
