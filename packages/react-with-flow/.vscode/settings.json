@@ -1,5 +1,5 @@
 {
-  "flowide.pathToFlow": "node_modules/.bin/flow",
+  "flowide.enabled": true,
   "eslint.enable": true,
   "eslint.autoFixOnSave": true,
   "cSpell.words": [

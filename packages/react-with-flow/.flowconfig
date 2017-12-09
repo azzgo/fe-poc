@@ -1,11 +1,14 @@
 [ignore]
+.*/__tests__/.*
+.*/node_modules/.*
 
 [include]
+.*/src/.*
 
 [libs]
+./libs
 
 [lints]
-
 [options]
 
 [strict]

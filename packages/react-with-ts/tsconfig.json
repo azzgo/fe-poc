@@ -8,6 +8,7 @@
     "allowSyntheticDefaultImports": true,
     "sourceMap": true,
     "jsx": "react",
+    "checkJs": true,
     "declaration": false,
     "lib": ["es6", "dom"],
     "outDir": "./build",
