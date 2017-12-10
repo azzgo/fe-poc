@@ -1,8 +1,8 @@
 import React, { PureComponent } from 'react'
 
 interface IProps {
-  children: JSX.Element,
-  OnRefresh?: () => void,
+  children?: JSX.Element[] | JSX.Element,
+  onRefresh?: () => void,
   loader?: JSX.Element, 
 }
 

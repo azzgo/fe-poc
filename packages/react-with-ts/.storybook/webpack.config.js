@@ -11,7 +11,7 @@ const webpackOptions = require('../webpack.config')
 
 module.exports = {
   plugins: [
-    new CheckerPlugin(),.
+    new CheckerPlugin(),
   ],
   module: webpackOptions.module,
   resolve: webpackOptions.resolve,
