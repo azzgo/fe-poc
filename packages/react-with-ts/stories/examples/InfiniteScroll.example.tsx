@@ -1,6 +1,6 @@
 import React, { PureComponent } from 'react'
-import { InfiniteScroll } from '../../src/shared/components/InfiniteScroll'
-import { AvatarPanel } from '../../src/shared/components/AvatarPanel'
+import { InfiniteScroll } from 'src/shared/components/InfiniteScroll'
+import { AvatarPanel } from 'src/shared/components/AvatarPanel'
 import faker from 'faker'
 
 interface IProps {

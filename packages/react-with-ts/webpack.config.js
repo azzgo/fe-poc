@@ -1,5 +1,4 @@
 // @ts-check
-/// <reference types="webpack" />
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 const { CheckerPlugin } = require('awesome-typescript-loader')
 const path = require('path')
@@ -13,7 +12,7 @@ const pathResolve = (...args) => {
 }
 
 /**
- * @type {webpack.Configuration} config
+ * @type {*} config
  */
 const config  = {
   entry: {
@@ -61,6 +60,9 @@ const config  = {
     new webpack.NamedModulesPlugin(),
   ],
   resolve: {
+    alias: {
+      src: pathResolve('src'),
+    },
     extensions: ['.ts', '.tsx', '.js', '.jsx']
   },
   devServer: {

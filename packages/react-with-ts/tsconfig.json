@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
     "target": "es5",
     "module": "es2015",
     "moduleResolution": "node",
@@ -10,6 +11,9 @@
     "removeComments": true,
     "sourceMap": true,
     "jsx": "react",
+    "paths": {
+      "src/*": ["./src/*"]
+    },
     "checkJs": true,
     "allowJs": true,
     "declaration": false,
@@ -22,6 +26,8 @@
   "include": [
     "typings/**/*.d.ts",
     "src/**/*.ts",
-    "src/**/*.tsx"
+    "src/**/*.tsx",
+    "stories/**/*.ts",
+    "stories/**/*.tsx"
   ]
 }
