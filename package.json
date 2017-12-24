@@ -19,5 +19,7 @@
   "homepage": "https://github.com/azzgo/fe-poc#readme",
   "dependencies": {
     "lerna": "^2.1.2"
+  },
+  "devDependencies": {
   }
 }

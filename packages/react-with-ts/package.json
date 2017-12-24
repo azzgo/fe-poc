@@ -16,9 +16,13 @@
     "react": "^16.2.0",
     "react-dom": "^16.2.0",
     "redux": "^3.7.2",
-    "redux-saga": "^0.16.0"
+    "redux-saga": "^0.16.0",
+    "react-redux": "^5.0.6",
+    "redux-actions": "^2.2.1"
   },
   "devDependencies": {
+    "@types/redux-actions": "^2.2.3",
+    "@types/react-redux": "^5.0.14",
     "@storybook/addon-actions": "^3.2.17",
     "@storybook/addon-links": "^3.2.17",
     "@storybook/react": "^3.2.17",
