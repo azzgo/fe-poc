@@ -5254,6 +5254,12 @@ react-modal@^3.1.4:
     prop-types "^15.5.10"
     warning "^3.0.0"
 
+react-redux-typescript@^3.0.0-rc.3:
+  version "3.0.0-rc.3"
+  resolved "http://registry.npm.taobao.org/react-redux-typescript/download/react-redux-typescript-3.0.0-rc.3.tgz#8f562c15fcd13afde476f28b6484e4f0359f8b79"
+  dependencies:
+    typesafe-actions "1.0.0"
+
 react-redux@^5.0.6:
   version "5.0.6"
   resolved "http://registry.npm.taobao.org/react-redux/download/react-redux-5.0.6.tgz#23ed3a4f986359d68b5212eaaa681e60d6574946"
@@ -6303,6 +6309,10 @@ type-is@~1.6.15:
   dependencies:
     media-typer "0.3.0"
     mime-types "~2.1.15"
+
+typesafe-actions@1.0.0:
+  version "1.0.0"
+  resolved "http://registry.npm.taobao.org/typesafe-actions/download/typesafe-actions-1.0.0.tgz#9bd4b9e250399e818fd3dbf0235fa21972cda509"
 
 typescript@^2.5.2:
   version "2.6.2"
