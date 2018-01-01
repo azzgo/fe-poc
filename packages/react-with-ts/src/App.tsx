@@ -5,7 +5,11 @@ import { BrowserRouter as Router, Route } from 'react-router-dom'
 
 import { store } from 'src/store';
 import { HomePage } from 'src/app/Home';
-import { AboutPage } from 'src/app/About';
+import { GenericPage } from 'src/app/Generic';
+
+import 'src/shared/styles/libs/css/font-awesome.min.css'
+import 'src/shared/styles/global.css'
+import { ElementsPage } from 'src/app/Elements';
 
 interface IProps {};
 
@@ -17,7 +21,8 @@ class App extends PureComponent<IProps, IState> {
       <Router>
         <React.Fragment>
           <Route path="/" exact component={HomePage} />
-          <Route path="/about" component={AboutPage} />
+          <Route path="/generic" component={GenericPage} />
+          <Route path="/elements" component={ElementsPage} />
         </React.Fragment>
       </Router>
     );

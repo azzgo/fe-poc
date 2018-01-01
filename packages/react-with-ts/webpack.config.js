@@ -49,6 +49,23 @@ const config  = {
           'style-loader',
           'css-loader',
         ]
+      },
+      {
+        test: /\.(jpg|jpeg|png|gif)$/,
+        loader: 'url-loader',
+        query: {
+          limit: 1,
+          name: '[path][name].[hash].[ext]',
+          emitFile: true,
+        }
+      },
+      {
+        test: /\.(eof|woff|woff2|svg|eot|ttf)$/,
+        loader: 'file-loader',
+        query: {
+          name: `assets/[name].[hash].[ext]`,
+          emitFile: true,
+        }
       }
     ]
   },
