@@ -9,7 +9,6 @@ import { GenericPage } from 'src/app/Generic';
 
 import 'src/shared/styles/libs/css/font-awesome.min.css'
 import 'src/shared/styles/global.css'
-import { ElementsPage } from 'src/app/Elements';
 
 interface IProps {};
 
@@ -22,7 +21,6 @@ class App extends PureComponent<IProps, IState> {
         <React.Fragment>
           <Route path="/" exact component={HomePage} />
           <Route path="/generic" component={GenericPage} />
-          <Route path="/elements" component={ElementsPage} />
         </React.Fragment>
       </Router>
     );

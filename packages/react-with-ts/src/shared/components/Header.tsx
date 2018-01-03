@@ -16,7 +16,6 @@ export class Header extends PureComponent<IProps, IState> {
 					<nav id="nav">
 						<Link to="/">Home</Link>
 						<Link to="/generic">Generic</Link>
-						<Link to="/elements">Elements</Link>
 					</nav>
 					<a href="#navPanel" className="navPanelToggle"><span className="fa fa-bars"></span></a>
 				</div>
