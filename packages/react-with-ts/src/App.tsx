@@ -1,14 +1,15 @@
 import React, { PureComponent } from 'react';
 import ReactDom from 'react-dom'
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router, Route } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom'
 
 import { store } from 'src/store';
-import { HomePage } from 'src/app/Home';
-import { GenericPage } from 'src/app/Generic';
 
-import 'src/shared/styles/libs/css/font-awesome.min.css'
+import { MasterLayout } from 'src/shared/components/MasterLayout/MasterLayout';
+
 import 'src/shared/styles/global.css'
+import 'src/shared/styles/flexboxgrid.min.css'
+import 'src/shared/styles/icons.css'
 
 interface IProps {};
 
@@ -19,8 +20,8 @@ class App extends PureComponent<IProps, IState> {
     return (
       <Router>
         <React.Fragment>
-          <Route path="/" exact component={HomePage} />
-          <Route path="/generic" component={GenericPage} />
+          <Route path="/app" component={MasterLayout} />
+          <Redirect from="/" exact to="/app" />
         </React.Fragment>
       </Router>
     );

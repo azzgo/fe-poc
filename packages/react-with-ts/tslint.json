@@ -6,7 +6,11 @@
     "quotemark": [true, "single", "jsx-double"],
     "interface-name": [true, "always-prefix"],
     "indent": [true, "spaces", 2],
-    "no-unused-variable": [true, {"ignore-pattern": "^_"}]
+    "no-unused-variable": [true, {"ignore-pattern": "^_"}],
+    "trailing-comma": [true, {"multiline": "always", "singleline": "never"}],
+    "semicolon": [true, "never"],
+    "jsx-boolean-value": [false],
+    "no-empty-interface": [false]
   },
   "rulesDirectory": []
 }

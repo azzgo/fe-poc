@@ -1,10 +1,10 @@
-import { handleAction } from "redux-actions";
-import { actionTypes } from "src/actions/actionTypes";
+import { handleAction } from 'redux-actions'
+import { actionTypes } from 'src/actions/actionTypes'
 
 export const demoReducer = handleAction(
-  actionTypes.demo, 
+  actionTypes.demo,
   (state: number) => {
-    return state + 1;
+    return state + 1
   },
-  0
+  0,
 )
