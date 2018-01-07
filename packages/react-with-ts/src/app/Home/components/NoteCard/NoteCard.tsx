@@ -4,7 +4,7 @@ import React, { PureComponent } from 'react'
 import styles from './NoteCard.less'
 
 export interface INote {
-  id: string,
+  id?: string,
   title: string
   value: string
 }

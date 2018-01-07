@@ -3,4 +3,4 @@ declare module '*.less' {
   export default content;
 }
 
-declare type InferableConnectType<IStateToProps, IDispatchToProps, TNeedsProps> = <TComponent extends React.ComponentType<IStateToProps & IDispatchToProps & TNeedsProps>>(component: TComponent) => TComponent;
+declare type InferableConnectType<IMergedProps> = <TComponent extends React.ComponentType<IMergedProps>>(component: TComponent) => TComponent;

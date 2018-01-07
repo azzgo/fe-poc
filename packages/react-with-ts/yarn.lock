@@ -186,6 +186,10 @@
   version "4.1.2"
   resolved "http://registry.npm.taobao.org/@types/faker/download/@types/faker-4.1.2.tgz#f8ab50c9f9af68c160dd71b63f83e24b712d0df5"
 
+"@types/flux-standard-action@^0.5.31":
+  version "0.5.31"
+  resolved "http://registry.npm.taobao.org/@types/flux-standard-action/download/@types/flux-standard-action-0.5.31.tgz#45b4a47a0275b8c46d184296e1f3e5ef53bf78ee"
+
 "@types/history@*":
   version "4.6.2"
   resolved "http://registry.npm.taobao.org/@types/history/download/@types/history-4.6.2.tgz#12cfaba693ba20f114ed5765467ff25fdf67ddb0"

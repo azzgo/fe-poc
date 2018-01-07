@@ -10,7 +10,9 @@
     "trailing-comma": [true, {"multiline": "always", "singleline": "never"}],
     "semicolon": [true, "never"],
     "jsx-boolean-value": [false],
-    "no-empty-interface": [false]
+    "no-empty-interface": [false],
+    "prefer-object-spread": true,
+    "no-any": true
   },
   "rulesDirectory": []
 }
