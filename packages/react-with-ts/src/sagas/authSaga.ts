@@ -11,6 +11,7 @@ export function* loginSaga () {
   }) {
     try {
       const {data: { token }} = yield call(Api.post, '/auth', { email, password })
+      Api.defaults.headers.Authorization = `Bearer ${token}`
       yield put(saveAuthInfoAction(token))
     } catch (error) {
       toastr.error('Net Work goes wrong', error)

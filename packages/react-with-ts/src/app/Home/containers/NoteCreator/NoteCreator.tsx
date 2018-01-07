@@ -16,13 +16,14 @@ type IDispatchToPropsType = typeof mapDispatchToProps
 type IProps = IDispatchToPropsType
 
 export class NoteCreator extends PureComponent<IProps, IState> {
+  public formRef: HTMLFormElement
   public titleInput: HTMLInputElement
   public valueInput: HTMLInputElement
 
   public render () {
     return (
       <div className={classNames(styles.noteCreator, 'shadow-2')}>
-        <form className="row" onSubmit={this.createNewNote}>
+        <form className="row" onSubmit={this.createNewNote} ref={((form) => this.formRef = form)}>
           <input
             type="text"
             ref={(input) => this.titleInput = input}
@@ -57,6 +58,11 @@ export class NoteCreator extends PureComponent<IProps, IState> {
     }
 
     this.props.createNote({ title: this.titleInput.value, value: this.valueInput.value})
+    this.resetForm()
+  }
+
+  public resetForm = () => {
+    this.formRef.reset()
   }
 }
 

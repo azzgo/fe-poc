@@ -1,7 +1,10 @@
 import classNames from 'classnames'
+import { History } from 'history'
 import React, { FormEvent, PureComponent, SyntheticEvent } from 'react'
 import { connect } from 'react-redux'
+import { returntypeof } from 'react-redux-typescript'
 import { loginAction } from 'src/actions/authActions'
+import { IStoreState } from 'src/reducers'
 import styles from './Login.less'
 
 interface IState {
@@ -11,19 +14,38 @@ interface IState {
   password: string
 }
 
+interface IOwnProps {
+  history: History
+}
+
+const mapStateToProps = (state: IStoreState) => ({
+  token: state.auth.token,
+})
+
+const mapStateToPropsType = returntypeof(mapStateToProps)
+
+type IStateToProps = typeof mapStateToPropsType
+
 const mapDispatchToProps = {
   login: loginAction,
 }
 
 type IDispatchToProps = typeof mapDispatchToProps
 
-@(connect(null, mapDispatchToProps) as InferableConnectType<{}>)
-export class LoginPage extends PureComponent<IDispatchToProps, IState> {
+type IProps = IStateToProps & IDispatchToProps & IOwnProps
+
+export class LoginPage extends PureComponent<IProps, IState> {
   public state = {
     email: '',
     isEmailDirty: false,
     isPasswordirty: false,
     password: '',
+  }
+
+  public componentWillUpdate (nextProps: IProps) {
+    if (nextProps.token !== this.props.token && nextProps.token) {
+      this.props.history.push('/app')
+    }
   }
 
   public render () {
@@ -84,3 +106,5 @@ export class LoginPage extends PureComponent<IDispatchToProps, IState> {
     return
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(LoginPage)

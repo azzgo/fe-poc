@@ -7,7 +7,7 @@ import authReducer, { IAuthState } from 'src/reducers/authReducer'
 export interface IStoreState {
   auth: IAuthState,
   notes: INoteState
-  toastr: ToastrState,
+  toastr: ToastrState
 }
 
 const rootReducerMapping = {

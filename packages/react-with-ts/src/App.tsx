@@ -8,7 +8,7 @@ import { store } from 'src/store'
 
 import { MasterLayout } from 'src/shared/components/MasterLayout/MasterLayout'
 
-import { LoginPage } from 'src/app/Login/Login'
+import LoginPage from 'src/app/Login/Login'
 import 'src/shared/styles/flexboxgrid.min.css'
 import 'src/shared/styles/global.css'
 import 'src/shared/styles/icons.css'
