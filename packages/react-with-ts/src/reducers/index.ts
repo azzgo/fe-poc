@@ -1,15 +1,17 @@
 import { combineReducers } from 'redux'
-import notesReducer from 'src/reducers/notesReducer'
+import notesReducer, { INoteState } from 'src/reducers/notesReducer'
 
 import { reducer as toastr, ToastrState } from 'react-redux-toastr'
-import { INote } from 'src/app/Home/components/NoteCard/NoteCard'
+import authReducer, { IAuthState } from 'src/reducers/authReducer'
 
 export interface IStoreState {
-  notes: INote[]
-  toastr: ToastrState
+  auth: IAuthState,
+  notes: INoteState
+  toastr: ToastrState,
 }
 
 const rootReducerMapping = {
+  auth: authReducer,
   notes: notesReducer,
   toastr,
 }

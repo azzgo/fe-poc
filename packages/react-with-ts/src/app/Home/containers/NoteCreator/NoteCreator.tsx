@@ -19,7 +19,7 @@ export class NoteCreator extends PureComponent<IProps, IState> {
   public titleInput: HTMLInputElement
   public valueInput: HTMLInputElement
 
-  public render() {
+  public render () {
     return (
       <div className={classNames(styles.noteCreator, 'shadow-2')}>
         <form className="row" onSubmit={this.createNewNote}>

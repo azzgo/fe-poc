@@ -5,6 +5,8 @@ enum actionTypes {
   saveNotes,
   createNote,
   deleteNote,
+  login,
+  saveAuthInfo,
 }
 
 export default createTypesByEnum(actionTypes)

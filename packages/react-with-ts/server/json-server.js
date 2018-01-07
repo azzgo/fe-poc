@@ -7,7 +7,7 @@ server.use(middlewares);
 
 server.use(jsonServer.bodyParser);
 
-let token = 'jwt_token';
+let token = '_' + Math.random().toString(36).substr(2, 20);
 
 function isAuthorized(req) {
   authorization_token = 'Bearer ' + token;
@@ -23,13 +23,13 @@ server.all('/auth', function(req, res) {
   })
 })
 
-// server.use(function (req, res, next) {
-//  if (isAuthorized(req)) { // add your authorization logic here
-//    next() // continue to JSON Server router
-//  } else {
-//    res.sendStatus(401)
-//  }
-// })
+server.use(function (req, res, next) {
+ if (isAuthorized(req)) { // add your authorization logic here
+   next() // continue to JSON Server router
+ } else {
+   res.sendStatus(401)
+ }
+})
 
 server.use(router);
 

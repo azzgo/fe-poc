@@ -11,7 +11,7 @@ interface IState {
 }
 
 export class AppBar extends PureComponent<IProps, IState> {
-  public render() {
+  public render () {
     return (
       <header className={classNames(styles.appBar, 'row', 'middle-xs')}>
         <Link to="/app" className={classNames(styles.logo, 'col-xs-10')}>

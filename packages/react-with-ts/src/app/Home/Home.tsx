@@ -33,11 +33,11 @@ type IProps = IOwnProps & IStateToPropsType & IDispatchToPropsType
 
 @(connect(mapStateToProps, mapDispatchToProps) as InferableConnectType<IProps>)
 export class HomePage extends PureComponent<IProps, IState> {
-  public componentWillMount() {
+  public componentWillMount () {
     this.props.fetchNotes()
   }
 
-  public render() {
+  public render () {
     return (
       <div className={classNames(styles.warpper, 'row center-xs')}>
         <div className={classNames(styles.creator, 'col-xs-6')}>

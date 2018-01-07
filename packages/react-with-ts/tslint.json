@@ -12,7 +12,9 @@
     "jsx-boolean-value": [false],
     "no-empty-interface": [false],
     "prefer-object-spread": true,
-    "no-any": true
+    "no-any": true,
+    "whitespace": [true, "check-branch", "check-operator", "check-typecast"],
+    "space-before-function-paren": true
   },
   "rulesDirectory": []
 }
