@@ -53,6 +53,7 @@ export class NoteCreator extends PureComponent<IProps, IState> {
     event.preventDefault()
     if (!(this.titleInput.value && this.valueInput.value)) {
       toastr.error('Note Title or Content should not be empty!', null)
+      return
     }
 
     this.props.createNote({ title: this.titleInput.value, value: this.valueInput.value})
