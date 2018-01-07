@@ -4,7 +4,3 @@ declare module '*.less' {
 }
 
 declare type InferableConnectType<IStateToProps, IDispatchToProps, TNeedsProps> = <TComponent extends React.ComponentType<IStateToProps & IDispatchToProps & TNeedsProps>>(component: TComponent) => TComponent;
-
-declare interface IStoreState {
-  demo: number,
-}

@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom'
 
 import classNames from 'classnames'
 
+import { fetchNotesAction } from 'src/actions/notesAction'
 import { INote, NoteCard } from 'src/app/Home/components/NoteCard/NoteCard'
 import { NoteCreator } from 'src/app/Home/components/NoteCreator/NoteCreator'
 import styles from './Home.less'
@@ -13,15 +14,17 @@ interface IOwnProps {}
 
 interface IState {}
 
-const mapStateToProps = (state: IStoreState) => ({
-  notes: [{ title: '1', value: '2', id: '1' }],
+const mapStateToProps = (state: any) => ({
+  notes: state.notes,
 })
 
 const mapStateToPropsType = returntypeof(mapStateToProps)
 
 type IStateToPropsType = typeof mapStateToPropsType
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = {
+  fetchNotes: fetchNotesAction,
+}
 
 type IDispatchToPropsType = typeof mapDispatchToProps
 
@@ -31,6 +34,10 @@ type IDispatchToPropsType = typeof mapDispatchToProps
   IOwnProps
 >)
 export class HomePage extends PureComponent<IOwnProps & IStateToPropsType & IDispatchToPropsType, IState> {
+  public componentWillMount() {
+    this.props.fetchNotes()
+  }
+
   public render() {
     const { notes } = this.props
     return (

@@ -34,5 +34,5 @@ server.all('/auth', function(req, res) {
 server.use(router);
 
 server.listen(3000, function () {
-  console.log('JSON Server is running')
+  console.log('JSON Server is running: http://127.0.0.1:3000')
 });
