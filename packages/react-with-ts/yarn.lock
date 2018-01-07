@@ -220,6 +220,13 @@
     "@types/node" "*"
     "@types/react" "*"
 
+"@types/react-redux-toastr@^7.0.7":
+  version "7.0.7"
+  resolved "http://registry.npm.taobao.org/@types/react-redux-toastr/download/@types/react-redux-toastr-7.0.7.tgz#35f4cb26ff5d180e85c41eb93ca257ac73ca43c3"
+  dependencies:
+    "@types/react" "*"
+    redux "^3.6.0"
+
 "@types/react-redux@^5.0.14":
   version "5.0.14"
   resolved "http://registry.npm.taobao.org/@types/react-redux/download/@types/react-redux-5.0.14.tgz#f3fc30dcbb2d20455a714f591cc27f77b4df09bb"
@@ -1914,7 +1921,7 @@ class-utils@^0.3.5:
     lazy-cache "^2.0.2"
     static-extend "^0.1.1"
 
-classnames@^2.2.5:
+classnames@^2.2.3, classnames@^2.2.5:
   version "2.2.5"
   resolved "http://registry.npm.taobao.org/classnames/download/classnames-2.2.5.tgz#fb3801d453467649ef3603c7d61a02bd129bde6d"
 
@@ -2763,6 +2770,10 @@ event-emitter@~0.3.5:
 eventemitter3@1.x.x:
   version "1.2.0"
   resolved "http://registry.npm.taobao.org/eventemitter3/download/eventemitter3-1.2.0.tgz#1c86991d816ad1e504750e73874224ecf3bec508"
+
+eventemitter3@^2.0.3:
+  version "2.0.3"
+  resolved "http://registry.npm.taobao.org/eventemitter3/download/eventemitter3-2.0.3.tgz#b5e1079b59fb5e1ba2771c0a993be060a58c99ba"
 
 events@^1.0.0, events@^1.1.1:
   version "1.1.1"
@@ -5320,7 +5331,7 @@ promise@^7.1.1:
   dependencies:
     asap "~2.0.3"
 
-prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.8, prop-types@^15.5.9, prop-types@^15.6.0:
+prop-types@^15.5.10, prop-types@^15.5.4, prop-types@^15.5.6, prop-types@^15.5.7, prop-types@^15.5.8, prop-types@^15.5.9, prop-types@^15.6.0:
   version "15.6.0"
   resolved "http://registry.npm.taobao.org/prop-types/download/prop-types-15.6.0.tgz#ceaf083022fc46b4a35f69e13ef75aed0d639856"
   dependencies:
@@ -5498,6 +5509,14 @@ react-modal@^3.1.4:
     exenv "^1.2.0"
     prop-types "^15.5.10"
     warning "^3.0.0"
+
+react-redux-toastr@^7.2.0:
+  version "7.2.0"
+  resolved "http://registry.npm.taobao.org/react-redux-toastr/download/react-redux-toastr-7.2.0.tgz#82a3cef6faa71b56d258111ad82a6a4c3aa75a0b"
+  dependencies:
+    classnames "^2.2.3"
+    eventemitter3 "^2.0.3"
+    prop-types "^15.5.7"
 
 react-redux-typescript@^3.0.0-rc.3:
   version "3.0.0-rc.3"

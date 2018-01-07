@@ -8,13 +8,14 @@ import classNames from 'classnames'
 import { fetchNotesAction } from 'src/actions/notesAction'
 import { INote, NoteCard } from 'src/app/Home/components/NoteCard/NoteCard'
 import { NoteCreator } from 'src/app/Home/components/NoteCreator/NoteCreator'
+import { IStoreState } from 'src/reducers'
 import styles from './Home.less'
 
 interface IOwnProps {}
 
 interface IState {}
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: IStoreState) => ({
   notes: state.notes,
 })
 

@@ -1,3 +1,4 @@
+import { toastr } from 'react-redux-toastr'
 import { call, put, takeEvery } from 'redux-saga/effects'
 import actionTypes from 'src/actions/actionTypes'
 import { saveNotesAction } from 'src/actions/notesAction'
@@ -8,8 +9,8 @@ export function* fetchNotesSaga() {
     try {
       const response = yield call(Api.get, '/notes')
       yield put(saveNotesAction(response.data))
-    } catch {
-      console.error('api call fail')
+    } catch (error) {
+      toastr.error('Net Work goes wrong', error)
     }
   })
 }
