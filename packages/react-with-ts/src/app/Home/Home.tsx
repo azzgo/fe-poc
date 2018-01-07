@@ -1,7 +1,6 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import { returntypeof } from 'react-redux-typescript'
-import { Link } from 'react-router-dom'
 
 import classNames from 'classnames'
 
@@ -39,7 +38,6 @@ export class HomePage extends PureComponent<IProps, IState> {
   }
 
   public render() {
-    const { notes } = this.props
     return (
       <div className={classNames(styles.warpper, 'row center-xs')}>
         <div className={classNames(styles.creator, 'col-xs-6')}>

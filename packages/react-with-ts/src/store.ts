@@ -5,6 +5,7 @@ import { rootSaga } from 'src/sagas'
 
 const sagaMiddleware = createSagaMiddleware()
 
+// tslint:disable-next-line:no-any
 const composeEnhancers = (window as any).__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 
 export const store =  createStore(

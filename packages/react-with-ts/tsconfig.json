@@ -10,6 +10,8 @@
     "noImplicitAny": true,
     "removeComments": true,
     "sourceMap": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
     "jsx": "react",
     "paths": {
       "src/*": ["./src/*"]

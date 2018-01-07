@@ -19,7 +19,7 @@ interface IState {}
 
 export class NoteCard extends PureComponent<IProps, IState> {
   public render() {
-    const { note, onChecked, className } = this.props
+    const { note, className } = this.props
 
     return (
       <div className={classNames('row shadow-1', styles.noteCard, className)}>

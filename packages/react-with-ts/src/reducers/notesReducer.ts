@@ -4,9 +4,9 @@ import { INote } from 'src/app/Home/components/NoteCard/NoteCard'
 
 type INoteState = INote[]
 
-export default handleAction<INoteState, any>(
+export default handleAction<INoteState, {notes: INote[]}>(
   actionTypes.saveNotes,
-  (state, action) => {
+  (_, action) => {
     return action.payload.notes
   },
   [],
