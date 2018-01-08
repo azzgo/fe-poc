@@ -1,0 +1,13 @@
+<div class="note-creator shadow-2">
+  <form class="row" (submit)="createNote()">
+    <input type="text" name="newNoteTitle" placeholder="Title" class="col-xs-10 title" autocomplete="off" [(ngModel)]="note.title"
+      *ngIf="isFocus" />
+    <input type="text" name="newNoteValue" placeholder="Take a note..." class="col-xs-10" autocomplete="off" [(ngModel)]="note.value"
+      (focus)="isFocus=true" />
+    <div class="actions col-xs-12 row between-xs" *ngIf="isFocus">
+      <button type="submit" class="btn-light">
+        Done
+      </button>
+    </div>
+  </form>
+</div>

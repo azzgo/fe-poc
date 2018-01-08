@@ -1,0 +1,16 @@
+<div class="row center-xs notes">
+    <div class="col-xs-6 creator">
+        <rt-note-creator (newNote)="addNote($event)"></rt-note-creator>
+    </div>
+    <div class="notes col-xs-8">
+        <div class="row between-xs">
+            <rt-note-card
+                    class="col-xs-4"
+                    [note]="note"
+                    *ngFor = "let note of notes;"
+                    (checked)="checkCard(note.id)"
+            >
+            </rt-note-card>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,20 @@
+<div class="auth row center-xs middle-xs">
+  <form class="col-xs-6 shadow-2" (submit)="authenticate()" #authForm="ngForm">
+      <div class="inputs row center-xs middle-xs">
+        <h3 class="col-xs-8 title">Sign In</h3>
+        <input class="col-xs-8" type="email" name="email" placeholder="email" required
+          [(ngModel)]="user.email" #email="ngModel">
+        <div class="error" [hidden]="email.pristine || email.valid">
+          email is invalid
+        </div>
+        <input class="col-xs-8" type="password" name="password" placeholder="password" required
+          [(ngModel)]="user.password" #password="ngModel">
+        <div class="error" [hidden]="password.pristine || password.valid">password is required</div>
+        <div class="actions col-xs-12">
+          <div class="row center-xs">
+            <button class="btn-light" type="submit">Login</button>
+          </div>
+        </div>
+      </div>
+  </form>
+</div>
