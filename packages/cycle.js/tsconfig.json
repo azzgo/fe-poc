@@ -1,17 +1,27 @@
 {
   "compilerOptions": {
-    "target": "es5",                          
-    "module": "commonjs",                     
-    "strict": true,                           
-    "noImplicitAny": false,
-    "lib": ["es6", "dom"],         
-    "strictNullChecks": true,              
+    "target": "es5",
+    "module": "es2015",
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "lib": [
+      "es6",
+      "dom"
+    ],
+    "strictNullChecks": true,
     "sourceMap": true,
     "typeRoots": [
-        "node_modules/@types/"
+      "node_modules/@types/"
     ],
     "allowSyntheticDefaultImports": true,
-    "experimentalDecorators": true, 
+    "skipLibCheck": true,
+    "allowUnreachableCode": true,
+    "experimentalDecorators": true,
     "emitDecoratorMetadata": true
-  }
+  },
+  "exclude": [
+    "node_modules"
+  ]
 }

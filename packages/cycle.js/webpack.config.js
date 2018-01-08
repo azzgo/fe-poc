@@ -1,8 +1,8 @@
-import * as HTMLWebpackPlugin from 'html-webpack-plugin';
-import * as path from 'path';
-import { Configuration, optimize } from 'webpack';
+const HTMLWebpackPlugin = require('html-webpack-plugin')
+const path = require('path')
+const { optimize } = require('webpack')
 
-const config: Configuration = {
+const config = {
   devtool: 'source-map',
   context: __dirname,
   entry: {
@@ -28,27 +28,16 @@ const config: Configuration = {
   },
   plugins: [
     new HTMLWebpackPlugin({
-      template: './app/index.html'
+      template: './app/index.html',
     }),
     new optimize.CommonsChunkPlugin({
       name: 'vendor',
     }),
   ],
-  node: {
-    global: true,
-    process: true,
-    Buffer: false,
-    crypto: 'empty',
-    module: false,
-    clearImmediate: false,
-    setImmediate: false,
-    clearTimeout: true,
-    setTimeout: true
-  },
   devServer: {
     port: process.env.PORT || 9000,
-    historyApiFallback: true
-  }
+    historyApiFallback: true,
+  },
 };
 
-export = config;
+module.exports = config;

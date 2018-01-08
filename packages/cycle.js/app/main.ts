@@ -1,34 +1,15 @@
-import { div, h1, hr, input, label, makeDOMDriver } from '@cycle/dom';
-import { makeHashHistoryDriver } from '@cycle/history';
-import { run } from '@cycle/run';
-import { routerify } from 'cyclic-router';
-import switchPath from 'switch-path';
-import xs from 'xstream';
-import { AboutPage } from './pages/About';
-import { HomePage } from './pages/Home';
-import { LoginPage } from './pages/Login';
+import { h1, makeDOMDriver } from '@cycle/dom'
+import { makeHashHistoryDriver } from '@cycle/history'
+import { run } from '@cycle/run'
+import xs from 'xstream'
 
-function main(sources) {
-  const match$ = sources.router.define({
-    '/': HomePage,
-    '/login': LoginPage,
-    '/about': AboutPage,
-    '*': LoginPage,
-  });
-
-  const page$ = match$.map(({path, value}) => {
-    return value(Object.assign({}, sources, {
-      router: sources.router.path(path),
-    }));
-  });
-
+function main(_: any) {
   return {
-    DOM: page$.map((c) => c.DOM).flatten(),
-    router: xs.of('/login')
-  };
+    DOM: xs.of(h1('1 seconds elapsed')),
+  }
 }
 
-run(routerify(main, switchPath), {
+run(main, {
   DOM: makeDOMDriver('#app'),
   history: makeHashHistoryDriver(),
-});
+})

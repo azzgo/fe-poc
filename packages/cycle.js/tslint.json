@@ -7,7 +7,8 @@
     "rules": {
         "import-spacing": true,
         "quotemark": [true, "single", "avoid-escape", "avoid-template"],
-        "object-literal-sort-keys": false
+        "object-literal-sort-keys": false,
+        "semicolon": [true, "never"]
     },
     "rulesDirectory": []
 }
