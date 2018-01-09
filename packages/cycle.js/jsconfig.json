@@ -12,9 +12,6 @@
     ],
     "strictNullChecks": true,
     "sourceMap": true,
-    "typeRoots": [
-      "node_modules/@types/"
-    ],
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true,
     "allowUnreachableCode": true,
