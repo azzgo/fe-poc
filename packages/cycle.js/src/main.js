@@ -6,6 +6,7 @@ import switchPath from 'switch-path'
 import { Home } from './app/Home/Home'
 import { About } from './app/About/About'
 import { Login } from './app/Login/Login'
+import xs from 'xstream'
 
 
 function main(source) {
@@ -23,7 +24,7 @@ function main(source) {
   
   return {
     DOM: page$.map((c) => c.DOM),
-    router: page$.map((c) => c.router).flatten()
+    router: page$.map((c) => c.router || xs.empty()).flatten()
   }
 }
 
