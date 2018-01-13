@@ -1,10 +1,14 @@
-import { h1 } from '@cycle/dom'
-import classNames from 'classnames'
 import xs from 'xstream'
-
+import { html } from 'snabbdom-jsx'
+import { AppBar } from '../../shared/components/AppBar/AppBar'
 
 function view() {
-  return xs.of(h1({ props: {className: classNames('home', 'ass')}}, 'Home'))
+  return xs.of(
+    <div>
+      <AppBar />
+      Home
+    </div>
+  )
 }
 
 export function Home() {

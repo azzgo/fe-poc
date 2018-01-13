@@ -2,8 +2,6 @@ import { html } from 'snabbdom-jsx'
 import classNames from 'classnames'
 import xs from 'xstream'
 
-
-
 import styles from './Login.less'
 function intent(source) {
   let emailValue = ''

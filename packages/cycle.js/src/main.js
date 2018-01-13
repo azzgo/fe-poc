@@ -1,5 +1,5 @@
 import { makeDOMDriver } from '@cycle/dom'
-import { makeHashHistoryDriver } from '@cycle/history'
+import { makeHashHistoryDriver, captureClicks } from '@cycle/history'
 import { makeHTTPDriver } from '@cycle/http'
 import { run } from '@cycle/run'
 import { routerify } from 'cyclic-router'
@@ -14,7 +14,7 @@ function main(source) {
   const match$ = source.router.define({
     '/': Home,
     '/login': Login,
-    '/other': About
+    '/about': About
   })
   
   const page$ = match$.map(({path, value}) => {
@@ -32,7 +32,7 @@ function main(source) {
 
 const drivers = {
   DOM: makeDOMDriver('#app'),
-  history: makeHashHistoryDriver(),
+  history: captureClicks(makeHashHistoryDriver()),
   HTTP: makeHTTPDriver(),
 }
 
