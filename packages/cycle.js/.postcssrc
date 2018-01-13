@@ -1,0 +1,16 @@
+{
+  "modules": true,
+  "plugins": {
+    "postcss-modules": {
+      "globalModulePaths": [
+        "./shared/styles/reset.css",
+        "./shared/styles/flexboxgrid.min.css",
+        "./shared/styles/global.css",
+        "./shared/styles/icons.css",
+      ]
+    },
+    "autoprefixer": {
+      "flexbox": true
+    }
+  }
+}

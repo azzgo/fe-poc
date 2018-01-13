@@ -2,7 +2,6 @@ import { html } from 'snabbdom-jsx'
 import classNames from 'classnames'
 
 import styles from './Login.less'
-
 function intent(source) {
   return source.DOM.select('button')
     .events('click')
