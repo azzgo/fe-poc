@@ -23,7 +23,7 @@ function main(source) {
   })
   
   return {
-    DOM: page$.map((c) => c.DOM),
+    DOM: page$.map((c) => c.DOM).flatten(),
     router: page$.map((c) => c.router || xs.empty()).flatten()
   }
 }
