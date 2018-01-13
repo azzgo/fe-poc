@@ -5,13 +5,15 @@
   "main": "index.js",
   "scripts": {
     "start": "parcel -p 9000 --no-hmr  src/index.html",
-    "build": "parcel build src/index.html"
+    "build": "parcel build src/index.html",
+    "serve": "node server/json-server.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@cycle/dom": "^20.1.0",
     "@cycle/history": "^6.10.0",
+    "@cycle/http": "^14.8.0",
     "@cycle/run": "^4.1.0",
     "classnames": "^2.2.5",
     "cyclic-router": "^5.1.7",
@@ -26,6 +28,7 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-2": "^6.24.1",
     "eslint": "^4.15.0",
+    "json-server": "^0.12.1",
     "less": "^2.7.3",
     "modules": "^0.4.0",
     "parcel-bundler": "^1.4.1",

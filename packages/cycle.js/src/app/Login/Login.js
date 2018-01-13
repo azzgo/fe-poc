@@ -2,8 +2,13 @@ import { html } from 'snabbdom-jsx'
 import classNames from 'classnames'
 import xs from 'xstream'
 
+
+
 import styles from './Login.less'
 function intent(source) {
+  let emailValue = ''
+  let passwordValue = ''
+
   const emailInputEmiter$ = source.DOM.select('#email')
     .events('input')
   const passwordInputEmiter$ = source.DOM.select('#password')
@@ -13,29 +18,43 @@ function intent(source) {
     .events('click')
 
   const emailValue$ = emailInputEmiter$
-    .map((e) => e.target.value)
+    .map((e) => {
+      emailValue = e.target.value
+      return emailValue
+    })
     .startWith('')
 
   const passwordValue$ = passwordInputEmiter$
-    .map((e) => e.target.value)
+    .map((e) => {
+      passwordValue = e.target.value
+      return passwordValue
+    })
     .startWith('')
 
   const isEmailDirty$ = emailInputEmiter$.mapTo(true).startWith(false)
   const isPasswordDirty$ = passwordInputEmiter$.mapTo(true).startWith(false)
 
   return {
-    router$: loginEmiter$
-      .map((event) => event.stopPropagation())
-      .compose(() => {
-        // 不清楚如何去处理
-        return xs.combine(emailValue$, passwordValue$).map(([emailValue, passwordValue]) => {
-          if (emailValue.length === 0 || passwordValue.length === 0) {
-            return false
-          }
+    request$: loginEmiter$
+      .map((event) => event.preventDefault())
+      .map(() => {
+        if (emailValue.length === 0 || passwordValue.length === 0) {
+          return xs.empty()
+        }
         
-          return '/'
-        })
+        return {
+          url: 'http://127.0.0.1:3000/auth',
+          category: 'login',
+          send: {
+            email: emailValue,
+            password: passwordValue
+          }
+        }
       }),
+    router$: source.HTTP.select('login')
+      .flatten()
+      .map((res) => localStorage.token = res.body.token)
+      .mapTo('/'),
     state$: xs.combine(emailValue$, passwordValue$, isEmailDirty$, isPasswordDirty$)
       .map(([email, password, isEmailDirty, isPasswordDirty]) => ({
         email,
@@ -98,11 +117,12 @@ function view(state$) {
 }
 
 export function Login(source) {
-  const { router$, state$ } = intent(source)
+  const { request$, router$, state$ } = intent(source)
   const vdom$ = view(state$)
 
   return {
     DOM: vdom$,
-    router: router$
+    router: router$,
+    HTTP: request$
   }
 }

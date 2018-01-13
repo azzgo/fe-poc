@@ -1,5 +1,6 @@
 import { makeDOMDriver } from '@cycle/dom'
 import { makeHashHistoryDriver } from '@cycle/history'
+import { makeHTTPDriver } from '@cycle/http'
 import { run } from '@cycle/run'
 import { routerify } from 'cyclic-router'
 import switchPath from 'switch-path'
@@ -24,13 +25,15 @@ function main(source) {
   
   return {
     DOM: page$.map((c) => c.DOM).flatten(),
-    router: page$.map((c) => c.router || xs.empty()).flatten()
+    router: page$.map((c) => c.router || xs.empty()).flatten(),
+    HTTP: xs.merge(page$.map((c) => c.HTTP || xs.empty()).flatten())
   }
 }
 
 const drivers = {
   DOM: makeDOMDriver('#app'),
   history: makeHashHistoryDriver(),
+  HTTP: makeHTTPDriver(),
 }
 
 
