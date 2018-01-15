@@ -4,12 +4,13 @@ import { AppBar } from '../../shared/components/AppBar/AppBar'
 
 
 function view() {
-  return xs.of(
+  const appBar = AppBar()
+  return appBar.DOM.map((appBarDOM) => (
     <div>
-      <AppBar />
+      {appBarDOM}
       <h1>About</h1>
     </div>
-  )
+  ))
 }
 
 export function About() {
