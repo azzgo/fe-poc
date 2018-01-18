@@ -44,8 +44,6 @@ function modal(notesActions$) {
         notes: state.notes.concat([action.payload])
       }
       break
-    case actionTypes.deleteNote:
-      break
     }
 
     return state
@@ -93,10 +91,18 @@ function view(DOMSink, state$) {
 }
 
 export function Home(source) {
-  const fetchNotes$ = xs.of({
-    url: 'http://127.0.0.1:3000/notes',
-    category: actionTypes.fetchNotes,
-  })
+  const fetchNotes$ = xs.merge(
+    xs.of({
+      url: 'http://127.0.0.1:3000/notes',
+      category: actionTypes.fetchNotes,
+    }),
+    source.HTTP.select(actionTypes.deleteNote)
+      .flatten()
+      .mapTo({
+        url: 'http://127.0.0.1:3000/notes',
+        category: actionTypes.fetchNotes,
+      })
+  )
 
   const actions$ = intent(source)
   const state$ = modal(actions$)

@@ -3,6 +3,8 @@ import classNames from 'classnames'
 import styles from './NoteCard.less'
 import { html } from 'snabbdom-jsx'
 import xs from 'xstream'
+import { actionTypes } from '../../constants'
+
 
 export function NoteCard({DOM, props: {note, className}}) {
   return {
@@ -19,7 +21,8 @@ export function NoteCard({DOM, props: {note, className}}) {
       .events('click')
       .mapTo({
         url: `http://127.0.0.1:3000/notes/${note.id}`,
-        method: 'DELETE'
+        method: 'DELETE',
+        category: actionTypes.deleteNote,
       })
   }
 }
