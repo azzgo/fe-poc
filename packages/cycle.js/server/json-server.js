@@ -24,13 +24,13 @@ server.all('/auth', function(req, res) {
   })
 })
 
-// server.use(function (req, res, next) {
-//   if (isAuthorized(req)) { // add your authorization logic here
-//     next() // continue to JSON Server router
-//   } else {
-//     res.sendStatus(401)
-//   }
-// })
+server.use(function (req, res, next) {
+  if (isAuthorized(req)) { // add your authorization logic here
+    next() // continue to JSON Server router
+  } else {
+    res.sendStatus(401)
+  }
+})
 
 server.use(router)
 

@@ -21,6 +21,9 @@ export function NoteCard({DOM, props: {note, className}}) {
       .events('click')
       .mapTo({
         url: `http://127.0.0.1:3000/notes/${note.id}`,
+        headers: {
+          Authorization: `Bearer ${localStorage.token}`
+        },
         method: 'DELETE',
         category: actionTypes.deleteNote,
       })

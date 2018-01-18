@@ -56,6 +56,9 @@ export function NoteCreator({DOM}) {
           url: 'http://127.0.0.1:3000/notes',
           method: 'POST',
           category: actionTypes.createNote,
+          headers: {
+            Authorization: `Bearer ${localStorage.token}`
+          },
           send: {
             title,
             value,

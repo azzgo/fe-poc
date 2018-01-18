@@ -95,11 +95,17 @@ export function Home(source) {
     xs.of({
       url: 'http://127.0.0.1:3000/notes',
       category: actionTypes.fetchNotes,
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`
+      },
     }),
     source.HTTP.select(actionTypes.deleteNote)
       .flatten()
       .mapTo({
         url: 'http://127.0.0.1:3000/notes',
+        headers: {
+          Authorization: `Bearer ${localStorage.token}`
+        },
         category: actionTypes.fetchNotes,
       })
   )
@@ -111,5 +117,12 @@ export function Home(source) {
   return {
     DOM: vdom$,
     HTTP: xs.merge(request$, fetchNotes$),
+    router: actions$
+      .replaceError((e) => {
+        if (e.response.status === 401) {
+          return xs.of('/login')
+        }
+        return xs.throw(e)
+      }).last()
   }
 }
