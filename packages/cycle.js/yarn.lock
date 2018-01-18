@@ -30,6 +30,10 @@
     superagent "3.7.0"
     xstream "11.x.x"
 
+"@cycle/isolate@^3.2.0":
+  version "3.2.0"
+  resolved "http://registry.npm.taobao.org/@cycle/isolate/download/@cycle/isolate-3.2.0.tgz#8ffddb9b05cb9a4fbcf812794c0e5285af341051"
+
 "@cycle/run@*", "@cycle/run@^4.1.0":
   version "4.1.0"
   resolved "http://registry.npm.taobao.org/@cycle/run/download/@cycle/run-4.1.0.tgz#b164a83792e85db3c184236f4b3800a4c9bf6f76"

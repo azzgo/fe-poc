@@ -2,15 +2,25 @@
 import classNames from 'classnames'
 import styles from './NoteCard.less'
 import { html } from 'snabbdom-jsx'
+import xs from 'xstream'
 
-export function NoteCard({note, className}) {
-  return(
-    <div className={classNames('row shadow-1', styles.noteCard, className)}>
-      <div className={styles.icon}>
-        <i className="material-icons">check</i>
+export function NoteCard({DOM, props: {note, className}}) {
+  return {
+    DOM: xs.of(
+      <div className={classNames('row shadow-1', styles.noteCard, className)}>
+        <div className={styles.icon}>
+          <i className="material-icons">check</i>
+        </div>
+        <div className={classNames('col-xs-12', styles.title)}>{note.title}</div>
+        <div className={classNames('col-xs-12', styles.value)}>{note.value}</div>
       </div>
-      <div className={classNames('col-xs-12', styles.title)}>{note.title}</div>
-      <div className={classNames('col-xs-12', styles.value)}>{note.value}</div>
-    </div>
-  )
+    ),
+    HTTP: DOM.select(styles.icon)
+      .events('click')
+      .debug((e) => console.log('llll'))
+      .mapTo({
+        url: `http://127.0.0.1:3000/notes/${note.id}`,
+        method: 'DELETE'
+      })
+  }
 }
