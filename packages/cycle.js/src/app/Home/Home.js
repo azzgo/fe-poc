@@ -87,7 +87,7 @@ function view(DOMSink, state$) {
       )),
     request$: xs.merge(
       noteCreator.HTTP,
-      noteCards$.map((noteCards) => xs.combine(...noteCards.map((noteCard) => noteCard.HTTP))).flatten()
+      noteCards$.map((noteCards) => xs.merge(...noteCards.map((noteCard) => noteCard.HTTP))).flatten()
     )
   }
 }

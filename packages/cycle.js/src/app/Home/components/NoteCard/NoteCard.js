@@ -15,9 +15,8 @@ export function NoteCard({DOM, props: {note, className}}) {
         <div className={classNames('col-xs-12', styles.value)}>{note.value}</div>
       </div>
     ),
-    HTTP: DOM.select(styles.icon)
+    HTTP: DOM.select(`.${styles.icon}`)
       .events('click')
-      .debug((e) => console.log('llll'))
       .mapTo({
         url: `http://127.0.0.1:3000/notes/${note.id}`,
         method: 'DELETE'
