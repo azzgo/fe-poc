@@ -9,6 +9,7 @@ import { About } from './app/About/About'
 import { Login } from './app/Login/Login'
 import xs from 'xstream'
 
+import './main.less'
 
 function main(source) {
   const match$ = source.router.define({
