@@ -4,14 +4,14 @@
   "description": "",
   "main": "webpack.config.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npx parcel -p 9000 --no-hmr src/template.html"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "vue": "^2.5.13",
-    "vue-loader": "^14.1.1"
+    "babel-preset-env": "^1.6.1",
+    "vue": "^2.5.13"
   },
   "devDependencies": {
     "parcel-bundler": "^1.6.2"
