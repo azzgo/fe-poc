@@ -7,12 +7,12 @@ const db = low(new Memory())
 db.defaults({
   notes: [
     {
-      id: 1,
+      id: '1',
       title: 'Note1',
       value: 'Note1 content',
     },
     {
-      id: 2,
+      id: '2',
       title: 'Note2',
       value: 'Note2 content',
     }

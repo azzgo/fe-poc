@@ -1,10 +1,13 @@
 const { graphql, GraphQLObjectType, GraphQLSchema, GraphQLString, GraphQLInt, GraphQLList  } = require('graphql');
+const express = require('express')
+const graphqlHTTP = require('express-graphql')
+const shortid = require('shortid')
 const db = require('./model')
 
 const noteType = new GraphQLObjectType({
   name: 'note',
   fields: {
-    id: { type: GraphQLInt },
+    id: { type: GraphQLString },
     title: { type: GraphQLString },
     value: { type: GraphQLString },
   }
@@ -22,9 +25,48 @@ const schema = new GraphQLSchema({
         }
       },
     }
+  }),
+  mutation: new GraphQLObjectType({
+    name: 'Mutation',
+    fields: {
+      createNote: {
+        type: GraphQLList(noteType),
+        args: {
+          title: { type: GraphQLString },
+          value: { type: GraphQLString },
+        },
+        resolve(_, { title, value }) {
+          return db
+            .get('notes')
+            .push({ id: shortid.generate(), title, value })
+            .write()
+        }
+      },
+      completeNote: {
+        type: GraphQLList(noteType),
+        args: {
+          id: { type: GraphQLString },
+        },
+        resolve(_, { id }) {
+          db.get('notes')
+            .remove({ id })
+            .write()
+
+          return db
+            .get('notes')
+            .value()
+        }
+      }
+    },
   })
 })
 
-graphql(schema, `query { notes { title, value } }`).then((result) => {
-  console.log('result: ', JSON.stringify(result))
-})
+
+const app = express()
+
+app.use('/graphql', graphqlHTTP({ schema, graphiql: true }))
+
+app.listen(3000)
+
+console.log('App runs at: http://localhost:3000 ')
+
