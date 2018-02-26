@@ -1,4 +1,4 @@
-const { graphql, GraphQLObjectType, GraphQLSchema, GraphQLString, GraphQLInt, GraphQLList  } = require('graphql');
+const { graphql, GraphQLNonNull, GraphQLObjectType, GraphQLSchema, GraphQLString, GraphQLInt, GraphQLList  } = require('graphql');
 const express = require('express')
 const graphqlHTTP = require('express-graphql')
 const shortid = require('shortid')
@@ -32,8 +32,8 @@ const schema = new GraphQLSchema({
       createNote: {
         type: GraphQLList(noteType),
         args: {
-          title: { type: GraphQLString },
-          value: { type: GraphQLString },
+          title: { type: GraphQLNonNull(GraphQLString) },
+          value: { type: GraphQLNonNull(GraphQLString) },
         },
         resolve(_, { title, value }) {
           return db
@@ -45,7 +45,7 @@ const schema = new GraphQLSchema({
       completeNote: {
         type: GraphQLList(noteType),
         args: {
-          id: { type: GraphQLString },
+          id: { type: GraphQLNonNull(GraphQLString) },
         },
         resolve(_, { id }) {
           db.get('notes')
@@ -68,5 +68,5 @@ app.use('/graphql', graphqlHTTP({ schema, graphiql: true }))
 
 app.listen(3000)
 
-console.log('App runs at: http://localhost:3000 ')
+console.log('App runs at: http://localhost:3000/graphql ')
 
