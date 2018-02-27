@@ -54,6 +54,7 @@
 </style>
 
 <script type="text/javascript">
+import axios from 'axios'
 import NewNoteForm from './NewNoteForm'
 import NoteList from './NoteList'
 
@@ -63,15 +64,58 @@ export default {
       notes: []
     }
   },
+  mounted() {
+    axios.post('http://localhost:3000/graphql', {
+      query: `
+        query {
+          notes {
+            id
+            title
+            value
+          }
+        }
+      `
+    }).then((res) => {
+      this.notes = res.data.data.notes
+    })
+  },
   methods: {
     createNote(newNote) {
-      this.notes.push({
-        ...newNote,
-        id: Date.now(),
+      axios.post('http://localhost:3000/graphql', {
+        query: `
+          mutation createNote($title: String!, $value: String!) {
+            createNote(title: $title, value: $value) {
+              id
+              title
+              value
+            }
+          }
+        `,
+        variables: {
+          title: newNote.title,
+          value: newNote.value,
+        }
+      }).then((res) => {
+        this.notes = res.data.data.createNote
       })
     },
     checkNote({id}) {
-      this.notes = this.notes.filter((note) => note.id !== id)
+      axios.post('http://localhost:3000/graphql', {
+        query: `
+          mutation checkNote($id: String!) {
+            completeNote(id: $id) {
+              id
+              title
+              value
+            }
+          }
+        `,
+        variables: {
+          id,
+        }
+      }).then((res) => {
+        this.notes = res.data.data.completeNote
+      })
     },
   },
   components: {

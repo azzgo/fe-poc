@@ -1,6 +1,6 @@
 <template>
   <div class="row between-xs">
-    <div class="row shadow-1 note-card col-xs-4" v-for="(note, key) in notes" :key="key">
+    <div class="row shadow-1 note-card col-xs-4" v-for="note in notes" :key="note.id">
       <div class="icon" @click="onCheckNote(note)">
         <i class="material-icons">check</i>
       </div>
