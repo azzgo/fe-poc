@@ -84,7 +84,7 @@ export default {
       axios.post('http://localhost:3000/graphql', {
         query: `
           mutation createNote($title: String!, $value: String!) {
-            createNote(title: $title, value: $value) {
+            notes: createNote(title: $title, value: $value) {
               id
               title
               value
@@ -96,14 +96,14 @@ export default {
           value: newNote.value,
         }
       }).then((res) => {
-        this.notes = res.data.data.createNote
+        this.notes = res.data.data.notes
       })
     },
     checkNote({id}) {
       axios.post('http://localhost:3000/graphql', {
         query: `
           mutation checkNote($id: String!) {
-            completeNote(id: $id) {
+            notes: completeNote(id: $id) {
               id
               title
               value
@@ -114,7 +114,7 @@ export default {
           id,
         }
       }).then((res) => {
-        this.notes = res.data.data.completeNote
+        this.notes = res.data.data.notes
       })
     },
   },
