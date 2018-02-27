@@ -2,6 +2,7 @@ const { graphql, GraphQLNonNull, GraphQLObjectType, GraphQLSchema, GraphQLString
 const express = require('express')
 const graphqlHTTP = require('express-graphql')
 const shortid = require('shortid')
+const cors = require('cors')
 const db = require('./model')
 
 const noteType = new GraphQLObjectType({
@@ -63,6 +64,8 @@ const schema = new GraphQLSchema({
 
 
 const app = express()
+
+app.use(cors())
 
 app.use('/graphql', graphqlHTTP({ schema, graphiql: true }))
 
