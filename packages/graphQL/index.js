@@ -5,6 +5,7 @@ const shortid = require('shortid')
 const cors = require('cors')
 const db = require('./model')
 
+
 const noteType = new GraphQLObjectType({
   name: 'note',
   fields: {
