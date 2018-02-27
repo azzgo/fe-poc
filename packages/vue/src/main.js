@@ -1,9 +1,8 @@
 import Vue from 'vue'
+import App from './components/App'
 
 
-const App = new Vue({
+new Vue({
 	el: '#app',
-	template: `
-		hello
-	`,
+	render(h) {return h(App)}
 })
