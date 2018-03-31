@@ -1,11 +1,11 @@
-let jsonServer = require('json-server');
-let server = jsonServer.create();
-let path = require('path');
-let router = jsonServer.router(path.join(__dirname, 'db.json'));
-let middlewares = jsonServer.defaults();
-server.use(middlewares);
+const jsonServer = require('json-server');
+const server = jsonServer.create();
+const path = require('path');
+const router = jsonServer.router(path.join(__dirname, 'db.json'));
+const middlewares = jsonServer.defaults();
 
-server.use(jsonServer.bodyParser);
+// Set default middlewares (logger, static, cors and no-cache)
+server.use(middlewares);
 
 let token = '_' + Math.random().toString(36).substr(2, 20);
 
@@ -17,7 +17,7 @@ function isAuthorized(req) {
   return false;
 }
 
-server.all('/auth', function(req, res) {
+server.post('/auth', function(req, res) {
   return res.json({
     token: token
   })
