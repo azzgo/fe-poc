@@ -2,8 +2,8 @@ import classNames from 'classnames'
 import notie from 'notie'
 import React, { FormEvent, PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { createNoteAction } from 'src/actions/notesAction'
 import styles from './NoteCreator.less'
+import { createNoteAction } from 'src/redux/ducks/notes'
 
 interface IState {}
 

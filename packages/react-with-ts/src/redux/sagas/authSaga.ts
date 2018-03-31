@@ -1,8 +1,8 @@
 import { Action } from 'flux-standard-action'
 import notie from 'notie'
 import { call, put, takeLatest } from 'redux-saga/effects'
-import actionTypes from 'src/actions/actionTypes'
-import { saveAuthInfoAction } from 'src/actions/authActions'
+import actionTypes from 'src/redux/actionTypes'
+import { saveAuthInfoAction } from 'src/redux/ducks/auth'
 import { Api } from 'src/utils/api'
 
 export function* loginSaga () {

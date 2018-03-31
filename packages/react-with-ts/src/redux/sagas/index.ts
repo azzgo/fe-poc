@@ -1,6 +1,6 @@
 import { all } from 'redux-saga/effects'
-import { loginSaga } from 'src/sagas/authSaga'
-import { createNoteSaga, deleteNoteSaga, fetchNotesSaga } from 'src/sagas/notesSaga'
+import { loginSaga } from './authSaga'
+import { createNoteSaga, deleteNoteSaga, fetchNotesSaga } from './notesSaga'
 
 export function* rootSaga () {
   yield all([

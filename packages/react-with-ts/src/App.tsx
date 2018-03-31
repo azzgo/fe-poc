@@ -4,7 +4,7 @@ import ReactDom from 'react-dom'
 import { Provider } from 'react-redux'
 import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom'
 
-import { store } from 'src/store'
+import { store } from 'src/redux/store'
 
 import { MasterLayout } from 'src/shared/components/MasterLayout/MasterLayout'
 

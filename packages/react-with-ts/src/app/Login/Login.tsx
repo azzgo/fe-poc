@@ -3,9 +3,9 @@ import { History } from 'history'
 import React, { FormEvent, PureComponent, SyntheticEvent } from 'react'
 import { connect } from 'react-redux'
 import { returntypeof } from 'react-redux-typescript'
-import { loginAction } from 'src/actions/authActions'
-import { IStoreState } from 'src/reducers'
 import styles from './Login.less'
+import { IStoreState } from 'src/redux/store'
+import { loginAction } from 'src/redux/ducks/auth'
 
 interface IState {
   email: string

@@ -4,11 +4,11 @@ import { returntypeof } from 'react-redux-typescript'
 
 import classNames from 'classnames'
 
-import { deleteNoteAction, fetchNotesAction } from 'src/actions/notesAction'
 import { INote, NoteCard } from 'src/app/Home/components/NoteCard/NoteCard'
 import NoteCreator from 'src/app/Home/containers/NoteCreator/NoteCreator'
-import { IStoreState } from 'src/reducers'
 import styles from './Home.less'
+import { IStoreState } from 'src/redux/store'
+import { deleteNoteAction, fetchNotesAction } from 'src/redux/ducks/notes'
 
 interface IOwnProps {}
 

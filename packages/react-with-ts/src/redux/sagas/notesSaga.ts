@@ -1,10 +1,10 @@
 import { Action } from 'flux-standard-action'
 import notie from 'notie'
 import { call, put, select, takeEvery } from 'redux-saga/effects'
-import actionTypes from 'src/actions/actionTypes'
-import { saveNotesAction } from 'src/actions/notesAction'
+import actionTypes from 'src/redux/actionTypes'
+import { saveNotesAction } from 'src/redux/ducks/notes'
 import { INote } from 'src/app/Home/components/NoteCard/NoteCard'
-import { IStoreState } from 'src/reducers'
+import { IStoreState } from 'src/redux/store'
 import { Api } from 'src/utils/api'
 
 function* fetchNotes () {
