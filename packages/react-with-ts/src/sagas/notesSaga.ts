@@ -1,5 +1,5 @@
 import { Action } from 'flux-standard-action'
-import { toastr } from 'react-redux-toastr'
+import notie from 'notie'
 import { call, put, select, takeEvery } from 'redux-saga/effects'
 import actionTypes from 'src/actions/actionTypes'
 import { saveNotesAction } from 'src/actions/notesAction'
@@ -12,7 +12,10 @@ function* fetchNotes () {
     const response = yield call(Api.get, '/notes')
     yield put(saveNotesAction(response.data))
   } catch (error) {
-    toastr.error('Net Work goes wrong', error)
+    notie.alert({
+      text: `Net Work goes wrong, ${error}`,
+      type: 'error',
+    })
   }
 }
 
@@ -27,7 +30,10 @@ export function* createNoteSaga () {
       const notes = yield select((state: IStoreState) => state.notes)
       yield put(saveNotesAction([...notes, response.data]))
     } catch (error) {
-      toastr.error('Net Work goes wrong', error)
+      notie.alert({
+        text: `Net Work goes wrong, ${error}`,
+        type: 'error',
+      })
     }
   })
 }
@@ -38,7 +44,10 @@ export function* deleteNoteSaga () {
       yield call(Api.delete, `/notes/${note.id}`)
       yield fetchNotes()
     } catch (error) {
-      toastr.error('Net Work goes wrong', error)
+      notie.alert({
+        text: `Net Work goes wrong, ${error}`,
+        type: 'error',
+      })
     }
   })
 }

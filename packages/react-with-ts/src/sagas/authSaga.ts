@@ -1,5 +1,5 @@
 import { Action } from 'flux-standard-action'
-import { toastr } from 'react-redux-toastr'
+import notie from 'notie'
 import { call, put, takeLatest } from 'redux-saga/effects'
 import actionTypes from 'src/actions/actionTypes'
 import { saveAuthInfoAction } from 'src/actions/authActions'
@@ -14,7 +14,10 @@ export function* loginSaga () {
       Api.defaults.headers.Authorization = `Bearer ${token}`
       yield put(saveAuthInfoAction(token))
     } catch (error) {
-      toastr.error('Net Work goes wrong', error)
+      notie.alert({
+        text: `'Net Work goes wrong', ${error}`,
+        type: 'error',
+      })
     }
   })
 }

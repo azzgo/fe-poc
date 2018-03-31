@@ -1,7 +1,7 @@
 import classNames from 'classnames'
+import notie from 'notie'
 import React, { FormEvent, PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { toastr } from 'react-redux-toastr'
 import { createNoteAction } from 'src/actions/notesAction'
 import styles from './NoteCreator.less'
 
@@ -53,7 +53,10 @@ export class NoteCreator extends PureComponent<IProps, IState> {
   public createNewNote = (event: FormEvent<{}>) => {
     event.preventDefault()
     if (!(this.titleInput.value && this.valueInput.value)) {
-      toastr.error('Note Title or Content should not be empty!', null)
+      notie.alert({
+        type: 'error',
+        text: 'Note Title or Content should not be empty!',
+      })
       return
     }
 

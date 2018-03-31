@@ -5,3 +5,8 @@ declare module '*.less' {
 
 
 declare type InferableConnectType<IMergedProps> = <TComponent extends React.ComponentType<IMergedProps>>(component: TComponent) => TComponent;
+
+declare module 'notie' {
+  const content: any;
+  export default content;
+}
