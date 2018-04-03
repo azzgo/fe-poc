@@ -2,8 +2,5 @@
   "flowide.enabled": true,
   "eslint.enable": true,
   "eslint.autoFixOnSave": true,
-  "cSpell.words": [
-    "linebreak",
-    "style"
-  ]
+  "javascript.validate.enable": false
 }

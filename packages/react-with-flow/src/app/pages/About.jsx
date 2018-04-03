@@ -1,7 +1,8 @@
+//@flow
 import React, { PureComponent } from 'react'
 import { Link } from 'react-router-dom'
 
-export class About extends PureComponent {
+export class About extends PureComponent<{}> {
   render() {
     return (
       <div>
