@@ -10,13 +10,13 @@ export interface INote {
   value: string,
 }
 
-interface IProps {
+type IProps = {
   className?: string;
   note: INote;
   onChecked: (_: INote) => void;
 }
 
-interface IState {}
+type IState = {}
 
 export class NoteCard extends PureComponent<IProps, IState> {
   render () {
