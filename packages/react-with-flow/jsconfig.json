@@ -1,8 +1,13 @@
 {
   "compilerOptions": {
     "target": "es6",
+    "baseUrl": "./",
+    "module": "commonjs",
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
+    "paths": {
+      "src/*": ["./src/*"]
+    },
     "jsx": "preserve"
   },
   "exclude": [

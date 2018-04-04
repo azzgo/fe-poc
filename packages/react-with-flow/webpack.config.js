@@ -2,10 +2,10 @@ const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
 
 module.exports = {
-  devtool: 'eval',
+  devtool: 'eval-source-map',
   context: path.relative(__dirname, '.'),
   entry: {
-    main: './src/app/App.jsx'
+    main: './src/App.jsx'
   },
   module: {
     rules: [
@@ -16,11 +16,12 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['css-loader'],
+        use: ['style-loader', 'css-loader'],
       },
       {
         test: /\.less$/,
         use: [
+          'style-loader',
           {
             loader: 'css-loader',
             options: {
@@ -29,7 +30,16 @@ module.exports = {
           },
           'less-loader',
         ]
-      }
+      },
+      {
+        test: /\.(png|jpg|gif|woff2)$/,
+        use: [
+          {
+            loader: 'file-loader',
+            options: {}  
+          }
+        ]
+      },
     ],
   },
   plugins: [
@@ -40,5 +50,8 @@ module.exports = {
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.css', '.scss'],
+    alias: {
+      src: path.resolve(__dirname, 'src'),
+    }
   }
 }
