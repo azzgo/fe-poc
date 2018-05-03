@@ -1,4 +1,4 @@
 {
   "presets": ["env"],
-  "plugins": []
+  "plugins": ["dynamic-import-webpack", "transform-es3-member-expression-literals"]
 }

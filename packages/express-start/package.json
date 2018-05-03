@@ -12,17 +12,25 @@
     "not IE < 8"
   ],
   "dependencies": {
+    "babel-polyfill": "^6.26.0",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
     "express": "~4.16.0",
+    "express-hbs": "^1.0.4",
+    "handlebars": "^4.0.11",
     "hbs": "~4.0.1",
     "http-errors": "~1.6.2",
-    "morgan": "~1.9.0"
+    "morgan": "~1.9.0",
+    "path-to-regexp": "^2.2.1"
   },
   "devDependencies": {
+    "@types/jquery": "^3.3.1",
     "autoprefixer": "^8.4.1",
     "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.3",
     "babel-loader": "^7.1.4",
+    "babel-plugin-dynamic-import-webpack": "^1.0.2",
+    "babel-plugin-transform-es3-member-expression-literals": "^6.22.0",
     "babel-preset-env": "^1.6.1",
     "css-loader": "^0.28.11",
     "eslint": "^4.19.1",

@@ -7,9 +7,10 @@ module.exports = {
   devtool: isProd ? 'source-map' : 'inline-source-map',
   mode: isProd ? 'production' : 'development',
   entry: {
-    main: './src/www-sources/main.js',
+    main: ['babel-polyfill', './src/www-sources/main.js'],
   },
   output: {
+    publicPath: '/sources/',
     path: path.resolve(__dirname, './public/sources'),
   },
   module: {
@@ -33,8 +34,8 @@ module.exports = {
                 url: false,
               }
             },
+            'postcss-loader',
             'less-loader',
-            'postcss-loader'
           ]
         }),
       },
@@ -57,5 +58,8 @@ module.exports = {
       filename: 'styles.css',
       allChunks: true,
     }),
-  ]
+  ],
+  node: {
+    fs: 'empty'
+  }
 }

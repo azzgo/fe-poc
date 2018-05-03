@@ -340,3 +340,23 @@ template {
 [hidden] {
   display: none;
 }
+
+
+
+html, body {
+  min-width: 1280px;
+  margin: auto;
+  height: 100%;
+}
+
+button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+}
+
+
+/* select2 reset */
+.select2-container--default .select2-selection--single {
+  border: none;
+}
