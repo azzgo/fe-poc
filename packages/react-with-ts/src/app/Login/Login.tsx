@@ -2,7 +2,6 @@ import classNames from 'classnames'
 import { History } from 'history'
 import React, { FormEvent, PureComponent, SyntheticEvent } from 'react'
 import { connect } from 'react-redux'
-import { returntypeof } from 'react-redux-typescript'
 import styles from './Login.less'
 import { IStoreState } from 'src/redux/store'
 import { loginAction } from 'src/redux/ducks/auth'
@@ -22,9 +21,7 @@ const mapStateToProps = (state: IStoreState) => ({
   token: state.auth.token,
 })
 
-const mapStateToPropsType = returntypeof(mapStateToProps)
-
-type IStateToProps = typeof mapStateToPropsType
+type IStateToProps = ReturnType<typeof mapStateToProps>
 
 const mapDispatchToProps = {
   login: loginAction,

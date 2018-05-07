@@ -5,5 +5,5 @@ export function createTypesByEnum<EnumTypes extends object> (enumTypes: EnumType
     get (_, property) {
       return property
     },
-  })
+  }) as any // tslint:disable-line:no-any
 }

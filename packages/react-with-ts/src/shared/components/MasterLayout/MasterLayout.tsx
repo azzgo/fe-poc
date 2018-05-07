@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react'
 import { match as IMatch, Route } from 'react-router'
-import { AboutPage } from 'src/app/About/About'
-import { HomePage } from 'src/app/Home/Home'
+import AboutPage from 'src/app/About/About'
+import HomePage from 'src/app/Home/Home'
 import { AppBar } from 'src/shared/components/AppBar/AppBar'
 
 interface IProps {

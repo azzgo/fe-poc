@@ -1,6 +1,5 @@
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { returntypeof } from 'react-redux-typescript'
 
 import classNames from 'classnames'
 
@@ -18,9 +17,7 @@ const mapStateToProps = (state: IStoreState) => ({
   notes: state.notes,
 })
 
-const mapStateToPropsType = returntypeof(mapStateToProps)
-
-type IStateToPropsType = typeof mapStateToPropsType
+type IStateToPropsType = ReturnType<typeof mapStateToProps>
 
 const mapDispatchToProps = {
   deleteNote: deleteNoteAction,
@@ -31,8 +28,7 @@ type IDispatchToPropsType = typeof mapDispatchToProps
 
 type IProps = IOwnProps & IStateToPropsType & IDispatchToPropsType
 
-@(connect(mapStateToProps, mapDispatchToProps) as InferableConnectType<IProps>)
-export class HomePage extends PureComponent<IProps, IState> {
+class HomePage extends PureComponent<IProps, IState> {
   public componentWillMount () {
     this.props.fetchNotes()
   }
@@ -62,3 +58,5 @@ export class HomePage extends PureComponent<IProps, IState> {
     this.props.deleteNote(note)
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(HomePage)
