@@ -18,7 +18,7 @@ interface IProps {
 interface IState {}
 
 export class NoteCard extends PureComponent<IProps, IState> {
-  public render () {
+   render () {
     const { note, className } = this.props
 
     return (

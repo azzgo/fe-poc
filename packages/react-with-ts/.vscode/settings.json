@@ -1,9 +1,5 @@
 {
   "tslint.enable": true,
   "tslint.autoFixOnSave": true,
-  "prettier.tabWidth": 2,
-  "prettier.printWidth": 120,
-  "prettier.trailingComma": "none",
-  "prettier.semi": false,
-  "prettier.singleQuote": true
+  "prettier.eslintIntegration": true
 }

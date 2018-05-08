@@ -32,20 +32,20 @@ type IDispatchToProps = typeof mapDispatchToProps
 type IProps = IStateToProps & IDispatchToProps & IOwnProps
 
 export class LoginPage extends PureComponent<IProps, IState> {
-  public state = {
+  state = {
     email: '',
     isEmailDirty: false,
     isPasswordirty: false,
     password: '',
   }
 
-  public componentWillUpdate (nextProps: IProps) {
+  componentWillUpdate (nextProps: IProps) {
     if (nextProps.token !== this.props.token && nextProps.token) {
       this.props.history.push('/app')
     }
   }
 
-  public render () {
+  render () {
     const { email, password, isEmailDirty, isPasswordirty } = this.state
 
     return (
@@ -86,12 +86,12 @@ export class LoginPage extends PureComponent<IProps, IState> {
     )
   }
 
-  public updateEmail = (event: SyntheticEvent<HTMLInputElement>) =>
+  updateEmail = (event: SyntheticEvent<HTMLInputElement>) =>
     this.setState({ email: event.currentTarget.value, isEmailDirty: true })
-  public updatePassword = (event: SyntheticEvent<HTMLInputElement>) =>
+  updatePassword = (event: SyntheticEvent<HTMLInputElement>) =>
     this.setState({ password: event.currentTarget.value, isPasswordirty: true })
 
-  public submit = (event: FormEvent<{}>) => {
+  submit = (event: FormEvent<{}>) => {
     event.preventDefault()
 
     const { email, password } = this.state

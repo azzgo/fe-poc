@@ -16,7 +16,8 @@
     "whitespace": [true, "check-branch", "check-operator", "check-typecast"],
     "space-before-function-paren": true,
     "ordered-imports": [false],
-    "object-literal-sort-keys": [false]
+    "object-literal-sort-keys": [false],
+    "member-access": [false]
   },
   "rulesDirectory": []
 }

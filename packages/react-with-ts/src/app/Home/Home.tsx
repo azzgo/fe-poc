@@ -29,32 +29,30 @@ type IDispatchToPropsType = typeof mapDispatchToProps
 type IProps = IOwnProps & IStateToPropsType & IDispatchToPropsType
 
 class HomePage extends PureComponent<IProps, IState> {
-  public componentWillMount () {
+  componentWillMount () {
     this.props.fetchNotes()
   }
 
-  public render () {
+  render () {
     return (
       <div className={classNames(styles.warpper, 'row center-xs')}>
         <div className={classNames(styles.creator, 'col-xs-6')}>
           <NoteCreator />
         </div>
         <div className="notes col-xs-8">
-          <div className="row between-xs">
-            {this.renderNoteCard()}
-          </div>
+          <div className="row between-xs">{this.renderNoteCard()}</div>
         </div>
       </div>
     )
   }
 
-  public renderNoteCard = () => {
+  renderNoteCard = () => {
     return this.props.notes.map((note) => (
       <NoteCard key={note.id} className="col-xs-4" note={note} onChecked={this.onCheckCard} />
     ))
   }
 
-  public onCheckCard = (note: INote) => {
+  onCheckCard = (note: INote) => {
     this.props.deleteNote(note)
   }
 }

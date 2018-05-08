@@ -22,7 +22,7 @@ interface IProps {}
 interface IState {}
 
 class App extends PureComponent<IProps, IState> {
-  public render (): JSX.Element {
+   render (): JSX.Element {
     return (
       <Router>
         <React.Fragment>
@@ -34,7 +34,7 @@ class App extends PureComponent<IProps, IState> {
     )
   }
 
-  public renderRedirect = () => {
+   renderRedirect = () => {
     return <Redirect to="/app" />
   }
 }

@@ -11,7 +11,7 @@ interface IProps {
 interface IState {}
 
 export class MasterLayout extends PureComponent<IProps, IState> {
-  public render () {
+   render () {
     const { match } = this.props
     return (
       <div>

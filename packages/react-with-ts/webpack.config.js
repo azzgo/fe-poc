@@ -16,6 +16,7 @@ const pathResolve = (...args) => {
  */
 const config  = {
   devtool: 'source-map',
+  mode: 'development',
   entry: {
     app: pathResolve('./src/App.tsx')
   },
