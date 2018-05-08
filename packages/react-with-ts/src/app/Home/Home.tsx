@@ -29,7 +29,7 @@ type IDispatchToPropsType = typeof mapDispatchToProps
 type IProps = IOwnProps & IStateToPropsType & IDispatchToPropsType
 
 class HomePage extends PureComponent<IProps, IState> {
-  componentWillMount () {
+  componentDidMount () {
     this.props.fetchNotes()
   }
 

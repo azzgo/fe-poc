@@ -18,7 +18,7 @@ const config  = {
   devtool: 'source-map',
   mode: 'development',
   entry: {
-    app: pathResolve('./src/App.tsx')
+    app: pathResolve('./src/main.tsx')
   },
   output: {
     filename: '[name].bundle.js',
