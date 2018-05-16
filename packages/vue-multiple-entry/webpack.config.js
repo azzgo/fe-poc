@@ -1,0 +1,53 @@
+const path = require('path');
+const shelljs = require('shelljs');
+const HTMLWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
+
+let entries = {}
+let htmlPagePlugins = []
+
+shelljs.ls('-d', './src/app/*/').forEach(entry => {
+  const entryName = entry.split('/').slice(-2)[0]
+  entries[entryName] = ['./src/polyfills.js', `${entry}index.js`]
+  htmlPagePlugins.push(new HTMLWebpackPlugin({
+    filename: `${entryName}.html`,
+    template: './src/template.ejs',
+    title: `${entryName.toUpperCase()} Page`,
+    chunks: [entryName]
+  }))
+})
+
+
+module.exports = {
+  devtool: 'source-map',
+  mode: process.env.NODE === 'prod' ? 'production' : 'development',
+  entry: entries,
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].js',
+  },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        use: ['babel-loader'],
+        exclude: /node_modules/,
+      },
+      {
+        test: /\.vue$/,
+        use: ['vue-loader'],
+      },
+      {
+        test: /\.css$/,
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
+      }
+    ]
+  },
+  plugins: [
+    ...htmlPagePlugins,
+  ],
+  resolve: {
+    extensions: ['.js', '.vue']
+  },
+  externals: ['vue', 'axios']
+};
