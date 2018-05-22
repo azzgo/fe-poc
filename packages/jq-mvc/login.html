@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Login</title>
+  <link rel="stylesheet" type="text/css" href="./styles/login.css" />
+</head>
+<body>
+  <section class="container">
+    <div class="login">
+      <h1>Login to Web App</h1>
+      <form method="post" action="javascript:;" id="login-form">
+        <p>
+          <input class="username" type="text" name="username" value="" placeholder="Username">
+        </p>
+        <p>
+          <input class="password" type="password" name="password" value="" placeholder="Password">
+        </p>
+        <p class="remember_me">
+          <label>
+            <input type="checkbox" name="remember_me" id="remember_me"> Remember me on this computer
+          </label>
+        </p>
+        <button class="submit" type="submit">Login</button>
+      </form>
+    </div>
+
+    <div class="login-help">
+      <p>Forgot your password?
+        <a href="index.html">Click here to reset it</a>.</p>
+    </div>
+  </section>
+  <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script src="scripts/login.js" async></script>
+</body>
+
+</html>
