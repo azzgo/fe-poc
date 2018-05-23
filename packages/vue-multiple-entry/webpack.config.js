@@ -5,17 +5,18 @@ const HTMLWebpackPlugin = require('html-webpack-plugin')
 let entries = {}
 let htmlPagePlugins = []
 
-shelljs.ls('-d', './src/app/*/').forEach(entry => {
+shelljs.ls('-d', './src/app/*/').forEach((entry) => {
   const entryName = entry.split('/').slice(-2)[0]
   entries[entryName] = ['./src/polyfills.js', `${entry}index.js`]
-  htmlPagePlugins.push(new HTMLWebpackPlugin({
-    filename: `${entryName}.html`,
-    template: './src/template.ejs',
-    title: `${entryName.toUpperCase()} Page`,
-    chunks: [entryName],
-  }))
+  htmlPagePlugins.push(
+    new HTMLWebpackPlugin({
+      filename: `${entryName}.html`,
+      template: './src/template.ejs',
+      title: `${entryName.toUpperCase()} Page`,
+      chunks: [entryName],
+    }),
+  )
 })
-
 
 module.exports = {
   devtool: 'source-map',
@@ -42,9 +43,7 @@ module.exports = {
       },
     ],
   },
-  plugins: [
-    ...htmlPagePlugins,
-  ],
+  plugins: [...htmlPagePlugins],
   resolve: {
     extensions: ['.js', '.vue'],
     alias: {

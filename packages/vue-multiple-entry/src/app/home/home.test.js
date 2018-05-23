@@ -16,7 +16,7 @@ test('test2', async () => {
           body: '测试body',
         },
       ],
-    })
+    }),
   )
   const comp = shallowMount(Home)
   await flushPromises()

@@ -22,11 +22,9 @@ export default {
     }
   },
   mounted() {
-    axios.get('http://jsonplaceholder.typicode.com/posts')
-      .then(res => {
-        this.posts = res.data
-      })
-  }
+    axios.get('http://jsonplaceholder.typicode.com/posts').then((res) => {
+      this.posts = res.data
+    })
+  },
 }
 </script>
-
