@@ -1,0 +1,19 @@
+{
+  "env": {
+    "jest": true,
+    "node": true,
+    "browser": true,
+    "es6": true
+  },
+  "parserOptions": {
+    "parser": "babel-eslint",
+    "ecmaVersion": 2017,
+    "sourceType": "module"
+  },
+  "extends": ["eslint:recommended", "plugin:vue/essential"],
+  "rules": {
+    "comma-dangle": ["error", { "arrays": "always-multiline", "imports": "always-multiline", "exports": "never", "objects": "always-multiline", "functions": "only-multiline" }],
+    "quotes": ["error", "single"],
+    "semi": ["error", "never"]
+  }
+}
