@@ -1,7 +1,6 @@
-const path = require('path');
-const shelljs = require('shelljs');
-const HTMLWebpackPlugin = require('html-webpack-plugin');
-const webpack = require('webpack');
+const path = require('path')
+const shelljs = require('shelljs')
+const HTMLWebpackPlugin = require('html-webpack-plugin')
 
 let entries = {}
 let htmlPagePlugins = []
@@ -13,7 +12,7 @@ shelljs.ls('-d', './src/app/*/').forEach(entry => {
     filename: `${entryName}.html`,
     template: './src/template.ejs',
     title: `${entryName.toUpperCase()} Page`,
-    chunks: [entryName]
+    chunks: [entryName],
   }))
 })
 
@@ -40,14 +39,17 @@ module.exports = {
       {
         test: /\.css$/,
         use: ['style-loader', 'css-loader', 'postcss-loader'],
-      }
-    ]
+      },
+    ],
   },
   plugins: [
     ...htmlPagePlugins,
   ],
   resolve: {
-    extensions: ['.js', '.vue']
+    extensions: ['.js', '.vue'],
+    alias: {
+      src: path.resolve(__dirname, 'src'),
+    },
   },
-  externals: ['vue', 'axios']
-};
+  externals: ['vue', 'axios'],
+}

@@ -58,6 +58,9 @@
       "^.+\\.jsx?$": "babel-jest",
       ".*\\.(vue)$": "<rootDir>/node_modules/vue-jest"
     },
+    "modulePaths": [
+      "./"
+    ],
     "setupFiles": [
       "<rootDir>/jest.setup.js"
     ],
