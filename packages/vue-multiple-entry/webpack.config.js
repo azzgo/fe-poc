@@ -41,6 +41,17 @@ module.exports = {
         test: /\.css$/,
         use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          'postcss-loader',
+          {
+            loader: 'scss-loader',
+          },
+        ],
+      },
     ],
   },
   plugins: [...htmlPagePlugins],
@@ -48,7 +59,11 @@ module.exports = {
     extensions: ['.js', '.vue'],
     alias: {
       src: path.resolve(__dirname, 'src'),
+      styles: path.resolve(__dirname, 'src/styles'),
     },
   },
-  externals: ['vue', 'axios'],
+  externals: {
+    vue: 'Vue',
+    axios: 'axios',
+  },
 }

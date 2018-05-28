@@ -6,7 +6,8 @@
     "experimentalDecorators": true,
     "allowSyntheticDefaultImports": true,
     "paths": {
-      "src/*": ["./src/*"]
+      "src/*": ["./src/*"],
+      "styles/*": ["./src/styles/*"]
     },
     "jsx": "preserve"
   },
