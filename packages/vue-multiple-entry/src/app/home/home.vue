@@ -13,7 +13,7 @@
   </div>
 </template>
 <script>
-import axios from 'axios'
+import apiClient from 'src/utils/api'
 
 export default {
   data() {
@@ -22,7 +22,7 @@ export default {
     }
   },
   mounted() {
-    axios.get('http://jsonplaceholder.typicode.com/posts').then((res) => {
+    apiClient.get('http://jsonplaceholder.typicode.com/posts').then((res) => {
       this.posts = res.data
     })
   },

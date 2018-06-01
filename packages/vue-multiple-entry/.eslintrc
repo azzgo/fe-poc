@@ -24,6 +24,12 @@
     }],
     "quotes": ["error", "single"],
     "curly": ["error", "all"],
-    "max-len": ["error", {"code": 110, "ignoreUrls": true, "ignoreStrings": true, "ignoreComments": true, "ignoreTemplateLiterals": true}]
+    "max-len": ["error", {"code": 110, "ignoreUrls": true, "ignoreStrings": true, "ignoreComments": true, "ignoreTemplateLiterals": true}],
+    "vue/html-indent": ["error", 2, {
+      "attribute": 1,
+      "closeBracket": 0,
+      "alignAttributesVertically": true,
+      "ignores": []
+    }]
   }
 }
