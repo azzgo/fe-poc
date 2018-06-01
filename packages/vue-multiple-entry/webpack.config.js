@@ -4,6 +4,7 @@ const HTMLWebpackPlugin = require('html-webpack-plugin')
 
 let entries = {}
 let htmlPagePlugins = []
+let isProd = process.env.NODE === 'prod'
 
 shelljs.ls('-d', './src/app/*/').forEach((entry) => {
   const entryName = entry.split('/').slice(-2)[0]
@@ -20,7 +21,7 @@ shelljs.ls('-d', './src/app/*/').forEach((entry) => {
 
 module.exports = {
   devtool: 'source-map',
-  mode: process.env.NODE === 'prod' ? 'production' : 'development',
+  mode: isProd ? 'production' : 'development',
   entry: entries,
   output: {
     path: path.resolve(__dirname, 'dist'),
@@ -63,7 +64,7 @@ module.exports = {
     },
   },
   externals: {
-    vue: 'Vue',
+    vue: isProd && 'Vue',
     axios: 'axios',
   },
 }
