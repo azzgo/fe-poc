@@ -1,15 +1,15 @@
 <template>
-<div>
-  <form action="">
-    <input type="text" placeholder="Username">
-    <input type="password" placeholder="Password">
-    <button class="submit" type="submit">Submit</button>
-  </form>
-  <button @click="visible = true">打开模态框</button>
-  <alert-modal :visible="visible" @close="visible=false">
-    <span>测试测试</span>
-  </alert-modal>
-</div>
+  <div>
+    <form action="">
+      <input type="text" placeholder="Username">
+      <input type="password" placeholder="Password">
+      <button class="submit" type="submit">Submit</button>
+    </form>
+    <button @click="visible = true">打开模态框</button>
+    <alert-modal :visible="visible" @close="visible=false">
+      <span>测试测试</span>
+    </alert-modal>
+  </div>
 </template>
 
 <script>

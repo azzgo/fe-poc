@@ -48,10 +48,24 @@ module.exports = {
           'style-loader',
           'css-loader',
           'postcss-loader',
+          'resolve-url-loader',
           {
-            loader: 'scss-loader',
+            loader: 'sass-loader',
           },
         ],
+      },
+      {
+        test: /\.(jpg|jpeg|png|gif)$/,
+        loader: 'url-loader',
+        options: {
+          limit: 30000,
+          name: '[path][name].[hash].[ext]',
+          emitFile: true,
+        },
+      },
+      {
+        test: /\.(eof|woff|woff2|svg|eot|ttf)$/,
+        loader: 'file-loader',
       },
     ],
   },

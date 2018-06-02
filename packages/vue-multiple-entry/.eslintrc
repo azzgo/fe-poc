@@ -30,6 +30,7 @@
       "closeBracket": 0,
       "alignAttributesVertically": true,
       "ignores": []
-    }]
+    }],
+    "no-console": ["error", {"allow": ["warn", "error"]}]
   }
 }

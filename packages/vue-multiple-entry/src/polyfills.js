@@ -1,3 +1,3 @@
 window.Promise = Promise
 
-document.body.style.margin = '0'
+import 'src/styles/base.scss'

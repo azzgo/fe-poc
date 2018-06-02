@@ -10,7 +10,20 @@
   </div>
 </template>
 
-<style lang="less" scoped>
+<script>
+export default {
+  props: {
+    notes: Array,
+  },
+  methods: {
+    onCheckNote(note) {
+      this.$emit('onCheckNote', note)
+    },
+  },
+}
+</script>
+
+<style lang="scss" scoped>
 .note-card {
   padding: 15px;
   padding-top: 35px;
@@ -46,17 +59,3 @@
   cursor: pointer;
 }
 </style>
-
-
-<script>
-export default {
-  props: {
-    notes: Array,
-  },
-  methods: {
-    onCheckNote(note) {
-      this.$emit('onCheckNote', note)
-    }
-  }
-}
-</script>

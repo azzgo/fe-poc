@@ -21,38 +21,6 @@
   </div>
 </template>
 
-<style type="text/less" scoped>
-  .app-bar {
-    height: 65px;
-    padding: 5px 30px;
-    background-color: #00BCD4;
-  }
-  .logo {
-    color: white;
-    font-size: 30px;
-    font-weight: 300;
-    cursor: pointer;
-  }
-  .link {
-    color: white;
-    font-size: 24px;
-    font-weight: 400;
-    cursor: pointer;
-  }
-
-  .warpper {
-    margin-top: 50px;
-  }
-
-  .notes {
-    padding-top: 50px;
-  }
-
-  .creator {
-    margin-bottom: 40px;
-  }
-</style>
-
 <script type="text/javascript">
 import axios from 'axios'
 import NewNoteForm from './NewNoteForm'
@@ -61,12 +29,13 @@ import NoteList from './NoteList'
 export default {
   data() {
     return {
-      notes: []
+      notes: [],
     }
   },
   mounted() {
-    axios.post('http://localhost:3000/graphql', {
-      query: `
+    axios
+      .post('http://localhost:3000/graphql', {
+        query: `
         query {
           notes {
             id
@@ -74,15 +43,17 @@ export default {
             value
           }
         }
-      `
-    }).then((res) => {
-      this.notes = res.data.data.notes
-    })
+      `,
+      })
+      .then((res) => {
+        this.notes = res.data.data.notes
+      })
   },
   methods: {
     createNote(newNote) {
-      axios.post('http://localhost:3000/graphql', {
-        query: `
+      axios
+        .post('http://localhost:3000/graphql', {
+          query: `
           mutation createNote($title: String!, $value: String!) {
             notes: createNote(title: $title, value: $value) {
               id
@@ -91,17 +62,19 @@ export default {
             }
           }
         `,
-        variables: {
-          title: newNote.title,
-          value: newNote.value,
-        }
-      }).then((res) => {
-        this.notes = res.data.data.notes
-      })
+          variables: {
+            title: newNote.title,
+            value: newNote.value,
+          },
+        })
+        .then((res) => {
+          this.notes = res.data.data.notes
+        })
     },
-    checkNote({id}) {
-      axios.post('http://localhost:3000/graphql', {
-        query: `
+    checkNote({ id }) {
+      axios
+        .post('http://localhost:3000/graphql', {
+          query: `
           mutation checkNote($id: String!) {
             notes: completeNote(id: $id) {
               id
@@ -110,17 +83,50 @@ export default {
             }
           }
         `,
-        variables: {
-          id,
-        }
-      }).then((res) => {
-        this.notes = res.data.data.notes
-      })
+          variables: {
+            id,
+          },
+        })
+        .then((res) => {
+          this.notes = res.data.data.notes
+        })
     },
   },
   components: {
     'new-note-form': NewNoteForm,
     'note-list': NoteList,
-  }
+  },
 }
 </script>
+
+<style lang="scss" scoped>
+.app-bar {
+  height: 65px;
+  padding: 5px 30px;
+  background-color: #00bcd4;
+}
+.logo {
+  color: white;
+  font-size: 30px;
+  font-weight: 300;
+  cursor: pointer;
+}
+.link {
+  color: white;
+  font-size: 24px;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.warpper {
+  margin-top: 50px;
+}
+
+.notes {
+  padding-top: 50px;
+}
+
+.creator {
+  margin-bottom: 40px;
+}
+</style>
