@@ -11,6 +11,10 @@
 </template>
 
 <script>
+/**
+ * @vuedoc
+ * @exports components/NoteList
+ */
 export default {
   props: {
     notes: Array,

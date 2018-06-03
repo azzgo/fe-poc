@@ -1,0 +1,37 @@
+{
+  "plugins": [
+    "node_modules/jsdoc-vue-component",
+    "plugins/markdown",
+    "plugins/summarize"
+  ],
+  "recurseDepth": 10,
+  "source": {
+    "include": ["./src"],
+    "includePattern": ".+\\.(js|vue)$",
+    "excludePattern": "(^|\\/|\\\\)_"
+  },
+  "jsdoc-vue-component": {
+    "log": true
+  },
+  "markdown": {
+    "tags": ["author", "classdesc", "description", "param", "property", "returns", "see", "throws", "vue"],
+    "parser": "gfm",
+    "hardwrap": true
+  },
+  "sourceType": "module",
+  "tags": {
+      "allowUnknownTags": true,
+      "dictionaries": ["jsdoc","closure"]
+  },
+  "templates": {
+      "cleverLinks": false,
+      "monospaceLinks": false
+  },
+  "opts": {
+    "template": "node_modules/sherry-docstrap/template",
+    "encoding": "utf8",
+    "destination": "./docs/",
+    "recurse": true,
+    "readme": "README.md"
+  }
+}

@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server --host 0.0.0.0 --config webpack.config.js",
     "build": "cross-env NODE_ENV=prod webpack --config webpack.config.js",
-    "test": "jest"
+    "test": "jest",
+    "doc": "jsdoc -c jsdoc.json"
   },
   "browserslist": [
     "cover 99%"
@@ -36,12 +37,14 @@
     "html-webpack-plugin": "^3.2.0",
     "jest": "^22.4.4",
     "jest-serializer-vue": "^1.0.0",
+    "jsdoc-vue-component": "^2.2.4",
     "node-sass": "^4.9.0",
     "postcss-loader": "^2.1.5",
     "prettier": "1.12.1",
     "resolve-url-loader": "^2.3.0",
     "sass-loader": "^7.0.1",
     "shelljs": "^0.8.2",
+    "sherry-docstrap": "^1.3.2",
     "style-loader": "^0.21.0",
     "url-loader": "^1.0.1",
     "vue": "^2.5.16",

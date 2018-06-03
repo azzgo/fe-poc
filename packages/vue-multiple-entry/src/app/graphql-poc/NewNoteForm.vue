@@ -11,6 +11,10 @@
 </template>
 
 <script>
+/**
+ * @vuedoc
+ * @exports component/NewNoteForm
+ */
 export default {
   data() {
     return {
