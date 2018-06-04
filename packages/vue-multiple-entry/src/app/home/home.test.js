@@ -1,6 +1,6 @@
 import { shallowMount } from '@vue/test-utils'
 import Home from './home.vue'
-import axios from 'axios'
+import axios from 'src/utils/api'
 import flushPromises from 'flush-promises'
 
 test('test', () => {
