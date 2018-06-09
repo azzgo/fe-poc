@@ -20,7 +20,7 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: ['style-loader', 'css-loader', 'postcss-loader'],
       },
       {
         test: /\.less$/,
@@ -33,6 +33,7 @@ module.exports = {
               camelCase: true
             },
           },
+          'postcss-loader',
           'less-loader',
         ]
       },
@@ -59,6 +60,20 @@ module.exports = {
       src: path.resolve(__dirname, 'src'),
       'react': 'nervjs',
       'react-dom': 'nervjs',
+    }
+  },
+  devServer: {
+    host: '0.0.0.0',
+    port: 8080,
+    disableHostCheck: true,
+    proxy: {
+      '/api': {
+        target: 'https://my-json-server.typicode.com',
+        pathRewrite: {'^/api' : '/azzgo/retain-mock-data'},
+        secure: true,
+        changeOrigin: true,
+        logLevel: 'debug',
+      }
     }
   }
 }

@@ -2,7 +2,7 @@ import notie from 'notie'
 import React, {Component} from 'react'
 import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux'
-import { BrowserRouter as Router, Redirect, Route } from 'react-router-dom'
+import { HashRouter as Router, Redirect, Route } from 'react-router-dom'
 
 import { store } from 'src/redux/store'
 

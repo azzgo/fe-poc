@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const Api = axios.create({
-  baseURL: 'https://my-json-server.typicode.com/azzgo/retain-mock-data',
+  baseURL: '/api',
   withCredentials:true,
   timeout: 20000,
 })
@@ -9,7 +9,7 @@ export const Api = axios.create({
 Api.interceptors.response.use((response) => {
   return response
 }, (error) => {
-  if (error.request.status === 401) {
+  if (error.response && error.response.status === 401) {
     // trikey way
     window.location.href = '/login'
   }
