@@ -6,5 +6,19 @@
 		}],
 		["es3"]
 	],
-	"plugins": ["transform-runtime", "transform-class-properties"]
+	"plugins": [
+		"transform-runtime",
+		"transform-class-properties", 
+		"transform-react-jsx",
+		[
+			"module-resolver", 
+			{
+				"root": ["."],
+				"alias": {
+					"react": "nervjs",
+					"react-dom": "nervjs",
+				}
+			}
+		]
+	]
 }

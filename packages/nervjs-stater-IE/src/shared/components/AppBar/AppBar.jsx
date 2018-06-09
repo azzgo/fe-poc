@@ -4,13 +4,7 @@ import { Link } from 'react-router-dom'
 
 import styles from './AppBar.less'
 
-interface IProps {
-}
-
-interface IState {
-}
-
-export class AppBar extends PureComponent<IProps, IState> {
+export class AppBar extends PureComponent {
   render () {
     return (
       <header className={classNames(styles.appBar, 'row', 'middle-xs')}>

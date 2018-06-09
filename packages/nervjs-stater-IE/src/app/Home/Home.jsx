@@ -5,7 +5,6 @@ import classNames from 'classnames'
 
 import { INote, NoteCard } from 'src/app/Home/components/NoteCard/NoteCard'
 import NoteCreator from 'src/app/Home/containers/NoteCreator/NoteCreator'
-import { IStoreState } from 'src/redux/store'
 import { deleteNoteAction, fetchNotesAction } from 'src/redux/ducks/notes'
 import styles from './Home.less'
 
@@ -35,9 +34,18 @@ export class HomePage extends PureComponent {
     ))
   }
 
-  onCheckCard = (note: INote) => {
+  onCheckCard = (note) => {
     this.props.deleteNote(note)
   }
+}
+
+const mapStateToProps = (state) => ({
+  notes: state.notes,
+})
+
+const mapDispatchToProps = {
+  deleteNote: deleteNoteAction,
+  fetchNotes: fetchNotesAction,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(HomePage)

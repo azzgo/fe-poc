@@ -3,7 +3,6 @@ import { call, put, select, takeEvery } from 'redux-saga/effects'
 import actionTypes from 'src/redux/actionTypes'
 import { saveNotesAction } from 'src/redux/ducks/notes'
 import { INote } from 'src/app/Home/components/NoteCard/NoteCard'
-import { IStoreState } from 'src/redux/store'
 import { Api } from 'src/utils/api'
 
 function* fetchNotes () {
@@ -26,7 +25,7 @@ export function* createNoteSaga () {
   yield takeEvery(actionTypes.createNote, function* createNote ({ payload: {note}}) {
     try {
       const response = yield call(Api.post, '/notes', note)
-      const notes = yield select((state: IStoreState) => state.notes)
+      const notes = yield select((state) => state.notes)
       yield put(saveNotesAction([...notes, response.data]))
     } catch (error) {
       notie.alert({

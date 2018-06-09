@@ -1,14 +1,14 @@
 import classNames from 'classnames'
 import notie from 'notie'
-import React, { FormEvent, PureComponent } from 'react'
+import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import styles from './NoteCreator.less'
-import { createNoteAction } from 'src/redux/ducks/notes'
+import notes, { createNoteAction } from 'src/redux/ducks/notes'
 
 export class NoteCreator extends PureComponent {
-  formRef: HTMLFormElement
-  titleInput: HTMLInputElement
-  valueInput: HTMLInputElement
+  formRef = null
+  titleInput = null
+  valueInput = null
 
   render () {
     return (
@@ -40,7 +40,7 @@ export class NoteCreator extends PureComponent {
     )
   }
 
-  createNewNote = (event: FormEvent<{}>) => {
+  createNewNote = (event) => {
     event.preventDefault()
     if (!(this.titleInput.value && this.valueInput.value)) {
       notie.alert({
@@ -57,6 +57,10 @@ export class NoteCreator extends PureComponent {
   resetForm = () => {
     this.formRef.reset()
   }
+}
+
+const mapDispatchToProps = {
+  createNote: notes.createNoteAction,
 }
 
 export default connect(null, mapDispatchToProps)(NoteCreator)

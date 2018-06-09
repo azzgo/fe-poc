@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 export const Api = axios.create({
-  baseURL: 'http://127.0.0.1:3000',
+  baseURL: 'https://my-json-server.typicode.com/azzgo/retain-mock-data',
   withCredentials:true,
   timeout: 20000,
 })

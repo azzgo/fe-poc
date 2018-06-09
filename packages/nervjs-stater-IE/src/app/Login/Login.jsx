@@ -2,11 +2,10 @@ import classNames from 'classnames'
 import { History } from 'history'
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
-import { IStoreState } from 'src/redux/store'
 import { loginAction } from 'src/redux/ducks/auth'
 import styles from './Login.less'
 
-const mapStateToProps = (state: IStoreState) => ({
+const mapStateToProps = (state) => ({
   token: state.auth.token,
 })
 const mapDispatchToProps = {
@@ -22,16 +21,16 @@ export class LoginPage extends PureComponent {
     password: '',
   }
 
-  componentWillUpdate (nextProps: IProps) {
+  componentWillUpdate (nextProps) {
     if (nextProps.token !== this.props.token && nextProps.token) {
       this.props.history.push('/app')
     }
   }
 
-  updateEmail = (event: SyntheticEvent<HTMLInputElement>) =>
+  updateEmail = (event) =>
     this.setState({ email: event.currentTarget.value, isEmailDirty: true })
 
-  updatePassword = (event: SyntheticEvent<HTMLInputElement>) =>
+  updatePassword = (event) =>
     this.setState({ password: event.currentTarget.value, isPasswordirty: true })
 
   submit = (event) => {

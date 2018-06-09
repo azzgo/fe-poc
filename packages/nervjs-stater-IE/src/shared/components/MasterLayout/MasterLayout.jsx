@@ -4,13 +4,8 @@ import AboutPage from 'src/app/About/About'
 import HomePage from 'src/app/Home/Home'
 import { AppBar } from 'src/shared/components/AppBar/AppBar'
 
-interface IProps {
-  match: IMatch<{}>
-}
 
-interface IState {}
-
-export class MasterLayout extends PureComponent<IProps, IState> {
+export class MasterLayout extends PureComponent {
   render () {
     const { match } = this.props
     return (

@@ -7,6 +7,10 @@ module.exports = {
   entry: {
     main: ['./src/polyfill.js', './src/App.jsx']
   },
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: '[name].bundle.js',
+  },
   module: {
     rules: [
       {
@@ -26,6 +30,7 @@ module.exports = {
             loader: 'css-loader',
             options: {
               module: true,
+              camelCase: true
             },
           },
           'less-loader',
@@ -52,6 +57,8 @@ module.exports = {
     extensions: ['.js', '.jsx', '.json', '.css', 'less'],
     alias: {
       src: path.resolve(__dirname, 'src'),
+      'react': 'nervjs',
+      'react-dom': 'nervjs',
     }
   }
 }
