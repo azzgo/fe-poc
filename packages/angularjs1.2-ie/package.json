@@ -5,7 +5,8 @@
   "license": "MIT",
   "scripts": {
     "start": "gulp serve",
-    "build": "cross-env NODE_ENV=prod gulp build"
+    "build": "cross-env NODE_ENV=prod gulp build",
+    "lint": "eslint \"src/**/*.js\""
   },
   "dependencies": {},
   "devDependencies": {
@@ -17,6 +18,7 @@
     "browserify": "^16.2.2",
     "browserify-ng-html2js": "^1.3.0",
     "cross-env": "^5.1.6",
+    "eslint": "^4.19.1",
     "gulp": "^3.9.1",
     "gulp-concat": "^2.6.1",
     "gulp-cssnano": "^2.1.3",

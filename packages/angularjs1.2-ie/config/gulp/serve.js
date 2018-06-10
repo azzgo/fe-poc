@@ -1,8 +1,8 @@
-const path = require('path')
-const gulp = require('gulp')
-const bs = require('browser-sync').create()
-const runSequence = require('run-sequence');
-const config = require('../config')
+var path = require('path')
+var gulp = require('gulp')
+var bs = require('browser-sync').create()
+var runSequence = require('run-sequence');
+var config = require('../config')
 
 function reloadBs() {
   console.log('BrowserSync Reaload!')

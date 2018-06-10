@@ -1,27 +1,27 @@
-const gulp = require('gulp')
-const path = require('path')
-const useref = require('gulp-useref')
-const uglify = require('gulp-uglify');
-const nano = require('gulp-cssnano');
-const gulpif = require('gulp-if')
-const concat = require('gulp-concat')
-const replace = require('gulp-replace')
-const browserify = require('browserify')
-const source = require('vinyl-source-stream');
-const buffer = require('vinyl-buffer');
-const plumber = require('gulp-plumber');
-const ngAnnotate = require('gulp-ng-annotate');
-const lazypipe = require('lazypipe');
-const postcss = require('gulp-postcss');
+var gulp = require('gulp')
+var path = require('path')
+var useref = require('gulp-useref')
+var uglify = require('gulp-uglify');
+var nano = require('gulp-cssnano');
+var gulpif = require('gulp-if')
+var concat = require('gulp-concat')
+var replace = require('gulp-replace')
+var browserify = require('browserify')
+var source = require('vinyl-source-stream');
+var buffer = require('vinyl-buffer');
+var plumber = require('gulp-plumber');
+var ngAnnotate = require('gulp-ng-annotate');
+var lazypipe = require('lazypipe');
+var postcss = require('gulp-postcss');
 
-const config = require('../config')
+var config = require('../config')
 
-const libjsPipe = lazypipe()
+var libjsPipe = lazypipe()
   .pipe(function() {
     return gulpif(config.isProd, uglify())
   })
 
-const libCssPipe = lazypipe()
+var libCssPipe = lazypipe()
   .pipe(replace, '../fonts', './fonts')
   .pipe(function() {
     return gulpif(config.isProd, nano())
@@ -35,8 +35,8 @@ gulp.task('html-entry', function() {
       '<script src="./main.bundle.js"></script>'
     ))
     .pipe(useref())
-    .pipe(gulpif("*.js", libjsPipe()))
-    .pipe(gulpif("*.css", libCssPipe()))
+    .pipe(gulpif('*.js', libjsPipe()))
+    .pipe(gulpif('*.css', libCssPipe()))
     .pipe(gulp.dest(config.dist))
 })
 
@@ -53,14 +53,14 @@ gulp.task('js', function() {
 
 gulp.task('css', function() {
   return gulp.src(path.resolve(config.root, 'src/styles/**/*.css'))
-  .pipe(plumber())
-  .pipe(replace('../fonts', './fonts'))
-  .pipe(concat('main.css'))
-  .pipe(postcss([
-    require('autoprefixer')({remove: false})
-  ]))
-  .pipe(gulpif(config.isProd, nano()))
-  .pipe(gulp.dest(config.dist))
+    .pipe(plumber())
+    .pipe(replace('../fonts', './fonts'))
+    .pipe(concat('main.css'))
+    .pipe(postcss([
+      require('autoprefixer')({remove: false})
+    ]))
+    .pipe(gulpif(config.isProd, nano()))
+    .pipe(gulp.dest(config.dist))
 })
 
 gulp.task('fonts', function() {
