@@ -67,3 +67,8 @@ gulp.task('fonts', function() {
   return gulp.src(path.resolve(config.root, 'libs/fonts/*'))
     .pipe(gulp.dest(path.resolve(config.dist, 'fonts')))
 })
+
+gulp.task('copy-assets', function() {
+  return gulp.src(path.resolve(config.root, 'assets/**/*'), {base: path.resolve(config.root, 'assets')})
+    .pipe(gulp.dest(path.resolve(config.dist, 'assets')))
+})
