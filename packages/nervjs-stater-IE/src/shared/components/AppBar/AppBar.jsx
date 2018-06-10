@@ -1,19 +1,18 @@
 import classNames from 'classnames'
-import React, { PureComponent } from 'react'
-import { Link } from 'react-router-dom'
+import React from 'react'
 
 import styles from './AppBar.less'
 
-export class AppBar extends PureComponent {
+export class AppBar extends React.PureComponent {
   render () {
     return (
       <header className={classNames(styles.appBar, 'row', 'middle-xs')}>
-        <Link to="/app" className={classNames(styles.logo, 'col-xs-10')}>
+        <a href="/app" className={classNames(styles.logo, 'col-xs-10')}>
           Retain
-        </Link>
+        </a>
         <nav className="col-xs-2">
           <div className="row middle-xs between-xs">
-            <Link className={styles.link} to="/app/about">About</Link>
+            <a className={styles.link} href="/app/about">About</a>
             <span className={styles.link}>SignOut</span>
           </div>
         </nav>

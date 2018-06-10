@@ -1,5 +1,4 @@
 import classNames from 'classnames'
-import notie from 'notie'
 import React, { PureComponent } from 'react'
 import { connect } from 'react-redux'
 import styles from './NoteCreator.less'
@@ -43,10 +42,7 @@ export class NoteCreator extends PureComponent {
   createNewNote = (event) => {
     event.preventDefault()
     if (!(this.titleInput.value && this.valueInput.value)) {
-      notie.alert({
-        type: 'error',
-        text: 'Note Title or Content should not be empty!',
-      })
+      alert('Note Title or Content should not be empty!')
       return
     }
 

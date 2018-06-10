@@ -1,8 +1,9 @@
 const path = require('path')
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const webpack = require('webpack')
 
 module.exports = {
-  devtool: 'eval-source-map',
+  devtool: 'source-map',
   context: path.relative(__dirname, '.'),
   entry: {
     main: ['./src/polyfill.js', './src/App.jsx']
@@ -16,7 +17,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader'],
+        use: ['es3ify-loader', 'babel-loader'],
       },
       {
         test: /\.css$/,
@@ -52,7 +53,9 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: './src/index.html',
     }),
-
+    new webpack.EnvironmentPlugin({
+      'NODE_ENV': 'production'
+    })
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.json', '.css', 'less'],
