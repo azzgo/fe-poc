@@ -1,0 +1,85 @@
+.note-creator {
+  width: 576px;
+  margin: auto;
+  margin-top: 50px;
+
+  .panel-body {
+    padding: 18px 20.5px;
+    box-sizing: border-box;
+  }
+
+  input {
+    display: block;
+    width: 100%;
+  }
+
+  .title {
+    font-family: Roboto-Bold;
+    font-size: 16px;
+    color: #313131;
+    letter-spacing: 1px;
+
+    &::-webkit-input-placeholder {
+      color: #A5A5A5;
+    }
+  }
+
+  .value {
+    font-family: Roboto-Medium;
+    margin-top: 14px;
+    font-size: 16px;
+    color: #626262;
+    letter-spacing: 1px;
+
+    &::-webkit-input-placeholder {
+      color: #B1B1B1;
+    }
+  }
+
+  .submit {
+    padding: 0;
+    font-family: PingFangTC-Medium;
+    font-size: 16px;
+    color: #626262;
+    letter-spacing: 1px;
+    background-color: transparent;
+    margin-top: 25px;
+
+    &:active, &:hover {
+      color: #C4C4C4;
+    }
+  }
+}
+
+.note-list {
+  margin: 82px 80px 40px;
+  width: auto;
+
+  .note-card {
+    background-color: #EFEFEF;
+    min-height: 110px;
+    margin-top: 15px;
+
+    .panel {
+      position: relative;
+    }
+
+    img {
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      top: -20px;
+      left: -20px;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    @media (min-width: 992px) {
+      &:not(first-child) {
+        padding: 0 56px;
+      }
+    }  
+  }
+}

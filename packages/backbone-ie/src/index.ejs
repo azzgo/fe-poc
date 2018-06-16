@@ -12,15 +12,18 @@
 </head>
 <body>
 <% include partials/_navbar %>
-<div id="app" class="panel panel-default">
-  <div class="panel-heading">
-    Home Page
+<div id="app">
+  <div class="panel panel-default note-creator">
+    <div class="panel-body">
+      <input class="title" type="text" placeholder="Title">
+      <input class="value" type="text" placeholder="Take a Note">
+      <button class="submit">DONE</button>
+    </div>
   </div>
-  <div class="panel-body">
-    <p>link to <a href="/about.html">about page</a></p>
+  <div class="row note-list">
   </div>
 </div>
-// <% include partials/_foot %>
+<% include partials/_foot %>
 <!-- build:js home.js -->
 <script src="./scripts/home.js"></script>
 <!-- endbuld -->

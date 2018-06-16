@@ -16,7 +16,7 @@ gulp.task('start-bs', function() {
       serveStatic: {
         "fonts": path.resolve(config.root, 'libs/fonts'),
         "assets": path.resolve(config.root, 'assets')
-      }
+      },
     },
     host: config.host,
     port: config.port,
