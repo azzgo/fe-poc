@@ -5,21 +5,24 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>About Page</title>
-  <% include _head %>
+  <% include partials/_head %>
+  <!-- build:css about.css -->
+  <link rel="stylesheet" href="./styles/about.less">
+  <!-- endbuild -->
 </head>
 <body>
-  
+<% include partials/_navbar %>
 <div class="panel panel-default">
   <div class="panel-heading">
     About Page
   </div>
   <div class="panel-body">
-    <p>link to <a href="/index.html">home page</a></p>
+    <p>link to <a href="/">home page</a></p>
   </div>
 </div>
-<% include _footer %>
+<% include partials/_foot %>
 <!-- build:js home.js -->
-<script src="../scripts/about.js"></script>
+<script src="./scripts/about.js"></script>
 <!-- endbuld -->
 </body>
 </html>

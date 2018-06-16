@@ -27,22 +27,19 @@ gulp.task('start-bs', function() {
 gulp.task('watch-ejs', function() {
   return gulp.watch([
     path.resolve(config.root, 'src/scripts/**/*.js'),
-    path.resolve(config.root, 'src/pages/**/*.ejs')
+    path.resolve(config.root, 'src/**/*.ejs'),
+    path.resolve(config.root, 'src/**/*.less')
   ], ['ejs'])
     .on('change', reloadBs)   
 })
 
 
-gulp.task('watch-css', function() {
-  return gulp.watch([path.resolve(config.root, 'src/**/*.css')], ['css'], reloadBs)
-    .on('change', reloadBs)
-})
 
 
 gulp.task('serve', function() {
   runSequence(
     'start-bs',
-    ['ejs', 'css'],
-    ['watch-ejs', 'watch-css']
+    ['ejs'],
+    ['watch-ejs']
   )
 })
