@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Note List render on empty 1`] = `<div class="row between-xs"></div>`;
+
+exports[`Note List render on some data 1`] = `
+<div class="row between-xs">
+  <div class="row shadow-1 note-card col-xs-4">
+    <div class="icon">
+      <i class="material-icons">check</i>
+    </div>
+    <div class="col-xs-12 title">今天吃什么</div>
+    <div class="col-xs-12 value">豆花汤</div>
+  </div>
+  <div class="row shadow-1 note-card col-xs-4">
+    <div class="icon">
+      <i class="material-icons">check</i>
+    </div>
+    <div class="col-xs-12 title">今天看什么</div>
+    <div class="col-xs-12 value">公路竞技赛</div>
+  </div>
+</div>
+`;

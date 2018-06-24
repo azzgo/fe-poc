@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App testing 1`] = `
+<div>
+  <header class="app-bar row middle-xs">
+    <a href="/" class="logo col-xs-10">
+      Retain
+    </a>
+    <nav class="col-xs-2">
+      <div class="row middle-xs between-xs">
+        <a to="/app/about" class="link">About</a>
+      </div>
+    </nav>
+  </header>
+  <div class="warpper row center-xs">
+    <div class="creator col-xs-6">
+      <!---->
+    </div>
+    <div class="notes col-xs-8">
+      <div class="row between-xs">
+        <div class="row shadow-1 note-card col-xs-4">
+          <div class="icon">
+            <i class="material-icons">check</i>
+          </div>
+          <div class="col-xs-12 title">今天吃什么</div>
+          <div class="col-xs-12 value">豆花汤</div>
+        </div>
+        <div class="row shadow-1 note-card col-xs-4">
+          <div class="icon">
+            <i class="material-icons">check</i>
+          </div>
+          <div class="col-xs-12 title">今天喝什么</div>
+          <div class="col-xs-12 value">白开水</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

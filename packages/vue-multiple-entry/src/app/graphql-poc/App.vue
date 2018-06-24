@@ -23,8 +23,8 @@
 
 <script type="text/javascript">
 import axios from 'axios'
-import NewNoteForm from './NewNoteForm'
-import NoteList from './NoteList'
+import NewNoteForm from './NewNoteForm.vue'
+import NoteList from './NoteList.vue'
 
 export default {
   data() {
