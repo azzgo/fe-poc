@@ -6,7 +6,7 @@
       <article v-for="(post, index) in posts" :key="index">
         <h5>{{post.title}}</h5>
         <div class="content">
-          {{post.body}}
+          {{post.content}}
         </div>
       </article>
     </div>
@@ -22,7 +22,7 @@ export default {
     }
   },
   mounted() {
-    apiClient.get('http://jsonplaceholder.typicode.com/posts').then((res) => {
+    apiClient.get('/posts').then((res) => {
       this.posts = res.data
     })
   },

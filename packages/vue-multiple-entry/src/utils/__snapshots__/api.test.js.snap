@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`api work as expected 2 1`] = `"Request failed with status code 500"`;
+
+exports[`api work as expected 2 2`] = `
+Array [
+  Object {
+    "config": Object {
+      "baseURL": "http://localhost:3000",
+      "data": undefined,
+      "headers": Object {
+        "Accept": "application/json, text/plain, */*",
+      },
+      "maxContentLength": -1,
+      "method": "get",
+      "timeout": 0,
+      "transformRequest": Object {
+        "0": [Function],
+      },
+      "transformResponse": Object {
+        "0": [Function],
+      },
+      "url": "/some-things",
+      "validateStatus": [Function],
+      "xsrfCookieName": "XSRF-TOKEN",
+      "xsrfHeaderName": "X-XSRF-TOKEN",
+    },
+    "data": Object {
+      "data": "data1",
+    },
+    "headers": undefined,
+    "status": 200,
+  },
+  Object {
+    "config": Object {
+      "baseURL": "http://localhost:3000",
+      "data": undefined,
+      "headers": Object {
+        "Accept": "application/json, text/plain, */*",
+      },
+      "maxContentLength": -1,
+      "method": "get",
+      "timeout": 0,
+      "transformRequest": Object {
+        "0": [Function],
+      },
+      "transformResponse": Object {
+        "0": [Function],
+      },
+      "url": "/some-things",
+      "validateStatus": [Function],
+      "xsrfCookieName": "XSRF-TOKEN",
+      "xsrfHeaderName": "X-XSRF-TOKEN",
+    },
+    "data": Object {
+      "data": "data2",
+    },
+    "headers": undefined,
+    "status": 200,
+  },
+]
+`;

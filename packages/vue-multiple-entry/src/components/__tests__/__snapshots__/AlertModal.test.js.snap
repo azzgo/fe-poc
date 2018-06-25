@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AlertModal should work as expect 1`] = `
+<div visible="visible">
+  <div class="modal">
+    <div class="modal-header">提示框</div>
+    <div class="modal-body"></div>
+    <div class="modal-footer">
+      <button class="alert-button">确定</button>
+    </div>
+  </div>
+</div>
+`;

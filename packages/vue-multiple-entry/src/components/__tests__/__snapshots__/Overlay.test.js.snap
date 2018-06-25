@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Ovlerlay should work as expect 1`] = `
+"
+<div id=\\"loading\\"></div>
+<div class=\\"overlay\\"><div class=\\"overlay-mask\\"></div> <div class=\\"overlay-container\\"></div></div>"
+`;
+
+exports[`Ovlerlay should work as expect 2`] = `
+"
+<div id=\\"loading\\"></div>
+<!---->"
+`;

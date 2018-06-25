@@ -77,7 +77,9 @@
     ],
     "collectCoverageFrom": [
       "src/**/*.{js,vue}",
-      "!**/node_modules/**"
+      "!**/node_modules/**",
+      "!src/polyfills.js",
+      "!src/app/*/index.js"
     ]
   }
 }

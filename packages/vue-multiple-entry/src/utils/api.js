@@ -4,7 +4,7 @@ import Vue from 'vue'
 import Loading from 'src/components/Loading.vue'
 
 const loadingMount = new Vue({
-  el: '#loading',
+  el: document.getElementById('loading'),
   render(h) {
     return h(Loading, { props: { visible: this.visible } })
   },
@@ -15,7 +15,9 @@ const loadingMount = new Vue({
   },
 })
 
-const apiClient = axios.create()
+const apiClient = axios.create({
+  baseURL: 'http://localhost:3000',
+})
 
 let concurrentRequestCount = 0
 
