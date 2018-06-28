@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>运营后台管理系统</title>
+  <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" />
+  <!--[if lt IE 9]>
+      <script src="https://cdn.bootcss.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://cdn.bootcss.com/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  <style>
+    html, body {
+      height: 100%;
+    }
+    .navbar {
+      z-index: 10;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      margin: 0;
+    }
+
+    .navbar .navbar-right {
+      float:right;
+    }
+
+    #main {
+      height: 100%;
+    }
+
+    #user {
+      margin-right: 10px;
+    }
+
+    #two-column {
+      margin-top: 50px;
+      display: table;
+      width: 100%;
+      height: 100%;
+    }
+
+    #menu {
+      display: table-cell;
+      vertical-align: top;
+      width: 250px;
+      background-color: #444444;
+    }
+
+    #content {
+      display: table-cell;
+      height: 100%;
+      width: 100%;
+    }
+
+    .list-group-item {
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="main">
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">
+        <div class="navbar-left">
+          <a href="/" class="navbar-brand">运营后台管理系统</a>
+        </div>
+        <div id="user" class="navbar-right navbar-text">
+          用户A
+        </div>
+      </div>
+    </nav>
+    <div id="two-column">
+      <nav id="menu">
+        <ul class="list-group">
+          <li class="list-group-item active" data-url="./sites/#home">广告管理</li>
+          <li class="list-group-item" data-url="./sites/#about">区块管理</li>
+        </ul>
+      </nav>
+      <iframe id="content" src="./sites/index.html" frameborder="0"></iframe>
+    </div>
+  </div>
+  <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.js"></script>
+  <script>
+    $('#menu').delegate('li', 'click', function (event) {
+      $(this).parent().find('li').each(function (_, elem) {
+        $(elem).removeClass('active')
+      })
+
+      $(this).addClass('active')
+
+      $('#content').prop('src', $(this).data('url'))
+    })
+  </script>
+</body>
+
+</html>

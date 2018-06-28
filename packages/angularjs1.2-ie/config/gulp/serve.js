@@ -12,10 +12,11 @@ function reloadBs() {
 gulp.task('start-bs', function() {
   bs.init({
     server: {
-      baseDir: path.resolve(config.root, './dist'),
-      serveStatic: {
-        "fonts": path.resolve(config.root, 'libs/fonts'),
-        "assets": path.resolve(config.root, 'assets')
+      baseDir: path.resolve(config.root, './public'),
+      routes: {
+        "/sites/fonts": path.resolve(config.root, 'libs/fonts'),
+        "/sites/assets": path.resolve(config.root, 'assets'),
+        "/sites": path.resolve(config.root, 'dist')
       }
     },
     host: config.host,
