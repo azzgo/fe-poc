@@ -14,13 +14,12 @@
   <style>
     html, body {
       height: 100%;
+      -webkit-box-sizing:border-box;
+      box-sizing:border-box;
+      overflow: hidden;
     }
+
     .navbar {
-      z-index: 10;
-      position: fixed;
-      top: 0;
-      left: 0;
-      right: 0;
       margin: 0;
     }
 
@@ -29,6 +28,7 @@
     }
 
     #main {
+      position: relative;
       height: 100%;
     }
 
@@ -37,23 +37,29 @@
     }
 
     #two-column {
-      margin-top: 50px;
-      display: table;
+      position: absolute;
+      top: 50px;
       width: 100%;
-      height: 100%;
+      left: 0;
+      bottom: 0;
     }
 
     #menu {
-      display: table-cell;
-      vertical-align: top;
+      position: absolute;
       width: 250px;
       background-color: #444444;
+      height: 100%;
     }
 
     #content {
-      display: table-cell;
+      margin-left: 250px;
+      position: relative;
       height: 100%;
+    }
+
+    #content iframe {
       width: 100%;
+      height: 100%;
     }
 
     .list-group-item {
@@ -81,7 +87,9 @@
           <li class="list-group-item" data-url="./sites/#about">区块管理</li>
         </ul>
       </nav>
-      <iframe id="content" src="./sites/index.html" frameborder="0"></iframe>
+      <div id="content">
+        <iframe width="100%" height="100%" src="./sites/index.html" frameborder="0"></iframe>
+      </div>
     </div>
   </div>
   <script src="https://cdn.bootcss.com/jquery/1.9.1/jquery.min.js"></script>
@@ -94,7 +102,7 @@
 
       $(this).addClass('active')
 
-      $('#content').prop('src', $(this).data('url'))
+      $('#content iframe').prop('src', $(this).data('url'))
     })
   </script>
 </body>
