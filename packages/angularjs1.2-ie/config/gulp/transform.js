@@ -42,7 +42,7 @@ gulp.task('html-entry', function() {
 
 gulp.task('js', function() {
   return browserify(path.resolve(config.root, 'src/main.js'))
-    .transform('browserify-ng-html2js')
+    .transform('html2js-browserify')
     .bundle()
     .pipe(source('main.bundle.js'))
     .pipe(buffer())

@@ -1,4 +1,4 @@
-module.exports = angular.module('homePage', [require('./home.html')])
+module.exports = angular.module('homePage', [])
   .controller('homeCtrl', function ($scope) {
     /*@ngInject*/
     var vm = $scope

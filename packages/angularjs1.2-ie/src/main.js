@@ -12,11 +12,12 @@ var app = angular.module('app', [
     /*@ngInject*/
       $routeProvider
         .when('/home', {
-          templateUrl: 'home.html',
+          template: require('./app/home/home.html'),
           controller: 'homeCtrl'
         })
         .when('/about', {
-          templateUrl: 'about.html'
+          template: require('./app/about/about.html'),
+          controller: 'aboutCtrl'
         })
         .otherwise({
           redirectTo: '/home'
