@@ -1,0 +1,31 @@
+<div class="dropdown" ng-class="{'open' : vm.isOpen}">
+  <div class="form-group has-feedback" ng-click="vm.toggleOpen()">
+    <input type="text" readonly class="form-control" ng-disabled="vm.disabled" placeholder="{{vm.placeholder}}" ng-style="{cursor: 'pointer'}">
+    <span class="form-control-feedback">
+      <span class="caret"></span>
+    </span>
+  </div>
+  <ul class="dropdown-menu" ng-style="{width: '100%'}">
+    <li ng-show="vm.isSearch" ng-style="{padding: '0 5px 5px'}">
+      <div class="form-group has-feedback" ng-style="{margin: '0'}">
+        <input name="select" type="text" ng-model="vm.filter" class="form-control">
+      </div>
+    </li>
+    <ul class="list-unstyled" ng-style="{ 'max-height': vm.scrollHight , 'overflow-y': 'auto', 'width': '100%'}">
+      <li 
+        ng-repeat="item in options" ng-class="[$index === vm.activeIndex ? 'bg-primary' : '']"
+        ng-style="{
+          display: 'block',
+          padding: '3px 20px',
+          clear: 'both',
+          'font-weight': '400',
+          'line-height': '1.42857143',
+          color: '#333',
+          'white-space': 'nowrap',
+        }"
+      >
+        {{item}}
+      </li>
+    </ul>
+  </ul>
+</div>

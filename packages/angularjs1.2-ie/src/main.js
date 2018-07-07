@@ -1,7 +1,8 @@
 var app = angular.module('app', [
   'ngRoute',
   require('./app/home/home'),
-  require('./app/about/about')
+  require('./app/about/about'),
+  require('./directives')
 ])
   .config(
     /**
