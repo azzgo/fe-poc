@@ -2,7 +2,7 @@
     <div class="panel-heading">
       About Page
     </div>
-    <div ys-select name="demo" ng-model="selectValue" options="options" is-search="true"></div>
+    <select chosen class="form-control" name="demo" ng-model="selectValue" ng-options="option for option in options"></select>
     <div class="panel-body">
       <p>link to <a href="./#/home">home page</a></p>
     </div>

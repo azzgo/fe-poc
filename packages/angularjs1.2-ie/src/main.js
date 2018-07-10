@@ -1,5 +1,6 @@
 var app = angular.module('app', [
   'ngRoute',
+  'localytics.directives',
   require('./app/home/home'),
   require('./app/about/about'),
   require('./directives')
