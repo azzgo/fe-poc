@@ -83,6 +83,7 @@ module.exports = {
     'space-in-parens': ['error', 'never'],
     'space-unary-ops': ['error'],
     'use-isnan': ['error'],
-    'yoda': ['error']
+    'yoda': ['error'],
+    'semi': ["error", "never"]
   }
 }

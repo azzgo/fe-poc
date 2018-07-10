@@ -3,7 +3,7 @@ module.exports = angular.module('aboutPage', [require('../../directives')])
     /*@ngInject*/
     var vm = $scope
     vm.options = ['option1', 'option2']
-    vm.selectValue = '';
+    vm.selectValue = ''
   })
   .name
 
