@@ -4,19 +4,31 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint ."
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "babel-jest": "^23.2.0",
-    "jest": "^23.3.0"
+    "jest": "^23.3.0",
+    "remove": "^0.1.5"
   },
   "jest": {
     "testMatch": [
       "<rootDir>/algorithm/**/*.test.js"
     ],
     "verbose": true
+  },
+  "devDependencies": {
+    "babel-eslint": "^8.2.5",
+    "babel-preset-env": "^1.7.0",
+    "eslint": "^4",
+    "eslint-config-standard": "^11.0.0",
+    "eslint-plugin-import": "^2.13.0",
+    "eslint-plugin-node": "^6.0.1",
+    "eslint-plugin-promise": "^3.8.0",
+    "eslint-plugin-standard": "^3.1.0"
   }
 }
