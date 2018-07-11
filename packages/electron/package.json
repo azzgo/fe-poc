@@ -4,11 +4,16 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-  	"start": "electron ."
+    "start": "electron ./app/index.js",
+    "lint": "eslint app/ mock/index.js renderer/js/"
   },
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^1.8.2"
+    "eslint": "^5.1.0"
+  },
+  "dependencies": {
+    "electron": "^1.8.2",
+    "node-mock-server": "^0.23.4"
   }
 }
