@@ -1,6 +1,7 @@
 const {app, BrowserWindow} = require('electron')
 const path = require('path')
 const url = require('url')
+const initializeIpc = require('./initializeIpc')
 
 let win
 
@@ -14,11 +15,13 @@ function createWindow () {
   }))
 
   // Open the DevTools.
-  process.env.NODE_ENV = 'debug' && win.webContents.openDevTools()
+  process.env.NODE_ENV === 'debug' && win.webContents.openDevTools()
 
   win.on('closed', () => {
     win = null
   })
+
+  initializeIpc(win)
 }
 
 app.on('ready', createWindow)

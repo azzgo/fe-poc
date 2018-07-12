@@ -4,12 +4,62 @@
     <meta charset="UTF-8">
     <title>Hello World!</title>
     <link rel="stylesheet" href="./libs/css/bootstrap.css">
-    <link rel="stylesheet" href="./css/app.css">
+    <link rel="stylesheet/less" href="./styles/app.less">
   </head>
   <body>
     <div id="app">
-      Hello {{Name}}
+      <h2 class="text-center">Node Mock Server Launcher</h2>
+
+      <form novalidate @submit.prevent.default>
+        <h4>Basic Options:</h4>
+        <div class="form-group">
+          <label for="uiPath">uiPath:</label>
+          <input type="text" v-model.trim="form.uiPath" class="form-control" id="uiPath" placeholder="Node Mock Server UI Path (Default: '/')">
+        </div>
+        <div class="form-group">
+          <label for="port">port:</label>
+          <input type="text" v-model.trim="form.port" class="form-control" id="port" placeholder="Node Mock Server UI Path (Default: '/')">
+        </div>
+        <div class="form-group">
+          <label for="urlPath">urlPath:</label>
+          <input type="text" v-model.trim="form.urlPath" class="form-control" id="urlPath" placeholder="Node Mock Server UI Path (Default: '/')">
+        </div>
+        <hr />
+        <h4>Swagger Options</h4>
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" v-model="form.isSwagger"> Is Need Swagger Config?
+          </label>
+        </div>
+        <div v-if="form.isSwagger">
+          <div class="form-group">
+            <label for="swprotocol">Swagger protocol:</label>
+            <select v-model.trim="form.swProtocol" class="form-control" id="swprotocol" placeholder="Protocol for the swagger import curl (Default: 'http')">
+              <option value="http">http</option>
+              <option value="https">https</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="swhost">Swagger host:</label>
+            <input type="text" v-model.trim="form.swHost" class="form-control" id="swhost" placeholder="Host for the swagger import">
+          </div>
+          <div class="form-group">
+            <label for="swport">Swagger port:</label>
+            <input type="text" class="form-control" id="swport" placeholder="Port for the swagger import">
+          </div>
+          <div class="form-group">
+            <label for="swpath">Swagger path:</label>
+            <input type="text" v-model.trim="form.swPath" class="form-control" id="swppath" placeholder="Path for the swagger import">
+          </div>
+        </div>
+
+        <div class="footer">
+          <button v-if="!serverWorking" class="btn btn-primary" @click="startServer()">Start Mock Server</button>
+          <button v-if="serverWorking" class="btn btn-primary" @click="stopServer()">Stop Mock Server</button>
+        </div>
+      </form>
     </div>
+    <script src="./libs/js/less.js"></script>
     <script src="./libs/js/vue.js"></script>
     <script src="./js/app.js"></script>
   </body>
