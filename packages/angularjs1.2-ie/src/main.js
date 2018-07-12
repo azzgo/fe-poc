@@ -1,31 +1,14 @@
 var app = angular.module('app', [
-  'ngRoute',
+  'ui.router',
   'localytics.directives',
-  require('./app/home/home'),
-  require('./app/about/about'),
+  require('./app/home'),
+  require('./app/about'),
   require('./directives')
 ])
   .config(
-    /**
-     * @param {ng.route.IRouteProvider} $routeProvider
-     * @param {ng.ILocationProvider} $locationProvider
-     */
-    function ($routeProvider, $locationProvider) {
+    function ($urlRouterProvider) {
     /*@ngInject*/
-      $routeProvider
-        .when('/home', {
-          template: require('./app/home/home.html'),
-          controller: 'homeCtrl'
-        })
-        .when('/about', {
-          template: require('./app/about/about.html'),
-          controller: 'aboutCtrl'
-        })
-        .otherwise({
-          redirectTo: '/home'
-        })
-
-      $locationProvider.html5Mode(false)
+      $urlRouterProvider.otherwise('home')
     })
 
 angular.element(document).ready(function () {
