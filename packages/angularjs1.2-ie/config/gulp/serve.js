@@ -14,8 +14,8 @@ gulp.task('start-bs', function() {
     server: {
       baseDir: path.resolve(config.root, './dist'),
       routes: {
-        "fonts": path.resolve(config.root, 'libs/fonts'),
-        "assets": path.resolve(config.root, 'assets'),
+        "/fonts": path.resolve(config.root, 'libs/fonts'),
+        "/assets": path.resolve(config.root, 'assets'),
       }
     },
     host: config.host,
@@ -39,8 +39,8 @@ gulp.task('watch-browserify', function() {
     .on('change', reloadBs)
 })
 
-gulp.task('watch-css', function() {
-  return gulp.watch([path.resolve(config.root, 'src/**/*.css')], ['css'], reloadBs)
+gulp.task('watch-style', function() {
+  return gulp.watch([path.resolve(config.root, 'src/**/*.less')], ['style'], reloadBs)
     .on('change', reloadBs)
 })
 
@@ -48,7 +48,7 @@ gulp.task('watch-css', function() {
 gulp.task('serve', function() {
   runSequence(
     'start-bs',
-    ['html-entry', 'js', 'css'],
-    ['watch-html-entry', 'watch-browserify', 'watch-css']
+    ['html-entry', 'js', 'style'],
+    ['watch-html-entry', 'watch-browserify', 'watch-style']
   )
 })

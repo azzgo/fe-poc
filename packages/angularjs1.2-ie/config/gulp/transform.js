@@ -5,6 +5,7 @@ var uglify = require('gulp-uglify');
 var nano = require('gulp-cssnano');
 var gulpif = require('gulp-if')
 var concat = require('gulp-concat')
+var less = require('gulp-less')
 var replace = require('gulp-replace')
 var browserify = require('browserify')
 var source = require('vinyl-source-stream');
@@ -51,9 +52,10 @@ gulp.task('js', function() {
     .pipe(gulp.dest(config.dist))
 })
 
-gulp.task('css', function() {
-  return gulp.src(path.resolve(config.root, 'src/styles/**/*.css'))
+gulp.task('style', function() {
+  return gulp.src(path.resolve(config.root, 'src/styles/index.less'))
     .pipe(plumber())
+    .pipe(less())
     .pipe(replace('../fonts', './fonts'))
     .pipe(concat('main.css'))
     .pipe(postcss([
