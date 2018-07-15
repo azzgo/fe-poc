@@ -10,10 +10,12 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "electron-debug": "^2.0.0",
     "eslint": "^5.1.0"
   },
   "dependencies": {
     "electron": "^1.8.2",
+    "lowdb": "^1.0.0",
     "node-mock-server": "^0.23.4"
   }
 }

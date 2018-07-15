@@ -1,6 +1,7 @@
 const { ipcMain } = require('electron')
 const path = require('path')
-const startServer = require('../mock/index')
+const startServer = require('../mock')
+const { enableDestroy } = require('./utils')
 let server
 
 /**
@@ -31,6 +32,7 @@ function initializeIpc (win) {
 
     try {
       server = startServer(options)
+      enableDestroy(server.appController.server)
       event.sender.send('start-server-ok')
     } catch (e) {
       console.error(e)
@@ -41,7 +43,7 @@ function initializeIpc (win) {
 
   ipcMain.on('stop-server', (event, _form) => {
     try {
-      server.appController.server.close(() => {
+      server.appController.server.destroy(() => {
         server = null
         event.sender.send('stop-server-ok')
       })

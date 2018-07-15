@@ -1,0 +1,12 @@
+{
+  "form": {
+    "isSwagger": false,
+    "uiPath": "/",
+    "port": "3002",
+    "urlPath": "/rest/v1",
+    "swProtocol": "http",
+    "swHost": "localhost",
+    "swPort": "80",
+    "swPath": ""
+  }
+}

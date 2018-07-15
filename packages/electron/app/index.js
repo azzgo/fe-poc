@@ -3,6 +3,9 @@ const path = require('path')
 const url = require('url')
 const initializeIpc = require('./initializeIpc')
 
+ // Set the Debug tools.
+ process.env.NODE_ENV !== 'prod' && require("electron-debug")({showDevTools: false});
+
 let win
 
 function createWindow () {
@@ -13,9 +16,6 @@ function createWindow () {
     protocol: 'file:',
     slashes: true
   }))
-
-  // Open the DevTools.
-  process.env.NODE_ENV === 'debug' && win.webContents.openDevTools()
 
   win.on('closed', () => {
     win = null

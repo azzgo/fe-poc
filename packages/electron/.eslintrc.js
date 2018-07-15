@@ -56,7 +56,7 @@ module.exports = {
     'no-tabs': ['error'],
     'no-multi-spaces': ['error'],
     'no-multi-str': ['error'],
-    'no-new': ['error'],
+    'no-new': ['never'],
     'no-new-func': ['error'],
     'no-new-object': ['error'],
     'no-new-require': ['error'],
