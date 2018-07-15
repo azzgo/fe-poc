@@ -1,0 +1,39 @@
+<div class="area-wrapper area-select-box">
+  <div class="clearfix">
+    <div class="box1">
+      <h4>选择省份</h4>
+      <input ng-disabled="disabled || isNational" type="text" ng-model="provinceListFilter" class="form-control" placeholder="输入内容可筛选">
+      <select ng-disabled="disabled || isNational" class="form-control" multiple ng-model="provinceList" ng-options="provinceOption.name for provinceOption in filterProvinceOptions(provinceListFilter)"></select>
+    </div>
+    <div class="box2">
+      <h4>选择城市</h4>
+      <input ng-disabled="disabled || isNational" type="text" ng-model="cityListFilter" class="form-control" placeholder="输入内容可筛选">
+      <select ng-disabled="disabled || isNational" class="form-control" multiple ng-model="cityList" ng-options="cityOption.name for cityOption in filterCityOptions(cityListFilter)"></select>
+    </div>
+    <div class="operation-box col-md-1">
+      <button ng-disabled="disabled || isNational" type="button" class="btn db-btn move btn-default" ng-click="moveSelected()">
+        <i class="glyphicon glyphicon-arrow-right"></i>
+      </button>
+      <button ng-disabled="disabled || isNational" type="button" class="btn db-btn moveall btn-default" ng-click="moveAll()">
+        <i class="glyphicon glyphicon-arrow-right"></i>
+        <i class="glyphicon glyphicon-arrow-right"></i>
+      </button>
+      <p class="clearfix" style="margin-bottom:20px"></p>
+      <button ng-disabled="disabled || isNational" type="button" class="btn db-btn remove btn-default" ng-click="removeSelected()">
+        <i class="glyphicon glyphicon-arrow-left"></i>
+      </button>
+      <button ng-disabled="disabled || isNational" type="button" class="btn db-btn removeall btn-default" ng-click="removeAll()">
+        <i class="glyphicon glyphicon-arrow-left"></i>
+        <i class="glyphicon glyphicon-arrow-left"></i>
+      </button>
+    </div>
+    <div class="box3">
+      <h4>已选择城市</h4>
+      <input ng-disabled="disabled || isNational" type="text" ng-model="selectedCityListFilter" class="form-control" placeholder="输入内容可筛选">
+      <select ng-disabled="disabled || isNational" class="form-control" multiple ng-model="selectedCityList" ng-options="option.name for option in filterSelectCityOptions(selectedCityListFilter)"></select>
+    </div>
+  </div>
+  <div class="national-checkbox-box" ng-class="{disabled: disabled}">
+    <input ng-disabled="disabled" type="checkbox" id="area-is-national" ng-model="isNational" ng-change="updateNgModel()"><label for="area-is-national">全国</label>
+  </div>
+</div>
