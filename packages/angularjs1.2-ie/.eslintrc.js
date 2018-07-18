@@ -77,7 +77,7 @@ module.exports = {
     'no-unreachable': ['error'],
     'no-whitespace-before-property': ['error'],
     'no-with': ['error'],
-    'object-property-newline': ['error'],
+    'object-property-newline': ['error', {allowAllPropertiesOnSameLine: true}],
     'padded-blocks': ['error', 'never'],
     'semi-spacing': ['error'],
     'space-in-parens': ['error', 'never'],
