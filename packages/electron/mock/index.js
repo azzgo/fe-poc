@@ -1,5 +1,6 @@
 
-var mockServer = require('node-mock-server')
+// var mockServer = require('node-mock-server')
+var mockServer = require('./node-mock-server')
 var path = require('path')
 
 const defaultOptions = {
@@ -26,4 +27,6 @@ function startServer (options) {
   return mockServer(_optioins)
 }
 
-module.exports = startServer
+startServer()
+
+// module.exports = startServer

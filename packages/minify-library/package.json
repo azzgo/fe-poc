@@ -1,0 +1,21 @@
+{
+  "name": "minify-library",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "minify": "webpack --config minify.webpack.config.js",
+    "minify-node": "webpack --config minify.webpack.config.node.js"
+  },
+  "dependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "shebang-loader": "^0.0.1",
+    "uglifyjs-webpack-plugin": "^1.2.7",
+    "webpack": "^4.16.1",
+    "webpack-cli": "^3.1.0"
+  },
+  "devDependencies": {
+  }
+}
