@@ -8,6 +8,8 @@ module.exports = {
     commonjs: true
   },
   rules: {
+    'no-useless-return': ['error'],
+    'consistent-return': ['error', { 'treatUndefinedAsUnspecified': false}],
     'indent': ['error', 2],
     'quotes': ['error', 'single'],
     'comma-dangle': ['error', 'never'],
