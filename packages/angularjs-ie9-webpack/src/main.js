@@ -1,3 +1,5 @@
+require('styles/index.less')
+
 var app = angular.module('app', [
   'ui.router',
   'localytics.directives',
