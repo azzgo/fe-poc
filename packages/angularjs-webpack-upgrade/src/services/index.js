@@ -1,3 +1,3 @@
 module.exports = angular.module('app.services', [])
-  .factory('demoSerives', require('./demo.servcies'))
+  .factory('demoSerive', require('./demo.servcie'))
   .name

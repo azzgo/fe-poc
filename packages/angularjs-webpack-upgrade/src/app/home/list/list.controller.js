@@ -1,10 +1,14 @@
 /*@ngInject*/
-module.exports = function ($scope) {
+module.exports = function ($scope, demoSerive) {
 
   $scope.options1 = _.range(10)
 
   $scope.changeOptions = function () {
     $scope.options1 = Math.random() > 0.5 ? '春夏秋冬'.split('') : _.range(10)
+  }
+
+  $scope.triggerDemo = function () {
+    demoSerive.doSomeThings()
   }
 
   $scope.select1 = 99
