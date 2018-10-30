@@ -1,0 +1,23 @@
+<div class="dropdown" ng-class="{open: isOpen}">
+  <div class="form-group has-feedback" ng-click="toggleOpen()">
+      <input
+        placeholder="请选择"
+        ng-disabled="disabled"
+        type="text" 
+        class="form-control" 
+        readonly="readonly"
+        ng-model="activeOption"
+      />
+      <span class="form-control-feedback"><span class="caret"></span></span>
+  </div>
+  <ul class="dropdown-menu" style="width: 100%" ng-click="stopPropagation($event)">
+      <div class="form-group has-feedback search-box" ng-style="{margin: 0}">
+        <input type="text" ng-model="filter" class="form-control">
+        <span class="form-control-feedback fa fa-search"></span>
+      </div>
+      <ul class="list-unstyled" ng-style="{ 'max-height': '300px' , 'overflow-y': 'auto', 'width': '100%'}">
+        <li ng-repeat="option in filterOptions(filter)" class="dropdown-item" ng-bind="option" ng-click="select(option)">
+        </li>
+      </ul>
+  </ul>
+</div>
