@@ -1,6 +1,5 @@
 /*@ngInject*/
 module.exports = function ($scope, demoSerive) {
-
   $scope.options1 = _.range(10)
 
   $scope.changeOptions = function () {

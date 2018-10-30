@@ -1,11 +1,14 @@
 module.exports = angular.module('app.home', [])
+  .component('home', {
+    template: require('./list/list.template.html'),
+    controller: require('./list/list.controller.js')
+  })
   .config(function ($stateProvider) {
     /*@ngInject*/
     $stateProvider
       .state('home', {
         url: '/home',
-        template: require('./list/list.template.html'),
-        controller: require('./list/list.controller.js')
+        component: 'home'
       })
       .state('homeDetail', {
         url: '/home/detail',

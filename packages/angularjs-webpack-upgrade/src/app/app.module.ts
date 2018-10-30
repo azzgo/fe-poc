@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { UpgradeModule } from '@angular/upgrade/static'
 
+import { DemoService } from 'src/services/demo.service.ts';
+
 
 @NgModule({
   imports: [
@@ -9,7 +11,7 @@ import { UpgradeModule } from '@angular/upgrade/static'
     UpgradeModule
   ],
   exports: [],
-  providers: [],
+  providers: [DemoService],
 })
 export class AppModule { 
   constructor(private upgradeModule: UpgradeModule) {}
