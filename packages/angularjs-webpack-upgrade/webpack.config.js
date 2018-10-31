@@ -8,8 +8,7 @@ var config = require('./config/config')
 module.exports = {
   mode: config.isProd ? 'production' : 'development',
   entry: {
-    mainApp: './src/main.js',
-    tsMain: './src/main.ts'
+    main: './src/main.ts'
   },
   output: {
     path: path.resolve(__dirname, 'dist'),
