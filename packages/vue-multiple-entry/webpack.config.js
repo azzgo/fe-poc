@@ -2,7 +2,9 @@ const path = require('path')
 const shelljs = require('shelljs')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 
-let entries = {}
+let entries = {
+  vendor: ['vue', 'axios']
+}
 let htmlPagePlugins = [
   new HTMLWebpackPlugin({
     template: './src/entry.ejs',
@@ -20,7 +22,7 @@ shelljs.ls('-d', './src/app/*/').forEach((entry) => {
       filename: `${entryName}.html`,
       template: './src/template.ejs',
       title: `${entryName.toUpperCase()} Page`,
-      chunks: [entryName],
+      chunks: ['vendor', entryName],
     }),
   )
 })
@@ -82,9 +84,5 @@ module.exports = {
       src: path.resolve(__dirname, 'src'),
       styles: path.resolve(__dirname, 'src/styles'),
     },
-  },
-  externals: {
-    vue: isProd && 'Vue',
-    axios: 'axios',
-  },
+  }
 }
