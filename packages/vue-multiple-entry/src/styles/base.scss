@@ -2,3 +2,8 @@
 @import './globals/flexboxgrid.min.css';
 @import './globals/global.css';
 @import './globals/icons.css';
+
+
+html, body {
+  height: 100%;
+}
