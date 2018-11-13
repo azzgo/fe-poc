@@ -3,7 +3,13 @@ const shelljs = require('shelljs')
 const HTMLWebpackPlugin = require('html-webpack-plugin')
 
 let entries = {}
-let htmlPagePlugins = []
+let htmlPagePlugins = [
+  new HTMLWebpackPlugin({
+    template: './src/entry.ejs',
+    filename: 'index.html',
+    chunks: []
+  })
+]
 let isProd = process.env.NODE === 'prod'
 
 shelljs.ls('-d', './src/app/*/').forEach((entry) => {
@@ -20,7 +26,7 @@ shelljs.ls('-d', './src/app/*/').forEach((entry) => {
 })
 
 module.exports = {
-  devtool: 'source-map',
+  devtool: isProd ? 'source-map' : 'inline-source-map',
   mode: isProd ? 'production' : 'development',
   entry: entries,
   output: {

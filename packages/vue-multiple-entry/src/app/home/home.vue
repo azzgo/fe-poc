@@ -22,7 +22,7 @@ export default {
     }
   },
   mounted() {
-    apiClient.get('/posts').then((res) => {
+    apiClient.get('https://jsonplaceholder.typicode.com/posts').then((res) => {
       this.posts = res.data
     })
   },
