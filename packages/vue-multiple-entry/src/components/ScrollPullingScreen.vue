@@ -74,6 +74,13 @@ export default {
       this.isTouching = true
     },
     handleTouchEnd() {
+      if (this.ySpan > 40) {
+        this.$emit('onPulledDown')
+      }
+
+      if (this.ySpan < -40) {
+        this.$emit('onPulledUp')
+      }
       this.ySpan = 0
       this.isTouching = false
       this.isBottomScreen = false
@@ -93,12 +100,12 @@ export default {
 
       const touchingDistance = currentPoint.y - this.startPoint.y
       // 阻尼效果的移动距离
-      const dampDistance = Math.pow(Math.abs(touchingDistance), 0.8)
+      const dampDistance = Math.pow(Math.abs(touchingDistance) - 40, 0.8)
       // 如果是向下滚动
       if (touchingDistance > 0 && this.startScrollTop === 0) {
         $event.preventDefault()
-        const isPullingDown = dampDistance < 40
-        this.ySpan = isPullingDown ? dampDistance : 40
+        const isPullingDown = touchingDistance < 40
+        this.ySpan = isPullingDown ? touchingDistance : 40 + dampDistance
         this.pullingState = isPullingDown ? 'pullingDown' : 'pulledDown'
         return
       }
@@ -106,8 +113,8 @@ export default {
       // 如果是向上滚动，切到到达最后一屏
       if (touchingDistance < 0 && this.isBottomScreen) {
         $event.preventDefault()
-        const isPullingUp = -dampDistance > -40
-        this.ySpan = isPullingUp ? -dampDistance : -40
+        const isPullingUp = touchingDistance > -40
+        this.ySpan = isPullingUp ? touchingDistance : -40 - dampDistance
         this.pullingState = isPullingUp ? 'pullingUp' : 'pulledUp'
         return
       }
@@ -124,6 +131,7 @@ export default {
   top: 0;
   bottom: 0;
   overflow-y: auto;
+  overflow-x: hidden;
   -webkit-overflow-scrolling: touch;
 
   .pulling-body {

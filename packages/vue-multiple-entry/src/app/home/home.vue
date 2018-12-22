@@ -1,18 +1,22 @@
 <template>
-  <scroll-pulling-screen>
-    <div>
-      <h1>Home Page</h1>
+  <transition :name="pullDirection" tag="div" @after-leave="pullDirection = '';showTransition = false">
+    <scroll-pulling-screen v-if="!showTransition" key="main-content" @onPulledDown="handlePulledDown" @onPulledUp="handlePulledUp">
       <div>
-        <h4>Post Data</h4>
-        <article v-for="(post, index) in posts" :key="index">
-          <h5>{{post.title}}</h5>
-          <div class="content">
-            {{post.content}}
-          </div>
-        </article>
+        <h1>Home Page</h1>
+        <div>
+          <h4>Post Data</h4>
+          <article v-for="(post, index) in posts" :key="index">
+            <h5>{{post.title}}</h5>
+            <div class="content">
+              {{post.content}}
+            </div>
+          </article>
+        </div>
       </div>
+    </scroll-pulling-screen>
+    <div v-if="showTransition" key="placeholder" class="placeholder-screen">
     </div>
-  </scroll-pulling-screen>
+  </transition>
 </template>
 <script>
 import apiClient from 'src/utils/api'
@@ -25,6 +29,8 @@ export default {
   data() {
     return {
       posts: [],
+      showTransition: false,
+      pullDirection: '',
     }
   },
   mounted() {
@@ -38,5 +44,66 @@ export default {
       })
     }
   },
+  methods: {
+    handlePulledDown() {
+      this.pullDirection = 'down'
+      this.showTransition = true
+    },
+    handlePulledUp() {
+      this.pullDirection = 'up'
+      this.showTransition = true
+    }
+  }
 }
 </script>
+
+<style lang="scss" scoped>
+.up-enter-active {
+  animation: .6s linear moveUpIn;
+}
+
+.up-leave-active {
+  animation: .6s linear moveUpOut;
+}
+
+.down-enter-active {
+  animation: .6s linear moveDownIn;
+}
+
+.down-leave-active {
+  animation: .6s linear moveDownOut;
+}
+
+.placeholder-screen {
+  background-color: white;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+
+@keyframes moveUpIn {
+  from {
+    transform: translateY(100%)
+  }
+}
+
+@keyframes moveUpOut {
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes moveDownIn {
+  from {
+    transform: translateY(-100%)
+  }
+}
+
+@keyframes moveDownOut {
+  to {
+    transform: translateY(100%)
+  }
+}
+</style>
