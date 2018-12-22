@@ -17,6 +17,8 @@
     "url": "https://github.com/azzgo/fe-poc/issues"
   },
   "homepage": "https://github.com/azzgo/fe-poc#readme",
-  "dependencies": {},
+  "dependencies": {
+    "lodash": "^4.17.11"
+  },
   "devDependencies": {}
 }
