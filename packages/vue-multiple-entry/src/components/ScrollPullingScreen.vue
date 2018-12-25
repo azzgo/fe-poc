@@ -6,7 +6,7 @@
     @touchmove="handleTouchMove($event)"
   >
     <div class="pulling-body"
-      :style="{transform: 'translate(0, '+ ySpan +'px)'}"
+         :style="{transform: 'translate(0, '+ ySpan +'px)'}"
     >
       <div class="pull-down-section">
         <slot name="pull-down-ing">
@@ -25,7 +25,7 @@
       </div>
     </div>
     <div class="pull-up-section"
-      :style="{transform: 'translate(0, '+ (isBottomScreen ? ySpan : 0 )+ 'px)'}"
+         :style="{transform: 'translate(0, '+ (isBottomScreen ? ySpan : 0 )+ 'px)'}"
     >
       <slot name="pull-up-ing">
         <template v-if="pullingState === 'pullingUp'">
@@ -51,7 +51,7 @@ export default {
       startScrollTop: null,
       ySpan: 0,
       isBottomScreen: false,
-      pullingState: ''
+      pullingState: '',
     }
   },
   methods: {

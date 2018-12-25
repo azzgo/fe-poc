@@ -52,26 +52,26 @@ export default {
     handlePulledUp() {
       this.pullDirection = 'up'
       this.showTransition = true
-    }
-  }
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 .up-enter-active {
-  animation: .6s linear moveUpIn;
+  animation: 0.6s linear moveUpIn;
 }
 
 .up-leave-active {
-  animation: .6s linear moveUpOut;
+  animation: 0.6s linear moveUpOut;
 }
 
 .down-enter-active {
-  animation: .6s linear moveDownIn;
+  animation: 0.6s linear moveDownIn;
 }
 
 .down-leave-active {
-  animation: .6s linear moveDownOut;
+  animation: 0.6s linear moveDownOut;
 }
 
 .placeholder-screen {
@@ -85,7 +85,7 @@ export default {
 
 @keyframes moveUpIn {
   from {
-    transform: translateY(100%)
+    transform: translateY(100%);
   }
 }
 
@@ -97,13 +97,13 @@ export default {
 
 @keyframes moveDownIn {
   from {
-    transform: translateY(-100%)
+    transform: translateY(-100%);
   }
 }
 
 @keyframes moveDownOut {
   to {
-    transform: translateY(100%)
+    transform: translateY(100%);
   }
 }
 </style>
