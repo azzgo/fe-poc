@@ -179,7 +179,7 @@ function recalculateDisplayElementPosition(time) {
 
   if (timeDiff > timeDiffLimit) {
     displayTanmuPool.forEach(row =>
-      row.tanmuList.forEach(tanmu => (tanmu.meta.offset -= row.valocity * timeDiff / timeDiffLimit)),
+      row.tanmuList.forEach(tanmu => (tanmu.meta.offset -= row.valocity)),
     );
     renderTanmu();
   }
