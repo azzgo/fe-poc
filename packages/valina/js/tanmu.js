@@ -232,11 +232,11 @@ function recycleOutScopeTanmu() {
     if (
       firstTanmuEl &&
       displayTanmuPool[index] &&
-      displayTanmuPool[index][0] &&
+      displayTanmuPool[index].tanmuList[0] &&
       displayTanmuPool[index].tanmuList[0].meta.offset <
         -(firstTanmuEl.offsetWidth + tanmuAreaEl.offsetWidth)
     ) {
-      const outTanmu = displayTanmuPool[index].shift();
+      const outTanmu = displayTanmuPool[index].tanmuList.shift();
       outTanmu && waitingTanmuPool.push(outTanmu);
     }
   });
