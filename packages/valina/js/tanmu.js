@@ -1,17 +1,21 @@
+// 弹幕区域的 DOM 引用
 const tanmuAreaEl = document.getElementById('tanmu-area');
+// 输入弹幕表单的 DOM 引用
 const tanmuInputEl = document.getElementById('tanmu-input');
+// 动画建动作的时间间隔，这里表示是 10ms
 const timeDiffLimit = 10;
-const valocity = [1, 2, 3][Math.floor(Math.random() * 3)];
-const outScopeDistance = tanmuAreaEl.offsetWidth * 2;
 // 弹幕块之间的 空白间距 单位 px
 const spaceBetweenTanmu = 20;
+// 标记上一次动画的时间点
 let lastTime = null;
 
+// 可见区域的弹幕池数据结构，按行区分，每行的速率随机分配
 let displayTanmuPool = [
   { valocity: randomValoctiy(), tanmuList: [] },
   { valocity: randomValoctiy(), tanmuList: [] },
   { valocity: randomValoctiy(), tanmuList: [] },
 ];
+// 未在可见区域的弹幕池，用来储存初始弹幕和回收的弹幕
 const waitingTanmuPool = [
   { id: 1, text: '山有木兮木有枝，心悦君兮君不知。' },
   { id: 2, text: '人生若只如初见，何事秋风悲画扇。' },
@@ -161,14 +165,18 @@ const waitingTanmuPool = [
   { id: 100, text: '缪公与麾下驰追之' },
 ];
 
-// tanmu 部分
+// tanmu 动画帧函数
 function tanmuAnimateFn(time) {
-  checkNeedNewTanmuAndCreateNewTanmuNode();
+  // 检查并将相关弹幕推到可见区弹幕池中
+  checkNeedNewTanmuAndPushTanmuToDisplayPool();
 
+  // 重新计算弹幕位置，更新试图
   recalculateDisplayElementPosition(time);
+  // 回收不需要的弹幕
   recycleOutScopeTanmu();
   lastTime = time;
 
+  // 注册下一次动画回调
   requestAnimationFrame(tanmuAnimateFn);
 }
 
@@ -185,7 +193,7 @@ function recalculateDisplayElementPosition(time) {
   }
 }
 
-function checkNeedNewTanmuAndCreateNewTanmuNode() {
+function checkNeedNewTanmuAndPushTanmuToDisplayPool() {
   const rows = Array.prototype.slice.call(
     tanmuAreaEl.querySelectorAll('.tanmu-row'),
   );
@@ -218,8 +226,6 @@ function checkNeedNewTanmuAndCreateNewTanmuNode() {
       displayTanmuPool[index].tanmuList.push(tanmu);
     }
   });
-
-  renderTanmu();
 }
 
 function recycleOutScopeTanmu() {
@@ -242,6 +248,7 @@ function recycleOutScopeTanmu() {
   });
 }
 
+// render 函数
 function renderTanmu() {
   tanmuAreaEl.innerHTML = ejs.render(
     `
@@ -261,10 +268,12 @@ function renderTanmu() {
   );
 }
 
+// 随机函数
 function randomValoctiy() {
   return [1, 2, 3][Math.floor(Math.random() * 3)];
 }
 
+// 主函数
 !(function main() {
   requestAnimationFrame(tanmuAnimateFn);
 
