@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>点击波纹</title>
+  <style>
+    .btn {
+      height: 36px;
+      border-radius: 18px;
+      border-top-left-radius: 0;
+      background-color: #e9f2f7;
+      border: none;
+      transition: transform 1s;
+      font-size: 14px;
+      padding: 11px 20px;
+      line-height: 14px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .btn:focus {
+      outline: none;
+      border: none;
+    }
+
+    .btn span{
+      position: relative;
+      z-index: 3;
+    }
+
+    .btn .vote-icon {
+      position: absolute;
+      z-index: 2;
+      right: 8px;
+      top: 15px;
+      opacity: 0;
+    }
+
+    .clicked::before {
+      content: '';
+      display: block;
+      position: absolute;
+      width: 36px;
+      height: 36px;
+      right: 20px;
+      top: 50%;
+      border-radius: 50%;
+      background-color: #ffb09f;
+      transform: translate(50%, -50%) scale(15);
+      animation: ripple 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    }
+
+    .clicked .vote-icon {
+      opacity: 1;
+      animation: vote 1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    }
+
+    @keyframes ripple {
+      0% {
+        opacity: 0;
+      }
+
+      20% {
+        transform: translate(50%, -50%) scale(0);
+      }
+
+      100% {
+        transform: translate(-50%, -50%) scale(15);
+      }
+    }
+
+    @keyframes vote {
+      0% {
+        opacity: 1;
+      }
+
+      20% {
+        opacity: 1;
+        transform: rotate(-15deg) translate(5px, -5px);
+      }
+
+      40% {
+        opacity: 1;
+        transform: rotate(0) translate(0, 0);
+      }
+
+      100% {
+        opacity: 1;
+      }
+    }
+  </style>
+</head>
+<body>
+  <button class="btn">
+    <img class="vote-icon" src="./assets/upvote.png" />
+    <span>房子是用来煮的</span>
+  </button>
+  <script>
+    document.querySelector('.btn').addEventListener('click', (e) => {
+      if (e.currentTarget.classList.contains('clicked')) {
+        e.currentTarget.classList.remove('clicked')
+      } else {
+        e.currentTarget.classList.add('clicked')
+      }
+    })
+  </script>
+</body>
+</html>
