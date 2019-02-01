@@ -174,14 +174,16 @@ function tanmuAnimateFn(time) {
   recalculateDisplayElementPosition(time);
   // 回收不需要的弹幕
   recycleOutScopeTanmu();
-  lastTime = time;
 
   // 注册下一次动画回调
   requestAnimationFrame(tanmuAnimateFn);
 }
 
 function recalculateDisplayElementPosition(time) {
-  if (!lastTime) return;
+  if (!lastTime) {
+    lastTime = time;
+    return;
+  };
 
   const timeDiff = time - lastTime;
 
@@ -190,6 +192,7 @@ function recalculateDisplayElementPosition(time) {
       row.tanmuList.forEach(tanmu => (tanmu.meta.offset -= row.valocity)),
     );
     renderTanmu();
+    lastTime = time;
   }
 }
 
