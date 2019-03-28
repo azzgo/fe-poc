@@ -24,7 +24,9 @@ class Messagebox {
 
       if (options.component) {
         // https://stackoverflow.com/questions/50150668/how-to-create-vue-js-slot-programatically
-        const node = alertModal.$createElement(options.component)
+        const node = alertModal.$createElement(options.component, {
+          props: options.componentProps || {}
+        })
         alertModal.$slots.default = [node]
       }
 

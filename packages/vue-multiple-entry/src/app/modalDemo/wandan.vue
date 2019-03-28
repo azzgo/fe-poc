@@ -1,3 +1,11 @@
 <template>
-  <div>完蛋</div>
+  <div>完蛋 {{name}}</div>
 </template>
+
+<script>
+export default {
+  props: {
+    name: String
+  }
+}
+</script>

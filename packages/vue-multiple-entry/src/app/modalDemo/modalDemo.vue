@@ -12,7 +12,10 @@ export default {
   methods: {
     alert() {
       messagebox.alert({
-        component: Wandan
+        component: Wandan,
+        componentProps: {
+          name: 'yo'
+        }
       })
     }
   }
