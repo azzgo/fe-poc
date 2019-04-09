@@ -20,5 +20,14 @@
   "dependencies": {
     "lodash": "^4.17.11"
   },
-  "devDependencies": {}
+  "devDependencies": {},
+  "jspm": {
+    "directories": {
+      "baseURL": "packages/system.js/yes",
+      "packages": "packages/system.js/yes"
+    },
+    "configFile": "packages/system.js/yes",
+    "dependencies": {},
+    "devDependencies": {}
+  }
 }
