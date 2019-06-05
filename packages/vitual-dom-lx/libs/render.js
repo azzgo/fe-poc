@@ -12,10 +12,18 @@
   }
 
   function createElement(node) {
-    var element = document.createElement(node.nodeName);
+    let element = document.createElement(node.nodeName);
     if (node.atributes) {
       for (let attr of Object.keys(node.atributes)) {
-        !attr.match(/^on/) && element.setAttribute(attr, node.atributes[attr]);
+        if (attr.match(/^on/)) {
+          element.addEventListener(
+            attr.substring(2).toLowerCase(),
+            node.atributes[attr],
+            false,
+          );
+        } else {
+          element.setAttribute(attr, node.atributes[attr]);
+        }
       }
     }
 
@@ -26,7 +34,7 @@
         let currentNode = node.childrens[index];
         if (checkTextNode(currentNode)) {
           element.appendChild(
-            document.createTextNode(currentNode.atributes.text),
+            document.createTextNode(currentNode.text),
           );
         } else {
           element.appendChild(createElement(currentNode));
@@ -34,16 +42,47 @@
         index++;
       }
     }
-    return element;
 
-    function checkTextNode(currentNode) {
-      return (
-        currentNode.atributes &&
-        currentNode.atributes.text &&
-        !currentNode.childrens
-      );
+    node.elm = element;
+    return element;
+  }
+
+  function patch(newNode, oldNode) {
+    console.log('newNode', newNode);
+    if (checkTextNode(newNode) && checkTextNode(oldNode)) {
+      patchTextNode(newNode, oldNode);
+    } else if (Array.isArray(newNode.childrens)) {
+      let newNodeIndex = 0;
+      let oldNodeIndex = 0;
+
+      while (
+        newNodeIndex < newNode.childrens.length &&
+        oldNodeIndex < oldNode.childrens.length
+      ) {
+        patch(newNode.childrens[newNodeIndex], oldNode.childrens[oldNodeIndex]);
+
+        newNodeIndex++;
+        oldNodeIndex++;
+      }
+    }
+
+    function patchTextNode(newNode, oldNode) {
+      if (newNode.text === oldNode.text) {
+        return;
+      } else {
+        newNode.parrent.elm = oldNode.parrent.elm;
+        newNode.parrent.elm.innerHTML = '';
+        newNode.parrent.elm.appendChild(
+          document.createTextNode(newNode.text),
+        );
+      }
     }
   }
 
-  function patch() {}
+  function checkTextNode(currentNode) {
+    return (
+      currentNode.text != null &&
+      !currentNode.childrens
+    );
+  }
 })();
