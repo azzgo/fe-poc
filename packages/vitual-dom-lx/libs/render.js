@@ -15,7 +15,7 @@
     var element = document.createElement(node.nodeName);
     if (node.atributes) {
       for (let attr of Object.keys(node.atributes)) {
-        element.setAttribute(attr, node.atributes[attr]);
+        !attr.match(/^on/) && element.setAttribute(attr, node.atributes[attr]);
       }
     }
 
