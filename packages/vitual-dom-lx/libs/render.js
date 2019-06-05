@@ -33,9 +33,7 @@
       while (node.childrens[index]) {
         let currentNode = node.childrens[index];
         if (checkTextNode(currentNode)) {
-          element.appendChild(
-            document.createTextNode(currentNode.text),
-          );
+          element.appendChild(document.createTextNode(currentNode.text));
         } else {
           element.appendChild(createElement(currentNode));
         }
@@ -48,7 +46,7 @@
   }
 
   function patch(newNode, oldNode) {
-    console.log('newNode', newNode);
+    newNode.elm = oldNode.elm;
     if (checkTextNode(newNode) && checkTextNode(oldNode)) {
       patchTextNode(newNode, oldNode);
     } else if (Array.isArray(newNode.childrens)) {
@@ -59,6 +57,7 @@
         newNodeIndex < newNode.childrens.length &&
         oldNodeIndex < oldNode.childrens.length
       ) {
+        newNode.childrens[newNodeIndex].parrent = newNode;
         patch(newNode.childrens[newNodeIndex], oldNode.childrens[oldNodeIndex]);
 
         newNodeIndex++;
@@ -70,19 +69,13 @@
       if (newNode.text === oldNode.text) {
         return;
       } else {
-        newNode.parrent.elm = oldNode.parrent.elm;
         newNode.parrent.elm.innerHTML = '';
-        newNode.parrent.elm.appendChild(
-          document.createTextNode(newNode.text),
-        );
+        newNode.parrent.elm.appendChild(document.createTextNode(newNode.text));
       }
     }
   }
 
   function checkTextNode(currentNode) {
-    return (
-      currentNode.text != null &&
-      !currentNode.childrens
-    );
+    return currentNode.text != null && !currentNode.childrens;
   }
 })();

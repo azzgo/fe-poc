@@ -11,8 +11,10 @@ require(['render', 'h'], function(render, h) {
         value: state.name,
         onInput: function(event) {
           state.name = event.target.value;
-          render(document.getElementById('app'), createVDOM(h, state), vDOM);
-        }
+          let newVDOM = createVDOM(h, state);
+          render(document.getElementById('app'), newVDOM, vDOM);
+          vDOM = newVDOM;
+        },
       }),
       h('p', null, '你输入的是: ' + state.name),
     ]);
