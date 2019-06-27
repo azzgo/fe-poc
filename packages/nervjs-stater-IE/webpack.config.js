@@ -30,8 +30,8 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              module: true,
-              camelCase: true
+              modules: true,
+              localsConvention: 'camelCase'
             },
           },
           'postcss-loader',
@@ -40,12 +40,7 @@ module.exports = {
       },
       {
         test: /\.(png|jpg|gif|woff2)$/,
-        use: [
-          {
-            loader: 'file-loader',
-            options: {}  
-          }
-        ]
+        use: ['file-loader']
       },
     ],
   },
