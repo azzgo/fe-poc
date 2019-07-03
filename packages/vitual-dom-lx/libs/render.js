@@ -38,7 +38,33 @@
   }
 
   function patch(newNode, oldNode) {
-    return oldNode.elm.parentNode.replaceChild(createElement(newNode), oldNode.elm);
+    // 如果新节点存在
+    if (newNode.nodeName) {
+      if  (newNode.nodeName !== oldNode.nodeName || newNode.text) {
+        oldNode.elm.parentNode.replaceChild(createElement(newNode), oldNode.elm);
+        return;
+      }
+    } 
+    
+    if (checkTextNode(newNode) && newNode.text !== oldNode.text) {
+      oldNode.elm.parentNode.replaceChild(document.createTextNode(newNode.text), oldNode.elm);
+      return;
+    }
+
+    if (newNode.childrens && oldNode.childrens) {
+      if (newNode.childrens.length === oldNode.childrens.length) {
+        let index = 0;
+        while(index < newNode.childrens.length) {
+          patch(newNode.childrens[index], oldNode.childrens[index])
+          index++;
+        }
+        newNode.elm = oldNode.elm;
+        return;
+      } else {
+        oldNode.elm.parentNode.replaceChild(createElement(newNode), oldNode.elm);
+        return;
+      }
+    }
   }
 
   function checkTextNode(currentNode) {
