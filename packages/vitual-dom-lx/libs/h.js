@@ -4,27 +4,29 @@
   });
 
   function h(nodeName, atributes, childrens) {
-    return new VNode(nodeName, atributes, null, null, childrens);
+    return new VNode(nodeName, atributes, childrens);
   }
 
-  function VNode(nodeName, atributes, text, parrent, childrens) {
-    this.nodeName = nodeName;
-    this.atributes = atributes;
-    this.text = text;
-    this.parrent = parrent;
-    if (childrens) {
-      if (Array.isArray(childrens)) {
-        this.childrens = childrens.map(transFormChildNode);
+  class VNode {
+    constructor(nodeName, atributes, childrens) {
+      this.nodeName = nodeName;
+      this.atributes = atributes;
+      this.elm = null;
+
+      if (typeof childrens === 'string') {
+        this.text = childrens
       } else {
-        this.childrens = [transFormChildNode(childrens, this)];
+        if (Array.isArray(childrens)) {
+          this.childrens = childrens.map(this.transFormChildNode)
+        } else {
+          this.childrens = [this.transFormChildNode(childrens)]
+        }
       }
     }
-    this.key = atributes && atributes.key ? atributes.key : null;
-    this.elm = null;
 
-    function transFormChildNode(child, currentNode) {
+    transFormChildNode(child) {
       if (typeof child === 'string')
-        return new VNode(null, null, child, currentNode, null);
+        return new VNode(null, null, child);
       return child;
     }
   }

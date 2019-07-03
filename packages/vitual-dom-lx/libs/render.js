@@ -13,21 +13,14 @@
 
   function createElement(node) {
     let element = document.createElement(node.nodeName);
-    if (node.atributes) {
-      for (let attr of Object.keys(node.atributes)) {
-        if (attr.match(/^on/)) {
-          element.addEventListener(
-            attr.substring(2).toLowerCase(),
-            node.atributes[attr],
-            false,
-          );
-        } else {
-          element.setAttribute(attr, node.atributes[attr]);
-        }
-      }
-    }
+    node.elm = element;
 
-    if (Array.isArray(node.childrens)) {
+    setAttributes(node, element);
+
+    // 判断节点是有子代 DOM 还是只有文字
+    if (node.text) {
+      element.appendChild(document.createTextNode(node.text));
+    } else if (node.childrens) {
       let index = 0;
 
       while (node.childrens[index]) {
@@ -41,41 +34,27 @@
       }
     }
 
-    node.elm = element;
     return element;
   }
 
   function patch(newNode, oldNode) {
-    newNode.elm = oldNode.elm;
-    if (checkTextNode(newNode) && checkTextNode(oldNode)) {
-      patchTextNode(newNode, oldNode);
-    } else if (Array.isArray(newNode.childrens)) {
-      let newNodeIndex = 0;
-      let oldNodeIndex = 0;
-
-      while (
-        newNodeIndex < newNode.childrens.length &&
-        oldNodeIndex < oldNode.childrens.length
-      ) {
-        newNode.childrens[newNodeIndex].parrent = newNode;
-        patch(newNode.childrens[newNodeIndex], oldNode.childrens[oldNodeIndex]);
-
-        newNodeIndex++;
-        oldNodeIndex++;
-      }
-    }
-
-    function patchTextNode(newNode, oldNode) {
-      if (newNode.text === oldNode.text) {
-        return;
-      } else {
-        newNode.parrent.elm.innerHTML = '';
-        newNode.parrent.elm.appendChild(document.createTextNode(newNode.text));
-      }
-    }
+    return oldNode.elm.parentNode.replaceChild(createElement(newNode), oldNode.elm);
   }
 
   function checkTextNode(currentNode) {
-    return currentNode.text != null && !currentNode.childrens;
+    return currentNode.nodeName == null && currentNode.text != null && !currentNode.childrens;
+  }
+
+  function setAttributes(node, element) {
+    if (node.atributes) {
+      for (let attr of Object.keys(node.atributes)) {
+        if (attr.match(/^on/)) {
+          element.addEventListener(attr.substring(2).toLowerCase(), node.atributes[attr], false);
+        }
+        else {
+          element.setAttribute(attr, node.atributes[attr]);
+        }
+      }
+    }
   }
 })();

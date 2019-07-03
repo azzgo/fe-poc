@@ -1,5 +1,7 @@
 require(['render', 'h'], function(render, h) {
   let vDOM = createVDOM(h, { name: '', list: ['这是一条朴实无华的列表项'] });
+
+  console.log(vDOM)
   render(document.getElementById('app'), vDOM);
 
   function createVDOM(h, state) {
