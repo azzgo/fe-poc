@@ -51,12 +51,16 @@
         return;
       }
       // 检查 Attributes
-      if (newNode.atributes) {
-        if (oldNode.atributes && oldNode.elm) {
-          newNode.elm = oldNode.elm;
-          setAttributes(newNode, newNode.elm, oldNode);
+      if (newNode.atributes && oldNode.elm) {
+        if (oldNode.atributes) {
+          setAttributes(newNode, oldNode.elm, oldNode);
+        } else {
+          setAttributes(newNode, oldNode.elm);
         }
       }
+
+      // 保证新节点都是有 dom 引用
+      newNode.elm = oldNode.elm;
     }
 
     if (checkTextNode(newNode) && newNode.text !== oldNode.text) {
@@ -112,6 +116,15 @@
       for (let attr of Object.keys(node.atributes)) {
         if (node.atributes[attr] === oldNode.atributes[attr]) {
           continue;
+        }
+
+        // 确保函数不一致
+        if (
+          typeof node.atributes[attr] === 'function'
+          && typeof oldNode.atributes[attr] === 'function'
+          && node.atributes[attr].toString() === oldNode.atributes[attr].toString()
+          ) {
+            continue;
         }
         if (attr.match(/^on/)) {
           element.removeEventListener(

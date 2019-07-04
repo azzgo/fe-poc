@@ -1,5 +1,6 @@
+let vDOM
 require(['render', 'h'], function(render, h) {
-  let vDOM = createVDOM(h, {
+  vDOM = createVDOM(h, {
     name: '',
     list: ['这是一条朴实无华的列表项'],
     fontSize: 12,
@@ -51,7 +52,6 @@ require(['render', 'h'], function(render, h) {
         },
         '-',
       ),
-      h('p', { style: `font-size: ${state.fontSize}px` }, '这是一条朴素的文字'),
       h(
         'button',
         {
@@ -64,6 +64,7 @@ require(['render', 'h'], function(render, h) {
         },
         '文字变大',
       ),
+      h('p', { style: `font-size: ${state.fontSize}px` }, '这是一条朴素的文字'),
     ]);
   }
 });
