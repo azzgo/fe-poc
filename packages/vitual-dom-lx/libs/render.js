@@ -1,146 +1,170 @@
 !(function() {
-  define('render', [], function() {
+  define('render', ['hUtils'], function(hUtils) {
     return render;
-  });
 
-  function render(rootEl, node, oldNode) {
-    if (oldNode == null) {
-      rootEl.appendChild(createElement(node));
-    } else {
-      patch(node, oldNode);
-    }
-  }
-
-  function createElement(node) {
-    let element = document.createElement(node.nodeName);
-    node.elm = element;
-
-    setAttributes(node, element);
-
-    // 判断节点是有子代 DOM 还是只有文字
-    if (node.text) {
-      element.appendChild(document.createTextNode(node.text));
-    } else if (node.childrens) {
-      let index = 0;
-
-      while (node.childrens[index]) {
-        let currentNode = node.childrens[index];
-        if (checkTextNode(currentNode)) {
-          element.appendChild(document.createTextNode(currentNode.text));
-        } else {
-          element.appendChild(createElement(currentNode));
-        }
-        index++;
+    function render(rootEl, node, oldNode) {
+      if (oldNode == null) {
+        rootEl.appendChild(createElement(node));
+      } else {
+        patch(node, oldNode, rootEl);
       }
     }
-
-    return element;
-  }
-
-  function patch(newNode, oldNode) {
-    // 如果新节点存在
-    if (newNode.nodeName) {
-      if (
-        newNode.nodeName !== oldNode.nodeName ||
-        (newNode.text && newNode.text !== oldNode.text)
-      ) {
-        oldNode.elm.parentNode.replaceChild(
-          createElement(newNode),
-          oldNode.elm,
-        );
+  
+    /**
+     * @param {VNode} node 
+     * @returns {HTMLElement}
+     */
+    function createElement(node) {
+      if (!hUtils.checkIsNode(node)) {
+        throw new Error('错误的 node 节点，检查创建的 vDom 是否正确!');
+      }
+  
+      if (hUtils.checkIsTextNode(node)) {
+        node.elm = document.createTextNode(node.childrens)
+        return node.elm;
+      }
+  
+      let element = document.createElement(node.nodeName);
+      node.elm = element;
+  
+      setAttributes(node, element);
+  
+      if (Array.isArray(node.childrens)) {
+        let index = 0;
+  
+        while (node.childrens[index]) {
+          let currentNode = node.childrens[index];
+          element.appendChild(createElement(currentNode));
+          index++;
+        }
+      }
+  
+      return element;
+    }
+  
+    function patch(newNode, oldNode, parrentElement) {
+      if (newNode && !oldNode) {
+        parrentElement.appendChild(createElement(newNode));
         return;
       }
-      // 检查 Attributes
-      if (newNode.atributes && oldNode.elm) {
-        if (oldNode.atributes) {
-          setAttributes(newNode, oldNode.elm, oldNode);
-        } else {
-          setAttributes(newNode, oldNode.elm);
-        }
+
+      if (!newNode && oldNode) {
+        parrentElement.removeChild(oldNode.elm);
+        return;
       }
 
-      // 保证新节点都是有 dom 引用
-      newNode.elm = oldNode.elm;
-    }
+      // 如果节点不是同一类节点，直接替换，不用继续对比
+      if (newNode.nodeName !== oldNode.nodeName) {
+        parrentElement.replaceChild(createElement(newNode), oldNode.elm);
+        return;
+      }
 
-    if (checkTextNode(newNode) && newNode.text !== oldNode.text) {
-      oldNode.elm.parentNode.replaceChild(
-        document.createTextNode(newNode.text),
-        oldNode.elm,
-      );
-      return;
-    }
+      // 对文本节点进行相关比对
+      if (hUtils.checkIsTextNode(newNode) && hUtils.checkIsTextNode(oldNode) && newNode.childrens === oldNode.childrens) {
+        newNode.elm = oldNode.elm;
+        return;
+      }
+  
+      if (
+        hUtils.checkIsTextNode(newNode) && hUtils.checkIsTextNode(oldNode) && newNode.childrens !== oldNode.childrens
+        || hUtils.checkIsTextNode(newNode) && !hUtils.checkIsTextNode(oldNode)
+        || !hUtils.checkIsTextNode(newNode) && hUtils.checkIsTextNode(oldNode)
 
-    if (newNode.childrens && oldNode.childrens) {
-      if (newNode.childrens.length === oldNode.childrens.length) {
-        let index = 0;
-        while (index < newNode.childrens.length) {
-          patch(newNode.childrens[index], oldNode.childrens[index]);
-          index++;
+      ) {
+        parrentElement.replaceChild(createElement(newNode), oldNode.elm);
+        return;
+      }
+
+      // 在假定两个节点都不是文本节点，对嵌套节点进行比对
+      if (!Array.isArray(newNode.childrens) && !Array.isArray(oldNode.childrens)) {
+        if (newNode.atributes) {
+          setAttributes(newNode, oldNode.elm, oldNode);
         }
         newNode.elm = oldNode.elm;
         return;
-      } else {
-        oldNode.elm.parentNode.replaceChild(
-          createElement(newNode),
-          oldNode.elm,
-        );
+      }
+
+      if (Array.isArray(newNode.childrens) && !Array.isArray(oldNode.childrens)) {
+        parrentElement.appendChild(createElement(newNode));
         return;
       }
-    }
-  }
 
-  function checkTextNode(currentNode) {
-    return (
-      currentNode.nodeName == null &&
-      currentNode.text != null &&
-      !currentNode.childrens
-    );
-  }
+      if (!Array.isArray(newNode.childrens) && Array.isArray(oldNode.childrens)) {
+        parrentElement.removeChild(oldNode.elm);
+        return;
+      }
+  
+      if (Array.isArray(newNode.childrens) && Array.isArray(oldNode.childrens)) {
+        if (newNode.atributes) {
+          setAttributes(newNode, oldNode.elm, oldNode);
+        }
+  
+        // 保证新节点都是有 dom 引用
+        newNode.elm = oldNode.elm;
 
-  function setAttributes(node, element, oldNode) {
-    if (node.atributes && !oldNode) {
-      for (let attr of Object.keys(node.atributes)) {
-        if (attr.match(/^on/)) {
-          element.addEventListener(
-            attr.substring(2).toLowerCase(),
-            node.atributes[attr],
-            false,
-          );
+        if (newNode.childrens.length === oldNode.childrens.length) {
+          let index = 0;
+          while (index < newNode.childrens.length) {
+            patch(newNode.childrens[index], oldNode.childrens[index], newNode.elm);
+            index++;
+          }
+          newNode.elm = oldNode.elm;
+          return;
         } else {
-          element.setAttribute(attr, node.atributes[attr]);
+          oldNode.elm.parentNode.replaceChild(
+            createElement(newNode),
+            oldNode.elm,
+          );
+          return;
         }
       }
     }
-    if (node.atributes && oldNode) {
-      for (let attr of Object.keys(node.atributes)) {
-        if (node.atributes[attr] === oldNode.atributes[attr]) {
-          continue;
+  
+    function setAttributes(node, element, oldNode) {
+      if (node.atributes && (!oldNode || !oldNode.atributes)) {
+        for (let attr of Object.keys(node.atributes)) {
+          if (attr.match(/^on/)) {
+            element.addEventListener(
+              attr.substring(2).toLowerCase(),
+              node.atributes[attr],
+              false,
+            );
+          } else {
+            element.setAttribute(attr, node.atributes[attr]);
+          }
         }
+      }
 
-        // 确保函数不一致
-        if (
-          typeof node.atributes[attr] === 'function'
-          && typeof oldNode.atributes[attr] === 'function'
-          && node.atributes[attr].toString() === oldNode.atributes[attr].toString()
+      if (node.atributes && oldNode && oldNode.atributes) {
+        for (let attr of Object.keys(node.atributes)) {
+          if (node.atributes[attr] === oldNode.atributes[attr]) {
+            continue;
+          }
+  
+          // 确保函数不一致
+          if (
+            typeof node.atributes[attr] === 'function' &&
+            typeof oldNode.atributes[attr] === 'function' &&
+            node.atributes[attr].toString() === oldNode.atributes[attr].toString()
           ) {
             continue;
-        }
-        if (attr.match(/^on/)) {
-          element.removeEventListener(
-            attr.substring(2).toLowerCase(),
-            oldNode.atributes[attr],
-            false,
-          );
-          element.addEventListener(
-            attr.substring(2).toLowerCase(),
-            node.atributes[attr],
-            false,
-          );
-        } else {
-          element.setAttribute(attr, node.atributes[attr]);
+          }
+          if (attr.match(/^on/)) {
+            element.removeEventListener(
+              attr.substring(2).toLowerCase(),
+              oldNode.atributes[attr],
+              false,
+            );
+            element.addEventListener(
+              attr.substring(2).toLowerCase(),
+              node.atributes[attr],
+              false,
+            );
+          } else {
+            element.setAttribute(attr, node.atributes[attr]);
+          }
         }
       }
     }
-  }
+  });
 })();
