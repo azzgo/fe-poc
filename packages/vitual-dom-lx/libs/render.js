@@ -40,44 +40,91 @@
   function patch(newNode, oldNode) {
     // 如果新节点存在
     if (newNode.nodeName) {
-      if  (newNode.nodeName !== oldNode.nodeName || newNode.text) {
-        oldNode.elm.parentNode.replaceChild(createElement(newNode), oldNode.elm);
+      if (
+        newNode.nodeName !== oldNode.nodeName ||
+        (newNode.text && newNode.text !== oldNode.text)
+      ) {
+        oldNode.elm.parentNode.replaceChild(
+          createElement(newNode),
+          oldNode.elm,
+        );
         return;
       }
-    } 
-    
+      // 检查 Attributes
+      if (newNode.atributes) {
+        if (oldNode.atributes && oldNode.elm) {
+          newNode.elm = oldNode.elm;
+          setAttributes(newNode, newNode.elm, oldNode);
+        }
+      }
+    }
+
     if (checkTextNode(newNode) && newNode.text !== oldNode.text) {
-      oldNode.elm.parentNode.replaceChild(document.createTextNode(newNode.text), oldNode.elm);
+      oldNode.elm.parentNode.replaceChild(
+        document.createTextNode(newNode.text),
+        oldNode.elm,
+      );
       return;
     }
 
     if (newNode.childrens && oldNode.childrens) {
       if (newNode.childrens.length === oldNode.childrens.length) {
         let index = 0;
-        while(index < newNode.childrens.length) {
-          patch(newNode.childrens[index], oldNode.childrens[index])
+        while (index < newNode.childrens.length) {
+          patch(newNode.childrens[index], oldNode.childrens[index]);
           index++;
         }
         newNode.elm = oldNode.elm;
         return;
       } else {
-        oldNode.elm.parentNode.replaceChild(createElement(newNode), oldNode.elm);
+        oldNode.elm.parentNode.replaceChild(
+          createElement(newNode),
+          oldNode.elm,
+        );
         return;
       }
     }
   }
 
   function checkTextNode(currentNode) {
-    return currentNode.nodeName == null && currentNode.text != null && !currentNode.childrens;
+    return (
+      currentNode.nodeName == null &&
+      currentNode.text != null &&
+      !currentNode.childrens
+    );
   }
 
-  function setAttributes(node, element) {
-    if (node.atributes) {
+  function setAttributes(node, element, oldNode) {
+    if (node.atributes && !oldNode) {
       for (let attr of Object.keys(node.atributes)) {
         if (attr.match(/^on/)) {
-          element.addEventListener(attr.substring(2).toLowerCase(), node.atributes[attr], false);
+          element.addEventListener(
+            attr.substring(2).toLowerCase(),
+            node.atributes[attr],
+            false,
+          );
+        } else {
+          element.setAttribute(attr, node.atributes[attr]);
         }
-        else {
+      }
+    }
+    if (node.atributes && oldNode) {
+      for (let attr of Object.keys(node.atributes)) {
+        if (node.atributes[attr] === oldNode.atributes[attr]) {
+          continue;
+        }
+        if (attr.match(/^on/)) {
+          element.removeEventListener(
+            attr.substring(2).toLowerCase(),
+            oldNode.atributes[attr],
+            false,
+          );
+          element.addEventListener(
+            attr.substring(2).toLowerCase(),
+            node.atributes[attr],
+            false,
+          );
+        } else {
           element.setAttribute(attr, node.atributes[attr]);
         }
       }
