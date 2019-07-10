@@ -102,21 +102,20 @@
         // 保证新节点都是有 dom 引用
         newNode.elm = oldNode.elm;
 
-        if (newNode.childrens.length === oldNode.childrens.length) {
-          let index = 0;
-          while (index < newNode.childrens.length) {
-            patch(newNode.childrens[index], oldNode.childrens[index], newNode.elm);
+        let index = 0;
+        while (index < newNode.childrens.length) {
+          patch(newNode.childrens[index], oldNode.childrens[index], newNode.elm);
+          index++;
+        }
+
+        if (index < oldNode.childrens.length) {
+          while(index < oldNode.childrens.length) {
+            newNode.elm.removeChild(oldNode.childrens[index].elm)
             index++;
           }
-          newNode.elm = oldNode.elm;
-          return;
-        } else {
-          oldNode.elm.parentNode.replaceChild(
-            createElement(newNode),
-            oldNode.elm,
-          );
-          return;
         }
+
+        return;
       }
     }
   
