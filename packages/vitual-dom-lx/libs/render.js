@@ -71,7 +71,8 @@
         || !hUtils.checkIsTextNode(newNode) && hUtils.checkIsTextNode(oldNode)
 
       ) {
-        parrentElement.replaceChild(createElement(newNode), oldNode.elm);
+        newNode.elm = oldNode.elm;
+        newNode.elm.nodeValue = newNode.childrens;
         return;
       }
 
