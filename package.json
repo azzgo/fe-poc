@@ -18,7 +18,6 @@
   },
   "homepage": "https://github.com/azzgo/fe-poc#readme",
   "dependencies": {
-    "lodash": "^4.17.11"
   },
   "devDependencies": {},
   "jspm": {
