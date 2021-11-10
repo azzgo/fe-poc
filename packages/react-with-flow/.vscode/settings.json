@@ -1,6 +1,0 @@
-{
-  "flowide.enabled": true,
-  "eslint.enable": true,
-  "eslint.autoFixOnSave": true,
-  "javascript.validate.enable": false
-}
