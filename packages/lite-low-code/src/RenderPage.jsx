@@ -23,7 +23,7 @@ const jsonParser: IAzzStorageParser = {
 
 const lcStore = new AzzStorage("lc-", jsonParser);
 
-function App() {
+function RenderPage() {
   const jsoneditor = useRef(null);
   const [schema, setSchema] = useState(lcStore.get('schema', { type: "page" }));
 
@@ -67,4 +67,4 @@ function App() {
   );
 }
 
-export default App;
+export default RenderPage;
