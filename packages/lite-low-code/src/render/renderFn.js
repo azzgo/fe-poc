@@ -11,7 +11,6 @@ export function renderFn(schema) {
 
 function renderSchema(schema) {
   const Comp = schema && resolveComp(schema.type);
-  console.log(schema);
 
   if (!Comp) {
     return React.createElement("div", null, "[Type] " + schema?.type + " 未注册");

@@ -35,6 +35,7 @@ function App() {
       );
       jsoneditor.current.set(schema);
     }
+  /* eslint-disable-next-line */
   }, []);
 
   const onSave = () => {
