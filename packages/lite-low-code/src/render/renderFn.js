@@ -1,24 +1,32 @@
-import React from "react";
-import { resolveComp } from "./register";
+import React, {useCallback} from "react";
+import { resolveWidget } from "./widgetsRegister";
 
-export function renderFn(schema) {
-  if (Array.isArray(schema)) {
-    return schema.map(renderSchema);
-  }
+export function useRenderFn(enhance) {
 
-  return renderSchema(schema);
-}
+  const renderFn = useCallback((schema) => {
+    if (Array.isArray(schema)) {
+      if (enhance?.batchRender) {
+        return enhance.batchRender(renderSchema, schema)
+      }
+      return schema.map(renderSchema);
+    }
 
-function renderSchema(schema) {
-  const Comp = schema && resolveComp(schema.type);
+    function renderSchema(schema) {
+      const Comp = schema && resolveWidget(schema.type);
 
-  if (!Comp) {
-    return React.createElement("div", null, "[Type] " + schema?.type + " 未注册");
-  }
+      if (!Comp) {
+        return React.createElement("div", null, "[Type] " + schema?.type + " 未注册");
+      }
 
-  return React.createElement(Comp, {
-    key: schema.id,
-    ...schema,
-    render: renderFn,
-  });
+      return React.createElement(Comp, {
+        key: schema.id,
+        ...schema,
+        render: renderFn,
+      });
+    }
+
+    return renderSchema(schema);
+  }, [enhance])
+
+  return renderFn;
 }

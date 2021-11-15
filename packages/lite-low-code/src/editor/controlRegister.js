@@ -1,4 +1,5 @@
-const compRegisteredMap = new Map();
+
+const controlRegisterMap = new Map();
 
 /* eslint-disable */
 globalThis._debug = {
