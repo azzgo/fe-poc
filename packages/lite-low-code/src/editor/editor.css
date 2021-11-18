@@ -2,3 +2,13 @@
   border: 1px solid lightgray;
   cursor: pointer;
 }
+
+.drag-drop-zone {
+  border: 1px solid transparent;
+  height: 100%;
+  min-height: 40px;
+}
+
+.drag-drop-zone:empty {
+  border: 1px solid lightgray;
+}

@@ -1,3 +1,5 @@
+import {cloneDeep} from "lodash-es";
+import {nanoid} from "nanoid";
 import React, { useEffect, useRef } from "react";
 import Sortable from "sortablejs";
 
@@ -12,7 +14,7 @@ function SelectPanel({ compositionList = [] }) {
         const index = Array.prototype.slice.call(dragZone.current.childNodes).indexOf(event.item);
         const compositionData = compositionList[index];
 
-        event.item._dragData = compositionData;
+        event.item._dragData = cloneDeep({...compositionData.schema, id: nanoid(10)});
       }
     });
 

@@ -1,23 +1,32 @@
-import React, {useEffect, useRef} from "react"
+import React, {useEffect, useRef, useState} from "react"
 import Sortable from "sortablejs";
 
-function DragDropZone({children, onAppend}){
+function DragDropZone({render, schema}){
   const dragDropRef = useRef(null);
+  const [,forceUpdate] = useState({});
 
   useEffect(() => {
-    new Sortable(dragDropRef.current, {
+    const sortable = new Sortable(dragDropRef.current, {
       group: { name: "low-code", pull: true, put: true },
       sort: true,
       onAdd(event) {
         event.item.remove();
-        onAppend(event.item._dragData?.schema);
+        schema.splice(event.newIndex, 0, event.item._dragData);
+        forceUpdate({});
+      },
+      onUpdate(event) {
+        console.log('??????????????/');
+      },
+      onMove(event) {
+
       }
     });
-  }, [onAppend]);
+    return () => sortable.destroy();
+  }, []);
 
   return(
-    <div ref={dragDropRef}>
-      {children}
+    <div className="drag-drop-zone" ref={dragDropRef}>
+      {schema.map(render)}
     </div>
     )
 }
