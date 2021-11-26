@@ -9,7 +9,7 @@ function CanvasPanel({schema}) {
   }
 
   return (
-    <div className="col-xs">
+    <div className="canvas-panel eight columns">
       <Render schema={schema} enhance={{ batchRender }} />
     </div>
   );

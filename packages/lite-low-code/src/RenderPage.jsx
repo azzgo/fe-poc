@@ -53,13 +53,15 @@ function RenderPage() {
 
   return (
     <div className="App row full-height">
-      <div className="col-xs-6">
+      <div>
         <Render schema={schema} />
       </div>
-      <div className="col-xs-6">
+      <hr />
+      <h4>Schema 编辑器</h4>
+      <div>
         <div className="row">
-          <button onClick={onSave}>save</button>
-          <button onClick={onReset}>reset</button>
+          <button className="button button-primary" onClick={onSave}>save</button>
+          <button className="button" onClick={onReset}>reset</button>
         </div>
         <div id="jsoneditor" />
       </div>

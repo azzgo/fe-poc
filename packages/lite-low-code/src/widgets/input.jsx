@@ -4,7 +4,7 @@ function Input({ label }) {
   return (
     <div>
       <label>{label}</label>
-      <input />
+      <input className="u-full-width" />
     </div>
   );
 }

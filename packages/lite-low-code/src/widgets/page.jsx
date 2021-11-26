@@ -2,7 +2,7 @@ import React from "react"
 
 function Page({body, render}){
   return(
-    <div>
+    <div className="page">
       {render(body)}
     </div>
     )

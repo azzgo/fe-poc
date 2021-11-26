@@ -1,7 +1,8 @@
-import {cloneDeep} from "lodash";
-import React, {useEffect, useRef, useState} from "react"
+import React, {useContext, useEffect, useRef, useState} from "react";
 import Sortable from "sortablejs";
+import {EditorEventBusContext} from "../../event";
 
+// copy from vuedraggable source code
 function insertNodeAt(fatherNode, node, position) {
   const refNode =
     position === 0
@@ -10,10 +11,10 @@ function insertNodeAt(fatherNode, node, position) {
   fatherNode.insertBefore(node, refNode);
 }
 
-
-function DragDropZone({render, schema}){
+function DragDropZone({ render, schema }) {
   const dragDropRef = useRef(null);
-  const [,forceUpdate] = useState({});
+  const [, forceUpdate] = useState({});
+  const eventBus = useContext(EditorEventBusContext);
 
   useEffect(() => {
     const sortable = new Sortable(dragDropRef.current, {
@@ -21,7 +22,6 @@ function DragDropZone({render, schema}){
       sort: true,
       onAdd(event) {
         event.item.remove();
-        console.log(event.newIndex, 0 , event.item._dragData);
         schema.splice(event.newIndex, 0, event.item._dragData);
         forceUpdate({});
       },
@@ -38,22 +38,35 @@ function DragDropZone({render, schema}){
         forceUpdate({});
       },
       onStart(event) {
-        const index = Array.prototype.slice.call(dragDropRef.current.childNodes).indexOf(event.item);
+        const index = Array.prototype.slice
+          .call(dragDropRef.current.childNodes)
+          .indexOf(event.item);
         const _dragSchema = schema[index];
         event.item._dragData = _dragSchema;
       },
-      onMove(event) {
-
-      }
+      onMove(event) {},
     });
     return () => sortable.destroy();
-  }, []);
+  }, [schema]);
 
-  return(
+  return (
     <div className="drag-drop-zone" ref={dragDropRef}>
-      {schema.map(render)}
+      {schema.map((_schema) => {
+        return (
+          <div
+            className="drag-drop-item"
+            key={_schema.id}
+            onClick={(event) => {
+              event.stopPropagation();
+              eventBus.setActiveWidget(_schema);
+            }}
+          >
+            {render(_schema)}
+          </div>
+        );
+      })}
     </div>
-    )
+  );
 }
 
-export default DragDropZone
+export default DragDropZone;

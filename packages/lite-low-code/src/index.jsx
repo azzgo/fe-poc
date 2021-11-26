@@ -1,8 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./flexboxgrid.css";
 import "jsoneditor/dist/jsoneditor.css";
-import "./index.css";
 import Navigo from "navigo";
 import RenderPage from "./RenderPage";
 import EditorPage from "./EditorPage";
@@ -10,6 +8,17 @@ import EditorPage from "./EditorPage";
 const router = new Navigo("/", { hash: true });
 
 router
+  .hooks({
+    after: ((match) => {
+      const navBtns = document.querySelectorAll('body > nav > a')
+      for (let btn of navBtns) {
+        btn.classList.remove('active');
+        if (btn.getAttribute('href').indexOf(match.url) > -1) {
+          btn.classList.add('active');
+        }
+      }
+    })
+  })
   .on(
     "/editor",
     () => {

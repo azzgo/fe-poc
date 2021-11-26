@@ -10,7 +10,7 @@ function EditorPage() {
       schema: {
         type: 'input',
         label: "Single Line Input"
-      }
+      },
     },
     {
       name: "Columns",
@@ -30,7 +30,17 @@ function EditorPage() {
     },
   ]
 
- return <Editor compositionList={compositionList} />;
+  return  (
+    <div className="full-height flex-column">
+      <div className="row ">
+        <button className="button button-primary">Save Schema</button>
+      </div>
+      <div className="flex-auto">
+        <Editor compositionList={compositionList} />;
+      </div>
+    </div>
+  )
+
 }
 
 export default EditorPage;

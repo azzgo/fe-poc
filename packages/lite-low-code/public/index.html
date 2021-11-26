@@ -10,11 +10,15 @@
       content="Web site for lite low code"
     />
     <title>Lite Low Code</title>
+    <link rel="stylesheet" href="./skeleton.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <link rel="stylesheet" href="./base.css" type="text/css" media="screen" title="no title" charset="utf-8">
   </head>
-  <body>
+  <body >
     <noscript>You need to enable JavaScript to run this app.</noscript>
-    <a href="/editor" data-navigo>Editor</a>
-    <a href="/render" data-navigo>Render</a>
-    <div id="root"></div>
+    <nav class="app-navbar">
+      <a href="/editor" data-navigo title="Editor">E</a>
+      <a href="/render" data-navigo title="Render">R</a>
+    </nav>
+    <main class="app-main" id="root"></div>
   </body>
 </html>
