@@ -1,13 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import { EditorEventBusContext } from "../event";
+import { EditorStoreContext } from "../store";
 
 function ConfigPanel({ compositionList = [] }) {
-  const eventBus = useContext(EditorEventBusContext);
+  const eventBus = useContext(EditorStoreContext);
   const [activeWidget, setActiveWidget] = useState(eventBus.getActiveWidget());
 
   useEffect(() => {
-    return eventBus.onAcitiveWidgetChange((id) => {
-      setActiveWidget(id);
+    return eventBus.onAcitiveWidgetIdChange(() => {
+      setActiveWidget(eventBus.getActiveWidget());
     });
   }, [eventBus]);
   return (
@@ -16,7 +16,7 @@ function ConfigPanel({ compositionList = [] }) {
         <>
           <label>label</label>
           <input
-            value={activeWidget.label}
+            defaultValue={activeWidget.label}
             onChange={(event) =>
               eventBus.updateActiveWidgetSchema({
                 ...activeWidget,

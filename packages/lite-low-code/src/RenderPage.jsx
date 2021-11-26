@@ -1,31 +1,13 @@
 import JsonEditor from "jsoneditor";
-import AzzStorage from "azz-storage";
 import React, { useEffect, useState } from "react";
 import { Render } from "./render";
 import { useRef } from "react";
-import './widgets'
-
-const jsonParser: IAzzStorageParser = {
-  get(val, defaultVal) {
-    try {
-      const data = JSON.parse(val);
-      return data.value;
-    } catch (e) {
-      return defaultVal;
-    }
-  },
-  set(val) {
-    return JSON.stringify({
-      value: val,
-    });
-  },
-};
-
-const lcStore = new AzzStorage("lc-", jsonParser);
+import "./widgets";
+import { lcStore } from "./utils";
 
 function RenderPage() {
   const jsoneditor = useRef(null);
-  const [schema, setSchema] = useState(lcStore.get('schema', { type: "page" }));
+  const [schema, setSchema] = useState(lcStore.get("schema", { type: "page" }));
 
   useEffect(() => {
     if (!jsoneditor.current) {
@@ -35,14 +17,14 @@ function RenderPage() {
       );
       jsoneditor.current.set(schema);
     }
-  /* eslint-disable-next-line */
+    /* eslint-disable-next-line */
   }, []);
 
   const onSave = () => {
     const schema = jsoneditor.current.get();
     if (schema) {
       setSchema(jsoneditor.current.get());
-      lcStore.set('schema', schema);
+      lcStore.set("schema", schema);
     }
   };
 
@@ -60,8 +42,12 @@ function RenderPage() {
       <h4>Schema 编辑器</h4>
       <div>
         <div className="row">
-          <button className="button button-primary" onClick={onSave}>save</button>
-          <button className="button" onClick={onReset}>reset</button>
+          <button className="button button-primary" onClick={onSave}>
+            save
+          </button>
+          <button className="button" onClick={onReset}>
+            reset
+          </button>
         </div>
         <div id="jsoneditor" />
       </div>

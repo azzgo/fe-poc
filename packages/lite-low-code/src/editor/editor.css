@@ -18,7 +18,7 @@
 .editor .canvas-panel {
   height: 100%;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  padding: 4px;
+  padding: 8px 12px;
 }
 
 .editor .canvas-panel > .page > .drag-drop-zone:empty{

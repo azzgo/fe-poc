@@ -30,6 +30,11 @@
       "react-app/jest"
     ]
   },
+  "jest": {
+    "moduleNameMapper": {
+      "^lodash-es$": "lodash"
+    }
+  },
   "browserslist": {
     "production": [
       ">0.2%",
