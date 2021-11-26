@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import Editor from "./editor/Editor";
-import { lcStore } from "./utils";
+import { lcStore, notyf } from "./utils";
 
 function EditorPage() {
   const editorRef = useRef(null);
@@ -39,6 +39,7 @@ function EditorPage() {
 
     if (schema) {
       lcStore.set('schema', schema);
+      notyf.success("Save Success!")
     }
   }
 

@@ -1,4 +1,9 @@
 import AzzStorage from "azz-storage";
+import { Notyf } from 'notyf';
+import 'notyf/notyf.min.css'; // for React, Vue and Svelte
+
+// Create an instance of Notyf
+export const notyf = new Notyf({position: {x: 'right', y: 'top'}});
 
 const jsonParser: IAzzStorageParser = {
   get(val, defaultVal) {
